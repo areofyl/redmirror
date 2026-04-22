@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Mistakenly deleted /usr/lib64/plugins, how to restore it?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Mistakenly deleted /usr/lib64/plugins, how to restore it?</h2>
+<span class="meta">by shebaw | <span class="score">7</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I use kmymoney to track finances. It stopped working after it got updated back when I used fedora 42. I installed it from source instead. Now that I have updated the system to fedora 43, it stopped working. So I installed it from the repos which was working with the exception of the qsqlcypher plugin which it needs to open the database. So I was removing the old compiled plugins which were conflicting when I mistakenly removed the parent directory (`/usr/lib64/plugins`) instead. Now after restart, audio doesn&#39;t work. Firefox also fails to play videos. Can someone post the contents of that directory so that I can repair it. Thank you.</p>
+</div><!-- SC_ON --></div>
+<h3>4 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">mskiptr <span class="score">2</span></span>
+<div class="md"><div class="md"><p>It seems the way to go is <code>sudo dnf reinstall &#39;*&#39;</code>. This command should reinstall all the packages on your system. There&#39;s also <code>dnf check</code>, which should just report you any problems it can detect.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">shebaw <span class="score">1</span></span>
+<div class="md"><div class="md"><p>This fixed it. Thank you. What&#39;s funny is the `/usr/lib64/plugins` directory is still missing but everything is working now.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">mskiptr <span class="score">1</span></span>
+<div class="md"><div class="md"><p>How are you checking whether this plugins directory exists or not? I don&#39;t have a Fedora machine at hand, but AFAIK <code>/usr/lib64</code> is just a symlink to <code>/usr/lib</code> which could be tripping up certain tools.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">shebaw <span class="score">2</span></span>
+<div class="md"><div class="md"><p>&#39;/usr/lib64&#39; is a proper directory in fedora. But I think the `plugins` folder under it was created when I compiled kmymoney from source. I was cleaning up a directory inside it when I mistakenly deleted it instead. I don&#39;t know why deleting it messed up my system though. Frankly, I don&#39;t even want to know</p>
+</div></div></div>
+</body></html>

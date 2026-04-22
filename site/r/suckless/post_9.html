@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Patch to fix the problem of screen resizing more perfectly</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>Patch to fix the problem of screen resizing more perfectly</h2>
+<span class="meta">by Old_Set_9012 | <span class="score">5</span> points</span>
+<p><a href="https://www.reddit.com/gallery/1se0jby">https://www.reddit.com/gallery/1se0jby</a></p>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Using MultiViewer on dwm and running into a practical issue: arranging multiple panels cleanly.</p>
+
+<p>I’m trying to set up a proper multi-view layout (main feed + onboard + timing + track map), but getting everything perfectly resized and aligned is a pain in the ass. Floating mode works, but manual resizing is imprecise, wasting space and takes too long to get right.</p>
+
+<p>Since dwm doesn’t provide snapping or grid-based placement out of the box, I’m looking for a clean way to handle this without turning things into a mess.</p>
+
+<p>Looking for suggestions on:</p>
+
+<ul>
+<li>Precise window resizing and positioning</li>
+<li>Automating layout (scripts, tools, patches, etc.)</li>
+<li>Any dwm patches or workflows that make this easier</li>
+<li>Ways to consistently recreate the same layout every time</li>
+</ul>
+
+<p>Patches I have regarding screen</p>
+
+<table><thead>
+<tr>
+<th align="left">dwm-movestack-20211115-a786211.diff</th>
+<th align="left">dwm-alwayscenter-20200625-f04cac6.diff</th>
+<th align="left">dwm-cyclelayouts-20180524-6.2.diff</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><strong>dwm-attachdirection-6.2.diff</strong></td>
+<td align="left"><strong>dwm-scratchpads-20200414-728d397b.diff</strong></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+</div><!-- SC_ON --></div>
+<h3>4 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">bakkeby <span class="score">1</span></span>
+<div class="md"><div class="md"><p>By default dwm will respect size hints for tiled windows. This will in particular affect windows that have aspect ratios like shown in the screenshots.</p>
+
+<p>You can set <code>resizehints</code> to 0 in your config.h if you want to disable this feature - it may address some of the gaps but may not necessarily look better.</p>
+
+<p>For the first screenshot it is not clear what layout you are using. The default tile layout with incremented <code>nmaster</code> would give a similar result, just that all windows would be top aligned.</p>
+
+<p>I implemented window snapping for floating windows in my own build, but I think this wouldn&#39;t solve your problem as you&#39;d want to use as much of the screen real-estate as possible (i.e. full tiling).</p>
+
+<p>The various grid-based layouts available won&#39;t help here unless you disable resizehints.</p>
+
+<p><a href="https://dwm.suckless.org/patches/cfacts/">cfacts</a> may potentially help with some minor fine-tuning.</p>
+
+<p>I suppose that you could have a bash script that uses e.g. wmctrl, xdo or xdotool to handle the sizing and positioning of floating windows, but this wouldn&#39;t reduce the complexity I feel.</p>
+
+<p>Out of interest (and for fun) I did implement a grid layout that attempts to optimise the positioning and sizing of windows based on their aspect ratio, but this would be far into the &quot;turning things into a mess&quot; side for a minimalistic build.</p>
+
+<p>Feel free to reach out via chat or otherwise if you&#39;d like to discuss.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Old_Set_9012 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thanks you so much but one more question is there any way or patch that can help me with like sliding a side to contract or expand it like we can do with DE for example I want the left side of a window more expanded than the right side so I just drag it or something </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">bakkeby <span class="score">1</span></span>
+<div class="md"><div class="md"><p>From what you describe it sounds like <code>cfacts</code> - it assigns a &quot;weight&quot; to a client relative to other clients within the same tiling area. I have a <a href="https://github.com/bakkeby/patches/wiki/dragcfact">dragcfact</a> patch that lets you change that using the mouse. This can be combined with changing the <code>mfact</code> as well which gives it a different feel and impact.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Old_Set_9012 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Woh man thanks you came and solved everything before next race will patch it after 8 hours IST by any chance did you ever created flexipatxh of surf if yes thanks for that too</p>
+</div></div></div>
+</body></html>

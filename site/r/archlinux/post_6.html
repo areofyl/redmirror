@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Arch Linux now has a bit-for-bit reproducible Docker image</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Arch Linux now has a bit-for-bit reproducible Docker image</h2>
+<span class="meta">by Antiz1996 | <span class="score">175</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p><a href="https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/thread/44PW52T547MACXFU5HZ5U7SIPAX3BAXS/">https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/thread/44PW52T547MACXFU5HZ5U7SIPAX3BAXS/</a></p>
+</div><!-- SC_ON --></div>
+<h3>19 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Antiz1996 <span class="score">63</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Hey everyone,</p>
+
+<p>As a follow-up to the related milestone achieved for our WSL image a few months ago [1], I&#39;m proud to announce that Arch Linux now has a bit-for-bit reproducible Docker image!</p>
+
+<p>This bit-for-bit reproducible image is distributed under a new &quot;repro&quot; tag [2]. This is due to one important caveat: to ensure reproducibility, the pacman keys have to be stripped from the image, meaning that pacman is not usable <em>out of the box</em> in this image.<br/>
+Users will need to (re)generate the pacman keyring (by running <code>pacman-key --init &amp;&amp; pacman-key --populate archlinux</code>) before being able to update the system and install packages via pacman. While waiting to find a suitable solution to this technical constraint, we are therefore providing this reproducible image under a dedicated tag as a first milestone.</p>
+
+<p>The bit-for-bit reproducibility of the image is confirmed by digest equality across builds (<code>podman inspect --format &#39;{{.Digest}}&#39; &lt;image&gt;</code>) and by running <code>diffoci</code> [3] to compare builds.<br/>
+We provide documentation on how to reproduce this Docker image [4] (as we did for the WSL image as well [5]).</p>
+
+<p>Building the base rootFS for the Docker image in a deterministic way was the main challenge, but it reuses the same process as for our WSL image [6] (as both share the same rootFS build system).</p>
+
+<p>The main Docker-specific adjustments include:</p>
+
+<ul>
+<li>Set <code>SOURCE_DATE_EPOCH</code> and honor it in the <code>org.opencontainers.image.created</code> LABEL in the Dockerfile</li>
+<li>Remove the ldconfig auxiliary cache file (which introduces non-determinism) from the built image in the Dockerfile</li>
+<li>Normalize timestamps during <code>docker build</code> / <code>podman build</code> using the <code>--source-date-epoch=$SOURCE_DATE_EPOCH</code> and <code>--rewrite-timestamp</code> options.</li>
+</ul>
+
+<p>You can check the related change set in our archlinux-docker repository [7] for more details.</p>
+
+<p>This represents another meaningful achievement in our &quot;reproducible builds&quot; efforts and we’re already looking forward to the next step!</p>
+
+<p>[1] <a href="https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/message/XDF2IIWNCZZR6KABH2OGSN7AVL7BBX25/">https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/message/XDF2IIWNCZZR6KABH2OGSN7AVL7BBX25/</a><br/>
+[2] <a href="https://hub.docker.com/layers/archlinux/archlinux/repro">https://hub.docker.com/layers/archlinux/archlinux/repro</a><br/>
+[3] <a href="https://github.com/reproducible-containers/diffoci">https://github.com/reproducible-containers/diffoci</a><br/>
+[4] <a href="https://gitlab.archlinux.org/archlinux/archlinux-docker/-/blob/master/REPRO.md">https://gitlab.archlinux.org/archlinux/archlinux-docker/-/blob/master/REPRO.md</a><br/>
+[5] <a href="https://gitlab.archlinux.org/archlinux/archlinux-wsl/-/blob/main/REPRO.md">https://gitlab.archlinux.org/archlinux/archlinux-wsl/-/blob/main/REPRO.md</a><br/>
+[6] <a href="https://gitlab.archlinux.org/archlinux/archlinux-wsl/-/commit/7c0340e26358048f3f8ee03b3ab3aea666751712">https://gitlab.archlinux.org/archlinux/archlinux-wsl/-/commit/7c0340e26358048f3f8ee03b3ab3aea666751712</a><br/>
+[7] <a href="https://gitlab.archlinux.org/archlinux/archlinux-docker/-/merge_requests/96/diffs">https://gitlab.archlinux.org/archlinux/archlinux-docker/-/merge_requests/96/diffs</a></p>
+
+<h2></h2>
+
+<p>Regards,<br/>
+Robin Candau / Antiz</p>
+</blockquote>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">This-Weather4843 <span class="score">21</span></span>
+<div class="md"><div class="md"><p>This is absolutely wild - the amount of work that went into making every single bit deterministic must have been a nightmare. Having to strip the pacman keys is a bit of a pain but totally makes sense for true reproducibility. Can&#39;t wait to see what kind of security auditing possibilities this opens up for containerized workflows.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">[deleted] <span class="score">18</span></span>
+<div class="md"><div class="md"><p>[removed]</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Antiz1996 <span class="score">10</span></span>
+<div class="md"><div class="md"><p>🙏</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Alaknar <span class="score">8</span></span>
+<div class="md"><div class="md"><p>WSL? As in: Windows Subsystem for Linux? Are you saying that I can now install Arch on Windows?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Antiz1996 <span class="score">12</span></span>
+<div class="md"><div class="md"><p>Indeed: <a href="https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL">https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Vorrnth <span class="score">1</span></span>
+<div class="md"><div class="md"><p>That&#39;s been possible for a long time already.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">sonicrules11 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The other projects have never been official as far as I&#39;m aware of.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">kawangkoankid <span class="score">2</span></span>
+<div class="md"><div class="md"><p>question. should we generate the keyring when building the image or in individual containers? I dont plan to redistribute the image, just for personal use. Whats best practice. Thank you!</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Antiz1996 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>No need to rebuild the image, you can simply generate the keyring by running <code>pacman-key --init &amp;&amp; pacman-key --populate archlinux</code> from the container at first start.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ArjixGamer <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The pacman keys are stripped for a security reason in the first place, or at least the lsign key.</p>
+
+<p>What&#39;s different now?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Antiz1996 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>As you just said, only the lsign key is stripped from the regular images while the repro image strips the entire keyring.</p>
+
+<p>The lsign key is only necessary to install / update packages from third party repositories, its absence doesn&#39;t prevent to use pacman out of the box to install / update packages from the Arch Linux repository. Unless you intend to use third party repositories, you don&#39;t have to regenerate the keyring with regular images (while it&#39;s always necessary with the repro image).</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ArjixGamer <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Aha</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">BashfulMelon <span class="score">27</span></span>
+<div class="md"><div class="md"><p>Awesome, looks like Arch&#39;s efforts to securely build and distribute packages are coming along nicely. AFAIK they&#39;re not just making them reproducible to make them auditable but so they can require consensus where more than one maintainer has to build the same package before it can be pushed to the repository? Pretty neat stuff.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">NotQuiteLoona <span class="score">14</span></span>
+<div class="md"><div class="md"><p>I&#39;m sorry, but what does reproductivity means there? I can&#39;t apply this to Arch in my mind at all. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">gmes78 <span class="score">34</span></span>
+<div class="md"><div class="md"><p>It means that, if you pull the sources and build the image on your machine, you&#39;ll get an image that is exactly the same as any other build of that specific version (including the officially provided one).</p>
+
+<p>This is important for verifying that the image hasn&#39;t been tampered with.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">NotQuiteLoona <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Ohhhhhh, thank you! </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">abbidabbi <span class="score">4</span></span>
+<div class="md"><div class="md"><p>More about reproducible builds:</p>
+
+<ul>
+<li><a href="https://reproducible-builds.org/">https://reproducible-builds.org/</a> (general info for software developers and packagers) </li>
+<li><a href="https://reproducible.archlinux.org/">https://reproducible.archlinux.org/</a> (status of individual packages in Arch&#39;s repos)</li>
+</ul>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">V2UgYXJlIG5vdCBJ <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I voted for Podman. 🤷‍♂️</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Help Needed</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Help Needed</h2>
+<span class="meta">by Gassatron | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hello!</p>
+
+<p>I got this error message when I tried to boot my computer. I literally have no idea how this happened nor do I posses the necessary skills to get myself out of this. I remember trying to do something with flatpak, rebooted, then all my downloaded programs just disappeared. I tried a &quot;fix&quot; I found, and well here we are. </p>
+
+<p>Any and all help isuch appreciated. As I mentioned, I am a caveman when it comes to this so some patience is also wanted😭.</p>
+
+<p>First, it asked me to log in through the terminal</p>
+
+<p>Then</p>
+
+<p>&quot;flatpak: error while loading shared libraries: libxm12.so.16: cannot open shared object file: No such file or directory&quot;</p>
+
+<p>Thank you</p>
+</div><!-- SC_ON --></div>
+<h3>10 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ClassroomHaunting333 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>It looks like your shared libraries got out of sync, likely during that Flatpak tweak. The manual fix is to try <code>sudo pacman -Syu libxml2</code> to restore that specific link.</p>
+
+<p>I actually had similar shared library not found errors. I wrote a small Zsh tool called Mend. It identifies which package owns the missing .so file and offers to install it for you so you don&#39;t have to hunt for it. Might be worth a look once you&#39;re back at your desktop.<br/>
+GitHub: <a href="https://github.com/Rakosn1cek/mend">https://github.com/Rakosn1cek/mend</a> </p>
+
+<p>Better to have it and not needed than the opposite.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TwiKing <span class="score">1</span></span>
+<div class="md"><div class="md"><p>👆 Yes, try this!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">heavymetalmug666 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>what was the &quot;fix&quot;</p>
+
+<p>What were you trying to do with flatpak?</p>
+
+<p>when is the last time you ran pacman -Syu?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Gassatron <span class="score">0</span></span>
+<div class="md"><div class="md"><p>sudo pacman -Sy archlinux-keyring</p>
+
+<p>sudo rm -rf /var/cache/pacman/pkg/*</p>
+
+<p>sudo pacman -Syu</p>
+
+<p>And then that last line had some errors at the end. Basically it couldn&#39;t do it. So I was like screw it I&#39;ll pick it up tomorrow. Tomorrow comes and now we&#39;re here</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">BanaTibor <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Very brave of you, messing around without having the slightest clue what you are doing. Not very smart, but very brave!</p>
+
+<p>If you have network access you can try install that lib. Or try to reinstall flatpak, use the --force switch if necessary, if you have not cleaned up your cache you can do it without network access, from the pacman cache /var/cache/pacman.... Find the file then &quot;pacman -U &lt;filename&gt;&quot;</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Ordoviz11q <span class="score">3</span></span>
+<div class="md"><div class="md"><p>You made a typo in the error message; it should say &quot;libxml2.so.16&quot; with an ell instead of a one. This file is provided by <code>libxml2</code>, a dependency of <code>flatpak</code>. Because this file is missing, flatpak doesn&#39;t start. I don&#39;t know that the hell you are doing but I wouldn&#39;t want flatpak to have anything to do with the boot process.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Gassatron <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>I am thoroughly impressed that you caught that. It has been made very aware to me that I have performed a 10/10 mess up.</p>
+
+<p>Anything you know that could possibly fix it?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RegretFree7723 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Take a USB stick with Arch Linux Live and boot from there The chroot there are tons of tutorials on how to chroot with a USB stick tell me if there are any problems for the chroot </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Careful_Aspect_3925 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>pain 💀</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Gassatron <span class="score">0</span></span>
+<div class="md"><div class="md"><p>At this point I don&#39;t care about fixing or whatever, I just need the damn thing back so I can do work😭😭 </p>
+</div></div></div>
+</body></html>

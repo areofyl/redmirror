@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Full Linux on my Mac</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Full Linux on my Mac</h2>
+<span class="meta">by TheLagdom | <span class="score">7</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hola! Fui usuario de Linux toda mi vida hasta que hace unos años compré mi MacBook Air M1. Echo de menos Linux (era usuario de ElementaryOS) y me preguntaba si sería posible ir “full” con Asahi en mi Mac, no particiones ya que creo que con la memoria tan limitada que tiene el Air no sería usable. Gracias</p>
+</div><!-- SC_ON --></div>
+<h3>11 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">areofyl <span class="score">4</span></span>
+<div class="md"><div class="md"><p>For MacBooks, you need to keep the macOS partition (as well as a macOS stub for Linux) or else it will go into recovery mode. Also, I don’t think memory has ever been a problem on my machine (which is the same as yours) throughout my time on Fedora and through compilations on Gentoo. The combination of high speed unified memory and low RAM usage is very good!</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">PandaMan12321 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I think they meant storage not RAM by memory</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">areofyl <span class="score">1</span></span>
+<div class="md"><div class="md"><p>OP asked about partitions and memory (that’s the reason why I covered the storage stuff).</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">haahumeinhomo <span class="score">3</span></span>
+<div class="md"><div class="md"><p>no, u can allot min space to mac and max to asahi though.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">The_Mild_Mild_West <span class="score">3</span></span>
+<div class="md"><div class="md"><p>You do need to keep a MacOS partition, but the installer lets you squeeze the maximum out of your storage. After selecting minimum for the MacOS partition, you&#39;re left with about 180GB (assuming 256GB model)</p>
+
+<p>I think the real magic will come in a few years when Apple drops support for M1 and the 1TB model MB air and pro drop in price. </p>
+
+<p>Idk when EOL is but I imagine it&#39;s about 7-10 years, and M1 debuted in 2020.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Serious_Berry_3977 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I have a 512GB M2 MacBook Air, I got the macOS partition down to something like 120GB. The real issue is RAM. 8GB of RAM on my machine is just not really enough and it gets bogged down quite a bit. However, I did increase the swapfile size from 8GB to 16GB and saw a much more noticeable difference -- especially when gaming. I still have to make sure as few apps as possibly are running in the background (like Filen which is a memory hog right now as well as Thunderbird). With only the 8GB swapfile Steam was getting killed all the time when trying to run a game.</p>
+
+<p>Your results may vary, but it&#39;s a very much usable daily driver right now as long as you know that things can and might break and it&#39;s not going to be as smooth as macOS is (and since macOS 26 that was debatable in my experience).</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Natjoe64 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Nope. macOS is essentially both firmware AND an operating system, so it is a necessary evil to keep around.  You can shrink it to ludicrously small sizes like 30-50 gb or something unhealthy, but I would just do a 75-180 split if your that crunched. Cloud storage/NAS is your friend here. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Successful_Bowler728 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>For profesional Linux experience go full x86 no partitions.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TheLagdom <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yep, the next laptop will be a x86 to back to Linux </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">JavierSobrino <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Vuelve a comprar una máquina x86, los últimos AMD son increibles, y sus gráficas también, nada que envidiar en velocidad a los Apple, y vas a tener mucho más soporte. Es lo que he hecho yo recientemente tras probar Asahi durante 1 mes, cansado de crasheos y problemas.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TheLagdom <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Sí, creo que cuando toque jubilarlo iré directo a por un Thinkpad o similar, gracias! </p>
+</div></div></div>
+</body></html>

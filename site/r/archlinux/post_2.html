@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>A month with Arch Linux</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>A month with Arch Linux</h2>
+<span class="meta">by Kubernan | <span class="score">17</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hello everyone,  </p>
+
+<p>I&#39;ve been a user of MacOS, then Fedora (from version 39 to 42), and then again MacOS, but now I&#39;ve been using Arch Linux for a month.  </p>
+
+<p>Setting up Arch (without archinstall) took me about a week, including configuring Hyprland, Waybar, setting up backups (borg backup), my development tools, apps, and some fine-tuning.</p>
+
+<p>Since then, I&#39;ve been using it every day without any issues. This is quite remarkable, considering I&#39;m far from being a Linux expert :-) and had to fight to resolve some problems (nothing too serious, but I&#39;ll get back to that later).</p>
+
+<p>Arch is running on my <a href="https://www.reddit.com/r/thinkpad/comments/117gkxe/after_20_years_without_touching_a_pc/">ThinkPad X1C Gen 10</a>, with 32 GB of RAM and a 2 TB hard drive. Everything works perfectly. It&#39;s the same ThinkPad I had when I was using Fedora, but the upgrade to version 43 was a disaster: I couldn&#39;t connect my Apple Studio Display via a Thunderbolt dock, and the machine would freeze. This had worked fine before.</p>
+
+<p>So, I went back to MacOS (on a MacBook Pro M3 Max with 128 GB of RAM, an amazing hardware) where all my terminal tools were available (neovim, docker, Ghostty, tmux, fzf, yazi, etc.). I was using it with the Yabai a tiling window manager for MacOS. However, Apple being Apple, I didn&#39;t want to migrate to MacOS Tahoe and its Liquid Glass, and while Yabai is great, it has some limitations.</p>
+
+<p>That&#39;s when I decided to embark on the Arch + Hyprland adventure. I reactivated my ThinkPad, but I encountered the same issue with my external screen as I had with Fedora.</p>
+
+<p>I decided to solve the problem. And I found it: for some reason, the Thunderbolt dock was sending a &quot;ghost&quot; screen (with a resolution of 640x480) that I could disable in Hyprland.<br/>
+Miracle: I can now connect my Apple Studio Display, and I even have sound working.</p>
+
+<p>With this dock, I also had issues with Ethernet disconnections, but installing &quot;bolt&quot; solved the problem. My Mac is now used as a server (mainly for local LLM).</p>
+
+<p>Honestly, I&#39;m thrilled. I work on it every day without any issues. The environment is configured to my liking and needs.  </p>
+
+<p>I&#39;m giving myself two more months, and if everything continues to work as it is, I&#39;ll invest in a more powerful ThinkPad P.</p>
+</div><!-- SC_ON --></div>
+<h3>7 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Sublime-Text <span class="score">3</span></span>
+<div class="md"><div class="md"><p>What a great journey man. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dosplatos225 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Nice! What was the dock? I wanted to get a dock for my arch workstation and I was curious what you used here.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Kubernan <span class="score">1</span></span>
+<div class="md"><div class="md"><p>OWC Thunderbolt dock. Now it works very well.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Cruffe <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I came straight from Windows, installing Arch manually. I spent half a day trying to figure out why I couldn&#39;t boot into my new install, I refused to give up. Turned out my motherboard was ultimately to blame, unfortunately it had a UEFI bug which made it not save any boot entires to nvram. Was a simple fix, but there was a 10+ point list of things to troubleshoot before arriving at that conclusion.</p>
+
+<p>Rough start, but I&#39;m basically a bootloader expert now...</p>
+
+<p>Since then (almost a year ago) I&#39;ve been running Arch every day with few issues. The issues I have ran into weren&#39;t that hard to solve, just a couple of searches and a bit of reading to solve it. Two of the issues I ran into were actual bugs and those got resolved in a reasonable amount of time after sending detailed bug reports.</p>
+
+<p>I didn&#39;t think I&#39;d last on Arch when I went into it knowing almost nothing, but now I think I picked the perfect distro for me on the first try.</p>
+
+<p>If you can handle Arch then it will probably serve you well for a long time. Enjoy!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Honestly, I&#39;m thrilled. I work on it every day without any issues. </p>
+</blockquote>
+
+<p>That should be your expectation, although that might be especially amazing with your choice of  a beta compositor.</p>
+
+<p>I run Thinkpads also, and they&#39;re effortlessly perfectly reliable. </p>
+
+<p>Welcome to Arch, and good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">WatercressGold6500 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Nice write-up! That thunderbolt dock &quot;ghost screen&quot; issue is such a weird one - had something similar happen with my setup and it drove me crazy until I figured out the workaround</p>
+
+<p>Hyprland + arch combo is pretty solid once you get past teh initial setup hell, good call on taking your time with it instead of rushing</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">JosBosmans <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Good vibes! (:</p>
+
+<p>The tale of Tahoe is quite something according to <a href="/r/MacOS">/r/MacOS</a> - sticking to Sequoia on my M1. Desktop Arch forever.</p>
+</div></div></div>
+</body></html>

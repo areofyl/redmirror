@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Arch + NVidia wake from sleep issues</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Arch + NVidia wake from sleep issues</h2>
+<span class="meta">by WhoLovesDonuts | <span class="score">8</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hi all,</p>
+
+<p>I&#39;m struggling a bit with issues with my machine not waking properly from sleep once in a while. I&#39;m on Arch updated as of today 4/20/26. I&#39;m on the regular kernel branch 6.19.12-arch1-1 and have an NVidia 5080. My nvidia driver version is Driver Version: 595.58.03 using the nvidia-open package.</p>
+
+<p>I was using KDE at first and had a lot of bugs I&#39;d run into. Some were probably KDE related (mouse would not track but would register clicks when waking up, but occasionally randomly, dual monitor positions would reset with one being inside the other especially after waking up, the lock screen not unlocking properly). I switched to gnome 50 and a lot of the issues seem to have improved. However, I will still about 1 in 5 wake-ups will get a hard freeze requiring me to hit the restart button (a new terminal won&#39;t open with ctrl+alt+F2 for example) and even the magic keys don&#39;t work. I&#39;m guessing this is an nvidia issue.</p>
+
+<p>I&#39;ve read through the wiki on nvidia but am honestly a bit confused. It seems a few updates ago the nvidia sleep / suspend systemd services were removed from the driver saying they aren&#39;t needed anymore.</p>
+
+<p>I believe DRM mode setting is appropriately installed running <code>cat /sys/module/nvidia_drm/parameters/modesetcat /sys/module/nvidia_drm/parameters/modeset</code></p>
+
+<p>Produces a Y as per the wiki. There&#39;s a line afterwards that&#39;s a bit confusing though that says &quot;Officially supported kernels enable simpledrm, while NVIDIA driver requires efifb or vesafb when its own fbdev is disabled (or unavailable, with driver versions older than 545): see BBS#307164 for a possible workaround if you experience issues.&quot;</p>
+
+<p>Since I&#39;m experiencing issues, I added the line <code>nvidia_drm.modeset=1</code> to the kernel options per the forum post to disable simpledrm early.</p>
+
+<p>Under the wiki <a href="https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Preserve_video_memory_after_suspend">https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Preserve_video_memory_after_suspend</a></p>
+
+<p>it mentions that it no longer uses the prior NVreg_PreserveVideoMemoryAllocations and has switched. When running sort /proc/driver/nvidia/params i do see UseKernelSuspendNotifiers: 1 suggesting the new kernel suspend notifiers are correct.</p>
+
+<p>I&#39;m a bit confused about GDM though now that I&#39;ve switched to gnome. In the wiki box it says &quot;When using the 430-590 series drivers, the <code>nvidia-resume.service</code> is marked as required by NVIDIA, but it can be optional, as its functionality is also provided by a <a href="https://man.archlinux.org/man/systemd-sleep.8">systemd-sleep(8)</a> hook (<code>/usr/lib/systemd/system-sleep/nvidia</code>) and it is invoked automatically. Note that <a href="https://gitlab.gnome.org/GNOME/gdm/-/issues/784">GDM with Wayland</a> however explicitly requires <code>nvidia-resume.service</code> to be <a href="https://wiki.archlinux.org/title/Enabled">enabled</a>.&quot;</p>
+
+<p>Does that mean I need to somehow again download the removed nvidia-resume.service from the new driver series? Or is this just outdated on the wiki? Is there some other issue that may be present causing the occasional freeze or resume failure?</p>
+</div><!-- SC_ON --></div>
+<h3>23 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Rockytriton <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I had all kinds of issues with my 5070 in linux with waking from sleep, especially using a KVM switch to swap between computers.  I tried tons of different things, all the things you mentioned and more. All my issues went away when I started using the DisplayPort output instead of HDMI.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">WhoLovesDonuts <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I&#39;m already using a DP to connect my monitor, maybe I should try HDMI instead haha</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Rockytriton <span class="score">1</span></span>
+<div class="md"><div class="md"><p>possibly, maybe my HDMI output is just bad and the DP port was better.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">apoptosis66 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Uggg this just started back up for me too. I it&#39;s weird how it goes away for months then comes back.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TwiKing <span class="score">4</span></span>
+<div class="md"><div class="md"><p>595+ Drivers no longer require the suspend/resume services. Once I updated, I noticed all of my sleep issues were 100% cured and pacman deleted my suspend/resume services. No special kernel parameters were needed anymore. </p>
+
+<p>I&#39;m not even using <code>NVreg_UseKernelSuspendNotifiers=1</code> and my sleep is fine. But would try it if I had problems. The Gentoo repo does suggest it though and I use it on Gentoo - I use this as a reference. nvidia-persistenced.service is also enabled. - </p>
+
+<p><a href="https://codeberg.org/gentoo/gentoo/src/branch/master/x11-drivers/nvidia-drivers/files/nvidia-595.conf">https://codeberg.org/gentoo/gentoo/src/branch/master/x11-drivers/nvidia-drivers/files/nvidia-595.conf</a> (don&#39;t try the security options unless you know what they do, I didn&#39;t touch those..)</p>
+
+<p>options nvidia NVreg_DynamicPowerManagement=0x01</p>
+
+<p>is a sanity saver though for me in nvidia.conf though</p>
+
+<p>And trust me, I know the suspend hell. I know..I know..its maddening. Hyprlock is also known to cause suspend crashes, and lock screens seem to be the MOST picky.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">WhoLovesDonuts <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Thank you for the reply! I believe (according to the wiki) that they enabled the use suspend notifiers by default when installing the nvidia driver. Did you disable that line? Did things work better when you did? How did you end up installing the nvidia persistenced service after it was removed from the installed driver? Sorry I&#39;m a bit new to arch.</p>
+
+<p>I did see in the PRIME section <a href="https://wiki.archlinux.org/title/PRIME">https://wiki.archlinux.org/title/PRIME</a> some mention of using the NVreg_DynamicPowerManagement. It says to set it to 0x02 or for ampere or later 0x03. But is this just a feature of a laptop card using PRIME? Or is this something we should use for desktop cards as well? I didn&#39;t see it referenced in the regular nvidia section.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">TwiKing <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I&#39;m using a 4070 Super on a desktop, so I am a generation behind you, but I am using the same driver. I am using Hyprland though. I&#39;m not using any prime stuff. I kept the persistenced on.
+I&#39;ll be back later with my references to double check my self, it&#39;s been a while since I tweaked the settings and I&#39;m not on my PC at the moment.</p>
+
+<p>EDIT: 
+```Driver Settings</p>
+
+<p>This feature is disabled by default by the NVIDIA driver. It can be enabled via an option NVreg_DynamicPowerManagement.</p>
+
+<p>Option &quot;NVreg_DynamicPowerManagement=0x00&quot;</p>
+
+<pre><code>With this setting, the NVIDIA driver will only use the GPU&#39;s built-in power management so it always is powered on and functional. This is the default option, since this feature is a new and highly experimental feature. Actual power usage will vary with the GPU&#39;s workload.
+</code></pre>
+
+<p>Option &quot;NVreg_DynamicPowerManagement=0x01&quot;</p>
+
+<pre><code>With this setting, the NVIDIA GPU driver will allow the GPU to go into its lowest power state when no applications are running that use the nvidia driver stack. Whenever an application requiring NVIDIA GPU access is started, the GPU is put into an active state. When the application exits, the GPU is put into a low power state.
+</code></pre>
+
+<p>Option &quot;NVreg_DynamicPowerManagement=0x02&quot;</p>
+
+<pre><code>With this setting, the NVIDIA GPU driver will allow the GPU to go into its lowest power state when no applications are running that use the nvidia driver stack. Whenever an application requiring NVIDIA GPU access is started, the GPU is put into an active state. When the application exits, the GPU is put into a low power state.
+
+Additionally, the NVIDIA driver will actively monitor GPU usage while applications using the GPU are running. When the applications have not used the GPU for a short period, the driver will allow the GPU to be powered down. As soon as the application starts using the GPU, the GPU is reactivated.
+
+It is important to note that the NVIDIA GPU will remain in an active state if it is driving a display. In this case, the NVIDIA GPU will go to a low power state only when the X configuration option HardDPMS is enabled and the display is turned off by some means - either automatically due to an OS setting or manually using commands like xset.
+
+Similarly, the NVIDIA GPU will remain in an active state if a CUDA application is running.
+</code></pre>
+
+<p>Option NVreg_DynamicPowerManagement can be set on the command line while loading the NVIDIA Linux kernel module. For example,</p>
+
+<p>modprobe nvidia &quot;NVreg_DynamicPowerManagement=0x02&quot;
+```
+01 was my sweet spot.</p>
+
+<p>I also disabled ASPM in my ASUS bios ENTIRELY. It made my Linux way too unstable.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Toaster_Strudel_517 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I had similar issues despite following the wiki. RTX 2070s + nvidia-open on Plasma, but only with one monitor connected via DisplayPort.</p>
+
+<p>So cryptic, but what fixed those hard freezes after waking up for me was to completely disable adaptive sync from Plasma settings. Fuck nvidia.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">WhoLovesDonuts <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>Ah okay. I was using plasma and didn&#39;t have adaptive sync on (never made it that far) and was having so many little issues, I ended up switching to gnome. Not sure if it was KDE&#39;s fault or nvidia or the combination. I don&#39;t have VRR enabled but I&#39;ll look into the whole dbus commands and make sure that it&#39;s not somehow enabled.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">GoldenOrion99 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Not on nvidia but I had issues as well with recovering from sleep. Had to write a small shell script on my machine after realizing the issue was with WiFi card</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">clone2197 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I assume you&#39;re on wayland? Im using a 3070, but on plasma x11 due to the software i use having problem with wayland. There hasn&#39;t been any issues at all.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">WhoLovesDonuts <span class="score">0</span></span>
+<div class="md"><div class="md"><p>yes both my plasma and gnome were using wayland. I may try reverting back to xorg with something simple like xfce and see if that solves the issues.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Throwaway-48549 <span class="score">-5</span></span>
+<div class="md"><div class="md"><p>Not helpful ok but, Fuck Nvidia.</p>
+
+<p>The shit I have to do just to get their stuff working on my system is so annoying. </p>
+
+<p>Good luck.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">WhoLovesDonuts <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>Yeah I&#39;m beginning to understand the sentiment. I regret buying this card immensely.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">TwiKing <span class="score">1</span></span>
+<div class="md"><div class="md"><p>No, your 5080 is a beaut. Your problem can be fixed. You just need to find the right setup.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ImposterJavaDev <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Nvidia has somewhat worse performance, granted. And how they handle linux drivers could be better.</p>
+
+<p>But what are guys like you doing to your systems?</p>
+
+<p>I&#39;m on Arch for abput a year, using kde x11. Have an rtx 4070.</p>
+
+<p>Started with the proprietary drivers, later switched to the open ones, because indeed fuck nvidia.</p>
+
+<p>But I haven&#39;t had any issue so far related to the card, and I literally mean ZERO issues. This is for gaming.</p>
+
+<p>Running local LLMs using the cuda cores was a breeze, it just worked, almost no tinkering involved.</p>
+
+<p>Things are just as stable as on the windows install. There is only a 5-10 fps difference, which I actuallg don&#39;t notice because I always lock the framerate at 60%.</p>
+
+<p>So whatever is going wrong, I put my money on PEBKAC.</p>
+
+<p>I&#39;m in no way a nvidia fanboy, but I just really can&#39;t understand what you guys are doing.</p>
+
+<p>(disclaimer: I would have picked AMD if I built my system for linux, but it was a windows machine originally)</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">WhoLovesDonuts <span class="score">3</span></span>
+<div class="md"><div class="md"><p>As far as I can tell I followed the Wiki as detailed above. Maybe it&#39;s this generation of cards? Maybe you&#39;re lucky? </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ImposterJavaDev <span class="score">1</span></span>
+<div class="md"><div class="md"><p>There&#39;s no such thing as luck with hardware (yeah maybe a faulty batch, but that bubbles up, get&#39;s addressed)</p>
+
+<p>I don&#39;t know all the things you did over the time, probably something you did a while ago you forgot that interferes or something. I know I fucked up a lot of things like that over the time lol</p>
+
+<p>It&#39;s possible it&#39;s the card generation related to the sleep issue, allthough I think their few latest generations all share the same code that involves that, itms not something that has to change based on the actual architecture.</p>
+
+<p>I also think there would be more noise on the web if it was a general issue.</p>
+
+<p>Not throwing shade at you specifically, but their is always the nvidia bash train, and I always think &#39;what the fuck are you guys doing and why not assume you did something wrong first&#39;. It&#39;s the hype that annoys me. It makes a part of the linux community look childish.</p>
+
+<p>Hope you find a solution, and maybe share it here, so future people find it through google, and I learn something new.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Throwaway-48549 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>The packages I use: nvidia-470xx-dkms, nvidia-470xx-settings, nvidia-470xx-utils, nvidia-prime, linux-firmware-nvidia</p>
+
+<p>All only reach full functionality using Xorg, if I use Wayland I cannot get Prime to switch or even use the GPU at all, the best I get is the GPU recognized. </p>
+
+<p>Idk man, maybe I&#39;m doing it wrong entirely, I tried for months to get it working and just couldn&#39;t, I genuinely tried everything I knew how to.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ImposterJavaDev <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>Yeah wayland is bleeding edge and those are wayland problems. But nvidia is not making it easy for them.</p>
+
+<p>And I use the same packages, but without the numbers I think. Installed them through pacman?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Needieos <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Nvidia&#39;s wayland support is poor, of course there are not too many issues on x11. And there&#39;s no sense choosing amd only if you use linux, amd cards aren&#39;t linux exclusive </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ImposterJavaDev <span class="score">1</span></span>
+<div class="md"><div class="md"><p>At the moment I bought my card when I was building my windows system, it was the best value for buck.</p>
+
+<p>And it&#39;s wayland support for nvidia drivers actually, but nvidia is not making it easy by not working with them at any rate, just a stone wall. So there is a lot of reverse engineering and experimenting. No blame to the wayland team either.</p>
+
+<p>I don&#39;t do fanboying for any company. I spend what fits a needs/price ratio based in time and I approach problems pragmatically.
+I have a flaw that&#39;s true, I get annoyed at stupid shit on the internet.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">lilly-lizard <span class="score">-2</span></span>
+<div class="md"><div class="md"><p>KDE and gnome both use wayland  under the hood and nvidia&#39;s wayland support still sucks on some hardware generations unfortunately. Try an X11 desktop environment like cinnamon (what linux mint uses by default).</p>
+
+<p>Edit: note that my reasoning for this is because wayland uses the gpu for compositing (and is newer) while X11 uses the cpu.</p>
+</div></div></div>
+</body></html>

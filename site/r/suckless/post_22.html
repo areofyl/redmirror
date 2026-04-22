@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>i got the suckless core (sinit, ubase, sbase, smdev...) working on an alpine vm</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>i got the suckless core (sinit, ubase, sbase, smdev...) working on an alpine vm</h2>
+<span class="meta">by stvpidcvnt111111 | <span class="score">63</span> points</span>
+<p><a href="https://v.redd.it/irk90an5elqg1">https://v.redd.it/irk90an5elqg1</a></p>
+<div class="md"><!-- SC_OFF --><div class="md"><p>i did dash as /bin/sh, mksh as interactive shell, onetrueawk, replaced busybox with ubase/sbase, sdhcp as dhcpclient, smdev instead busybox mdev, svc and sinit instead of openrc, and i also used the morpheus init scripts.</p>
+
+<p>i did add the svc scripts but i didnt add them to start on boot so that is part of the reason why the boot is so fast.</p>
+
+<p>i mostly did this as a sort of proof-of-concept because i want to make my own alpine-based distro using the suckless core, altho as you can probably tell by the video i still have a lot of work to do.</p>
+
+<p>im also planning on writing a little guide to help anyone who wants to try out suckless core project in the future, but i have to say it is pretty easy to figure it out on your own.</p>
+</div><!-- SC_ON --></div>
+<h3>19 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">realguy2300000 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>as someone who has tried this, you are going to have a bad time. sbase and ubase are not functional enough imo. but kudos nonetheless </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Ramiferous <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Oasis Linux?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">stvpidcvnt111111 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>oasis is actually my biggest inspiration for this lol</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">realguy2300000 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>no, my distribution was originally using these tools </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Ramiferous <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Yeah I know, but oasis continues to use ubas/sbase seemingly without issues,. That said, I&#39;ve never used it in any meaningful way</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">realguy2300000 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>that’s because they don’t have a package manager that needs to run configure scripts by avoiding upstream build systems entirely. or any mildly complex shell script. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">stvpidcvnt111111 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>thanks a lot, i am torn apart right now between purity and staying with ubase/sbase or pragmatism and staying with busybox or bsd utils.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">60GritBeard <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I found the biggest pain in the ass on suckless is you REALLY need to know the nuts and bolts of linux. I have found myself happily hopping off the suckless train when necessary. Let&#39;s face it, suckless is a stellar concept that is extremely difficult to actually implement in practice. There is in fact a point in time where the friction of sticking to the suckless philosophy outweighs any usefulness and you&#39;re adding needless headache to your life in the name of a design concept. 
+That&#39;s like driving a Model T because modern cars are a technological rats nest. There&#39;s a stable middle ground that&#39;s often stepped over in the name of dogmatic adherence to a philosphy.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">stvpidcvnt111111 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Part of why im doing this is i want to see for myself if ideology and pragmatism are mutually exclusive.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">60GritBeard <span class="score">2</span></span>
+<div class="md"><div class="md"><p>In my experience skill is the biggest deciding factor. </p>
+
+<p>I mean look at DMenu. Most people I&#39;ve seen use it as a fuzzy finder for apps / app launcher. </p>
+
+<p>It&#39;s so much more powerful than that, if you know how to unlock it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Lizrd_demon <span class="score">2</span></span>
+<div class="md"><div class="md"><p>That compromise lies on OpenBSD, or Chimera linux if you want to play games.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">fatdoink420 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>How are you using smdev when hotplug handling is not part of the kernel anymore? I did something similar to this and would love to see your init scripts</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Key_River7180 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>perhaps an old version?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">stvpidcvnt111111 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>im using the init scripts of suckless&#39;s unmaintained distro morpheus <a href="http://git.2f30.org/fs/">http://git.2f30.org/fs/</a> , smdev populates /dev at boot as for hotplug handling im gonna have to educate myself more.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">fatdoink420 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>i got carried away with this comment so heres everything i learnt when i was messing with device handling. This may prove useful to you if you ever want a graphical session in your vm where device handling actually matters.</p>
+
+<p>/dev is automatically populated and mounted as a tempfs by default. Youd need to explicitly recompile the kernel without /dev tmpfs for this not to happen. Device handlers now are mainly for adjusting the permissions of a given device as they will automatically be created with owernership &#39;root:root&#39;. </p>
+
+<p>What i found is that smdev is built around a deprecated kernel feature that would expose a device called &#39;/sys/kernel/hotplug&#39;. The new uevent mechanism sends a message over a netlink socket whenever you hotplug a device. The information in that message can then be read by a daemon like busybox mdev with -d flag or udevd. </p>
+
+<p>Busybox has a tool called uevent that you can run and it will spit these uevent messages out in plain text. I piped it to a shellscript and made a decent smdev-like setup using that. Perhaps one could make a service script that fires smdev -s whenever a uevent occurs? </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">stvpidcvnt111111 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i really appreciate this and its really informative, i guess id have to see how alpine linux kernel is compiled for /dev, and ill look in to your final suggestion it seems like a great idea.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">nerdy_guy420 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I wonder if this could be done feasibly on a buildroot system. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Key_River7180 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Size????</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">stvpidcvnt111111 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>its about 800-900mb disk space but i havent removed openrc files yet</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Age Verification and Arch Linux - Discussion Post</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Age Verification and Arch Linux - Discussion Post</h2>
+<span class="meta">by Gozenka | <span class="score">337</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><hr/>
+
+<p><strong>Please keep all discussion respectful.</strong> Focus on the topic itself, refrain from personal arguments and quarrel. Most importantly, do not target any contributor or staff. Discussing the technical implementation and impact of this is quite welcome. Making it about a person is never a good way to have proper discussion, and such comments will be removed.</p>
+
+<hr/>
+
+<p>As far as I know, there is currently no official statement and nothing implemented or planned about this topic by Arch Linux. But we can use this pinned post, as the subreddit is getting spammed otherwise. A new post may be pinned later.</p>
+
+<p>To avoid any misinterpretation: Do not take anything here as official. This subreddit is not a part of the Arch Linux organization; this is a separate community. And the mods are not Arch staff neither, we are just Reddit users like you who are interested in Arch Linux.</p>
+
+<p>The following are all I have seen related to Arch and this topic:</p>
+
+<ul>
+<li><p><a href="https://gitlab.archlinux.org/archlinux/project-management/-/work_items/61">This Project Management item</a> is where any future legal requirement or action about this issue would be tracked.</p>
+
+<blockquote>
+<p><strong>The are currently no specific details or plans on how, or even whether, we will act on this.</strong> This is a tracking issue to keep paper-trail on the current actions and evaluation progress.</p>
+</blockquote></li>
+<li><p><a href="https://gitlab.archlinux.org/pacman/pacman/-/merge_requests/353">This</a> by Pacman lead developer. (I suggest reading through the comments too for some more satire)</p>
+
+<blockquote>
+<p>Why is no-one thinking of the children and preventing such filth being installed on their systems.  Also, web browsers provide access to adult material on the internet (and as far as I can tell, have no other usage), so we need to block these too.</p>
+</blockquote></li>
+<li><p><a href="https://github.com/archlinux/archinstall/pull/4290#issuecomment-4023578605">This PR</a>, which is currently not accepted, with this comment by archinstall lead developer :</p>
+
+<blockquote>
+<p>we&#39;ll wait until there&#39;s an overall stance from Arch Linux on this before merging this, and preferably involve legal representatives on this matter on what the best way forward is for us.</p>
+</blockquote></li>
+</ul>
+</div><!-- SC_ON --></div>
+<h3>50 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dawnsonb <span class="score">415</span></span>
+<div class="md"><div class="md"><p>It is illegal in quite a few countries to collect data you don&#39;t need. Collecting date of birth or even just the age is not required for an operating system to work.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Gozenka <span class="score">129</span></span>
+<div class="md"><div class="md"><p>I think this is indeed a part of the uncertainty and debate right now. Complying with the requirements of the law of one state means <em>breaking the law</em> in another country / state. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Slackeee_ <span class="score">62</span></span>
+<div class="md"><div class="md"><p>You have to define what &quot;collecting&quot; means. Here in Germany it means &quot;a company can not store it on their servers&quot;, but it does not mean &quot;an OS installer is not allowed to ask for an age&quot; or &quot;asking for an age bracket during an app installation process without permanently storing that on the repository server&quot;.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">alerighi <span class="score">15</span></span>
+<div class="md"><div class="md"><p>If it&#39;s only data stored locally it&#39;s just a useless system, as useless as the &quot;Are you 18+ old&quot; question that gets asked on adult sites. Just modify the data stored locally and you are good to go. </p>
+
+<p>Clearly the laws will require the verification to be made server side by providing some sort of ID/credit card number/whatever that is correlated to your identity. Of course the objective is not to protect children, but to identify by linking to an ID every person that uses a computer.</p>
+
+<p>By the way good luck implementing this system in Linux, considering that in the end it&#39;s all open source software that anybody can download and compile by themself, not counting third party repositories that one person could enable. If they really want to enforce this it could be the end of open-source (require packages to be signed, and computers to have secure-boot in a state that it&#39;s not possible to disable, so you can only install pre-approved packages, what already happens with mobile devices, iOS and even Android at this point where bootloader unlocking is almost impossible in the majority of sold devices).</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">icebalm <span class="score">46</span></span>
+<div class="md"><div class="md"><p>We all should be united against these ridiculous laws. The only way we get these encroachments to go away is uniting against them. I have no idea why people are so quick to comply.<br/>
+Meta and the other social media platforms want to download the cost and liability of age verification on to the OS rather than having to do it themselves, and they&#39;re using the law to force it.<br/>
+I know there are already firms looking to challenge the laws, in the US at least, as there&#39;s a very strong likelihood that they violate the 1st amendment, (SC has ruled code is speech, this would be a compelled speech law) and we should operate under that premise.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">garry_the_commie <span class="score">44</span></span>
+<div class="md"><div class="md"><p>How about a simple disclaimer during installation: &quot;Not meant for use in regions that legally require age verification for operating systems&quot;?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Only_Neighborhood202 <span class="score">190</span></span>
+<div class="md"><div class="md"><p>Gotta love how the pacman lead dev&#39;s comment is just pure gold 😂 The &quot;web browsers have no other usage&quot; bit killed me</p>
+
+<p>Been following this whole mess and it&#39;s wild how everyone&#39;s scrambling to figure out what even needs to happen. The fact that there&#39;s literally zero official guidance but everyone&#39;s expected to just... know what to do is peak bureaucracy. I work in immigration consulting and deal with this kind of regulatory chaos all the time - new rules drop with zero implementation details and suddenly everyone&#39;s supposed to be compliant yesterday</p>
+
+<p>Really appreciate the mods making this megathread though, the spam was getting ridiculous. At least now we can watch this trainwreck unfold in one organized place instead of having 50 duplicate posts asking the same questions 💀</p>
+
+<p>The archinstall PR being on hold makes total sense too, why would they implement anything without knowing what the actual requirements are</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">definitely_not_allan <span class="score">70</span></span>
+<div class="md"><div class="md"><p>I was rewatching Scrubs when I came up with the web browser bit.  It was a homage to this quote:</p>
+
+<p>Dr. Cox: &quot;I&#39;m fairly sure if they took porn off the internet, there&#39;d only be one website left, and it&#39;d be called Bring back the porn!&quot;.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">mim_burro_vc_jumento <span class="score">12</span></span>
+<div class="md"><div class="md"><p>Hahaha, I honestly hope he&#39;s being ironic when he says &quot;let&#39;s block that too&quot; when referring to browsers. I believe that the responsibility for what minors see on the internet should rest solely with their parents, and if you don&#39;t trust your child, don&#39;t leave them alone with a cell phone. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Ok-Click-80085 <span class="score">64</span></span>
+<div class="md"><div class="md"><p>I think we have civic duty and a moral obligation to disobey any law that is unjust</p>
+
+<p>It&#39;s a slippery slope, and those who lick the boot will quickly disenfranchise their core audience</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Independent_Bike_780 <span class="score">33</span></span>
+<div class="md"><div class="md"><p>Why does this need to be in the OS at all? I don&#39;t need to be +18 to use the calculator or update my system, but it looks like I need to prove I am +18 just in case I would want to see some porn.</p>
+
+<p>What about my router? Does it use the age of the table it lays on? Can it route porn frames?</p>
+
+<p>It needs to be done at the application level, but big applications won&#39;t want the hassle, so we&#39;ll end up with another stupid idea, e.g. TLS-safe where the keys are only valid if the user was verified.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Intelligent-Net1034 <span class="score">8</span></span>
+<div class="md"><div class="md"><p>We heard you. Age verification is now implemented on the package level and is inforced by you router.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Worldly-Cherry9631 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Just in case you want to see some porn?? If you were to draw smut in Krita, or store a technically nsfw photo (for medical reasons), or that one selfie of your partner (not for medical reasons), the OS should go in full lockdown if no age bracket had been set! /s</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Megame50 <span class="score">22</span></span>
+<div class="md"><div class="md"><p>TYVM for the new sticky, hopefully this will reduce spam!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">aeiedamo <span class="score">118</span></span>
+<div class="md"><div class="md"><p>Arch should reject the laws in principle and coordinate with other FOSS projects and distros to revert them, but be pragmatic, <a href="https://wiki.archlinux.org/title/Arch_Linux#Pragmatism">as it has always been</a>, and &quot;implement&quot; them.</p>
+
+<p>In my opinion, it should be &quot;barely&quot; implemented and advised on the ArchWiki Installation guide, of course, only in places where these laws are applicable. I do think the current implementation in systemd&#39;s userdb is good enough as long as those who are affected can just write any date for the time being.</p>
+
+<p>As for pacman, it should just rely on the userdb info, if available.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">grathontolarsdatarod <span class="score">34</span></span>
+<div class="md"><div class="md"><p>I absolutely and whole heartedly agree. </p>
+
+<p>If this is something the government wants, then they can develop their own operating system. </p>
+
+<p>That would obviously cause a great number of illegal problems.  Because the united states is a liberal democracy,  and also a capitalist free market. </p>
+
+<p>Conning developers to comply with a &quot;double-negative&quot; type of paradoxical &quot;obligation&quot; tries to skirt all the legal protections for individual freedoms.  It also forces the market into a business model and agency of government that is not compatible with liberal democratic values or a free market economy. </p>
+
+<p>Developers clamoring to &quot;solve a problem&quot; that was created by reckless pandering is exactly the play.  </p>
+
+<p>That would go against the principles of freedom of independence and posterity that FOSS is literally all about. </p>
+
+<p>These laws will not just lead to, but ADD to and NORMALIZE these types of restrictions on personal freedom. </p>
+
+<p>To truly care about the children, the next generation, don&#39;t help lock them in a prison.  Don&#39;t help take away peaceful tools for advancing their own interests and determining their own lives.  </p>
+
+<p>It isn&#39;t just a &quot;birthday field&quot;.  And anyone in this sub should have the critical thinking available to see that.  Even if you&#39;ve been living under a rock for the passed 14 months. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">aeiedamo <span class="score">28</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>To truly care about the children, the next generation, don&#39;t help lock them in a prison. Don&#39;t help take away peaceful tools for advancing their own interests and determining their own lives.</p>
+</blockquote>
+
+<p>I think if Meta, the main lobbying force for these laws, actually cared about children, maybe they should put all this funding and effort into its algorithms, especially Instagram. I find it funny that they are the ones who are calling for these laws to &quot;save the children,&quot; while running the most damaging platforms for them. Instagram does far more damage than any adult site can do.</p>
+
+<blockquote>
+<p>These laws will not just lead to, but ADD to and NORMALIZE these types of restrictions on personal freedom.</p>
+</blockquote>
+
+<p>Yeah, it always starts like this, then it gets progressively worse. By 2030, you won&#39;t be able to log in to your PC without scanning your ID every single time. By 2040, the PC would even ask you for a DNA/blood sample XD.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">wKdPsylent <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Much sooner than that you&#39;ll only have a &#39;thin client&#39; that loads your subscription based OS which verifies your identity at each log in. </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Grumblepuck <span class="score">7</span></span>
+<div class="md"><div class="md"><p>It&#39;s ironic to hear Zuckerberg and Meta push for this when from where I&#39;m at, seeing gore is a daily occurrence for some of my peers who frequent Facebook.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Serialtorrenter <span class="score">5</span></span>
+<div class="md"><div class="md"><p>We need to make sure whatever APIs that Linux distros provide are unstable, with new updates bringing breaking changes every other week. We also need to make sure that every Linux distro uses its own age verification API that is incompatible with every other age verification API.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Sea-Finance740 <span class="score">15</span></span>
+<div class="md"><div class="md"><p>Implementing the age verification will set the foundation for more strict and mass surveillance plan in the future. Allowing this just because it&#39;s a &quot;small&quot; change will lead to much worse situation. And once the foundation is in place it&#39;s extremely difficult to go back. We all know it&#39;s not for &quot;Protecting children&quot;. IN my opinion arch should reject the age verification as overwhelming amount of people don&#39;t want this. Which will also help other distros to follow</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">nisomi <span class="score">12</span></span>
+<div class="md"><div class="md"><p>As long as non compliance is readily available for all users, I&#39;m happy. Quick rant tho.</p>
+
+<p>I can&#39;t deal. Governments stateside and abroad are so concerned with solving issues that do not need solving, or otherwise opting to legislate problems that they KNOW would be broadly and better addressed were policy decisions truly oriented around improving the quality of life, economic opportunity, and philosophical embodiment of a nation not consumed by shadowy elites, bureaucratic reptiles, or corporate overlords, but by the geist of our penned documents and movements that our ancestors gave, and enjoy freedoms that they themselves could not enjoy.</p>
+
+<p>I hope to god that we pass down to our children opportunities and freedoms that they enjoy without compromise, and they carry forward that spirit, and plant trees we ourselves won&#39;t enjoy the shade of, but our grandchildren and their grandchildren will recall that their great great grandparents did not lie down and allow complacency to stop them from saving a world troubled by hidden and overt forces.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MushroomSaute <span class="score">45</span></span>
+<div class="md"><div class="md"><p>My question, to anyone who knows the distribution processes (and legality concerns) better than me: Why isn&#39;t there overwhelming popularity for geo-locking the main distro/package repositories that don&#39;t have age-verification, and letting forks dedicated to regions that are the <em>exceptions</em> to the norm implement their own laws?</p>
+
+<p>It seems to me that the people who live in states whose legislators made these decisions are the only people who should have to deal with it - because no one else <em>can</em> push back on it through legislative channels. For those in other states, calling our legislators would do nothing, there is no way at all that we can even make this our problem to take on if we wanted, so why do we have to be the ones to use a fork if we don&#39;t want those laws from other states pushed on us?</p>
+
+<p>If that would be inconvenient to people in the age-verification states, <em>they</em> should be the ones to call their legislators or deal with it. No one else can call their legislators to make a difference, and therefore no one else should have to choose between forced age-verification or distro-hopping to new forks.</p>
+
+<p><strong>Edit</strong> to mention what I think may be a better idea than a complete fork: maybe any binaries/ISOs/deployment scripts for affected packages could be modified, in the main branch, to apply any &quot;legislative patches&quot; from other repositories (or directories/branches), then those new outputs presented to the users where appropriate. No code duplication, a clear and consistent central repo, and only the people for whom it&#39;s relevant are locked to the patched versions.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">PhotoJim99 <span class="score">50</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>For those in other states</p>
+</blockquote>
+
+<p>I&#39;d wager that a very large proportion of Arch users aren&#39;t even IN states.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">ThePlotTwisterr---- <span class="score">16</span></span>
+<div class="md"><div class="md"><p>new zealand here, about as far away as you can get from a state </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Retr0r0cketVersion2 <span class="score">14</span></span>
+<div class="md"><div class="md"><p>Errm New Zealand is a sovereign state 🤓 </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">alexforencich <span class="score">10</span></span>
+<div class="md"><div class="md"><p>Parallel forks are a very bad solution to anything, because they dilute development effort. Forks have to be independently maintained, and presumably changes would have to be synchronized in both directions. Users would be confused on where to submit bug reports and such. Eventually the forks will diverge with different features being implemented on different forks. Invariably one fork will end up being dominant due to having more maintenance/development effort, and it might not be the one you want to use. We do not need more unnecessary fragmentation in an already fragmented community.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Gasp0de <span class="score">9</span></span>
+<div class="md"><div class="md"><p>I have no idea why this age verification bullshit is such a hot topic. As far as I understand, it&#39;s some local laws in a part of some war-waging dictatorship that requires it. Can&#39;t the people living there create a fork of Arch Linux, call it Age Linux and we all go on with our lives?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">lecanucklehead <span class="score">9</span></span>
+<div class="md"><div class="md"><p>A bit off topic but there are two things I don&#39;t understand. Not trying to make any points or asking rhetorical questions, just admitting my ignorance and confusion:</p>
+
+<p>1: How did this bill go from proposed, to unanimously accepted by all voters in both California and Colorado, with virtually no official (real life) opposition, all in a matter of weeks? </p>
+
+<p>2: Why did Linux developers largely either A, do nothing (at best going the non-compliance route) or B, immediately start proposing ways to implement this stuff? I mean, flashback to the 90s, Linux users walked the streets around Microsoft  HQ demanding refunds because any and all computers worth purchasing had a Windows license tacked on to the price whether the consumer wanted it or not? Seems like a major issue that people are just rolling over and accepting.</p>
+
+<p>Again, I&#39;m ignorant. Not trying to call out any devs here, I love the Linux community by and large and I&#39;m sure most devs have their reasons for whatever path they choose. It&#39;s just alarming to me that a community built on freedom and sovereignty seemingly got blindsided in the blink of an eye, and mostly feels like nothing can be done.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">SourCreamSplatter <span class="score">9</span></span>
+<div class="md"><div class="md"><p>Please do not cooperate or comply with this New World Order bullshit. <a href="/r/StallmanWasRight">/r/StallmanWasRight</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">longdarkfantasy <span class="score">31</span></span>
+<div class="md"><div class="md"><p>Turn it into an installable module. Just like an out-of-tree kernel, this allows people outside the US to live their lives peacefully. 🙂‍↔️</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Maybe_A_Zombie <span class="score">35</span></span>
+<div class="md"><div class="md"><p>peacefully until these stupid laws enter your country. These kinds of laws arent just one time things made in a single country, theyre more of an infection once the governments realize this is an easy way to collect as much info and data as they want</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Kitchen-Cabinet-5000 <span class="score">12</span></span>
+<div class="md"><div class="md"><p>Then again… This is Linux we’re talking about.</p>
+
+<p>It’s like trying to enforce that people only hard boil their eggs and soft boiled eggs are against the law.</p>
+
+<p>How are you gonna enforce that? Police officer in everyone’s kitchen?</p>
+
+<p>It will take approximately 17 microseconds for someone to fork it and make a non-compliant version and it becomes an impossible to win game of whack-a-mole.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Liarus_ <span class="score">7</span></span>
+<div class="md"><div class="md"><p>&quot;not for use in [problematic state]&quot;</p>
+
+<p>so if people use it, it&#39;s their own responsability </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">itsAbhinav_5383 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Dude if I was a maintainer in the repo, I would start banning anyone opening unsolicited merge requests to add &quot;age verification&quot; for &quot;compliance&quot; </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ferrybig <span class="score">6</span></span>
+<div class="md"><div class="md"><p>The whole purpose of adding an age verification field to the user account seems to be storing the age of birth on a place where only administrator users can modify it, so if people have a child, they can make their child account protected (existing website implementations, like asking for a birth date, fail this, they can be trivially bypassed). They really want all operating system to provide the tools for this, and assume anyone who can install an operating system is a parent</p>
+
+<p><em>However, an age is useless in content filtering, every country has their own rules what should be considered appropriately for each age range, the content a child is allowed to see is the strictest of the law of the website operator and their local law</em></p>
+
+<p>A better implementation would be that website specify a content rating like &quot;education, sexual reproduction&quot;, and the local user account stores what they are allowed to view</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Certain-Business-472 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>I don&#39;t mind a parental feature that can enforce age restrictions when a non-root account accesses the internet. But that data should be on the system saved at the same places current gecos or other account information is stored(or systemd userdb?). And then you simply offer an interface that applications can request whether someone is older than x age(or some variation thereof).</p>
+
+<p>But this is a optional parental feature, nothing more, nothing less. </p>
+
+<p>What I&#39;m seeing from the rejected PR is that asking for a date is mandatory, which is absolute horseshit. You&#39;re not even required to add <em>any</em> users in Linux. If I want to run as root only, that&#39;s my problem. Fuck you.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Affectionate_Joke_44 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Can&#39;t we just ban California?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RingingInTheRain <span class="score">20</span></span>
+<div class="md"><div class="md"><p>I do not understand how they expect to hold individuals accountable for an open source OS that can be configured at such granular levels. Plus children can&#39;t buy PCs, parents do. So all this age verification will be adults as they aren&#39;t going to drag their kid over to take selfies nor will kids have Government ID.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">doggydoggdoggdogg <span class="score">19</span></span>
+<div class="md"><div class="md"><p>its not for age verification obviously but for tracking adults. they already know where all the kids are and what they are doing, how the frick else could they have trafficked them so easily?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MorfetuS <span class="score">11</span></span>
+<div class="md"><div class="md"><p>age verification is a enourmous mistake. </p>
+
+<p>this will not protect nothing from nobody. </p>
+
+<p>its alll about control !</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">smtp_pro <span class="score">10</span></span>
+<div class="md"><div class="md"><p>A few thoughts.</p>
+
+<p>If you ever talk to a lawyer about any legal issue, ever - their number one piece of advice is &quot;shut the fuck up.&quot; Whether you&#39;re talking cops, judges, media, etc - you don&#39;t say anything and let your lawyer do all the talking.</p>
+
+<p>So - the arch leadership being quiet makes sense and we shouldn&#39;t take that as them leaning one way or another. It just means they&#39;re not talking about it.</p>
+
+<p>I believe this could be a free speech issue and get struck down. Bernstein v United States established that code is a form of expression and should have first amendment protections. That&#39;s not a supreme court case though - it was decided by the ninth circuit. But it&#39;s been cited in some high profile scenarios (like when Apple refused to help the FBI get backdoors into phones).</p>
+
+<p>There&#39;s a few cases around compelled speech (West Virginia State Board of Education v. Barnette,Wooley v. Maynard, and more) - and basically the government can&#39;t compel you to say things you don&#39;t believe.</p>
+
+<p>There&#39;s a good argument that these laws are compelled speech. You can&#39;t force somebody to write code much like you can&#39;t force somebody to speak.</p>
+
+<p>Now - there are cases where you are kind of compelled to write code you don&#39;t want to. The Americans with Disabilities Act allows you to be sued for not providing reasonable accommodations for people with disabilities. This extends to things like the web, so companies need to write accessible web sites.</p>
+
+<p>(That&#39;s also just the right thing to do but businesses won&#39;t spend a dime unless they have to).</p>
+
+<p>But - scope is a big factor in determining if your free speech rights are being infringed. Back to the ADA - the government can&#39;t make you install ramps to your own home. I don&#39;t believe there&#39;s anything that requires your own personal website to be accessible.</p>
+
+<p>This scope is way too wide on these laws. I don&#39;t think they&#39;ll stand.</p>
+
+<p>For things like geoblocking, or writing a license that dictates &quot;you can&#39;t use this in x, y, z states&quot; - that may violate some of the principals of the Free Software Foundation&#39;s &quot;Four Freedoms&quot; - maybe not in letter but certainly in spirit.</p>
+
+<p>The laws don&#39;t offer any defense mechanisms. I understand wanting to try to shift liability by geoblocking and making users attest they&#39;re not residents - but I don&#39;t know if that would really hold up in court.</p>
+
+<p>For devs rushing to comply - I also understand they&#39;re concerned about being sued, and having to deal with legal expenses they may not be able to afford. But one problem that comes with complying voluntarily - it weakens the compelled speech argument. The law hasn&#39;t gone into effect yet, nobody&#39;s received a direct threat from a government agency, etc. I think a strong argument for this being compelled speech is &quot;the government is suing me for not doing something.&quot;</p>
+
+<p>But what absolutely fucking sucks is that route is pretty expensive to go down. It will likely take a lot of your time, the most previous resource, and cost a lot of money, and it&#39;s unknown if you&#39;ll actually get sued, maybe the law gets struck down by somebody else, etc.</p>
+
+<p>If any distros start a fundraiser for lawyers, I&#39;ll donate. I&#39;d love to see an org like the EFF or ACLU file a class action lawsuit with a bunch of Linux distro leadership, hobby devs, etc as affected people.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">vexatious-big <span class="score">4</span></span>
+<div class="md"><div class="md"><p>The FSF should step in and provide legal support to most of these free software/open source projects, like it has done in the past when Eben Moglen was around. But I agree, developers rushing to voluntarily comply plus not having any existing case law as guidance creates a situation where the gov can fully justify extending this programme going forward.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Izvae <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Age verification is a slippery slope, under no guise Arch should implement it. Especially not as the current systemd userdb method, because not only is it going to be considered non-compliant by said states 100%, it will affect tons of people who aren&#39;t in the US Empire for no reason. I do not want to even keep an unneeded fake date on my PC, especially when it is enforced by pedophiles.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">krs_n <span class="score">5</span></span>
+<div class="md"><div class="md"><p>completely against age verification and any further political interference in *our* linux</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">wKdPsylent <span class="score">7</span></span>
+<div class="md"><div class="md"><p>I consider anything short of &quot;no way in hell we&#39;re implementing this, now, or ever.&quot; as intent to comply.</p>
+
+<p>It&#39;s sad to see the FOSS community, mainly on the developer side, lose its spine so completely and utterly. Gone are the days of sending response letters stating that lawyers can &quot;sodomize themselves with a retractable baton&quot; - what the hell happened to everyone..</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">FunAware5871 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Thanks for making this post, hopefully it&#39;ll calm down everyone.</p>
+
+<p>I&#39;m not sure why some people expected and immediate statement on the matter, there are probably so many legal facets it&#39;s probably gonna take a while...</p>
+
+<p>Of course I hope it&#39;s not going to be implemented at all, although it&#39;d be funny to have a confirmation prompt to install gimp :p</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Damglador <span class="score">4</span></span>
+<div class="md"><div class="md"><p>They locked the pacman thread, so I&#39;ll comment it here</p>
+
+<blockquote>
+<p>There is a definite reason to start implementing this in a package installer now.  <strong>Have a think about which operating system these restrictions will be implemented in, and I estimate has more pacman users than Arch</strong>.  Starting early means issues with implementation can be identified and addressed and avoid a last minute rush at the deadline (when I am likely to be travelling depending on fuel availability....).</p>
+</blockquote>
+
+<p>-Stated by the PR author</p>
+
+<p>If they are referring to SteamOS, it doesn&#39;t have more pacman users, as it&#39;s main package manager is Steam, then flatpak, most SteamOS users won&#39;t ever use pacman.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MicrochippedByGates <span class="score">4</span></span>
+<div class="md"><div class="md"><p>I&#39;m also concerned about what this means for embedded devices. In my experience, they don&#39;t usually run Arch, often either a more mainstream option like Ubuntu or Debian, maybe Fedora, or something very custom through Yocto or something. But it is an operating system. So I guess you need to verify your age before you can use your heart rate monitor or the trash compactor in your garbage truck or your nuclear reactor. Don&#39;t want a child watching porn on a nuclear reactor, now do we? </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">EmbedSoftwareEng <span class="score">4</span></span>
+<div class="md"><div class="md"><p>A) Linux is a multi-user OS.</p>
+
+<p>B) The current user&#39;s age is an attribute of their individual account.</p>
+
+<p>Therefore, age verification does not belong at the system level. Any system that operates within an ecosystem, that ecosystem itself needs to be where the per-user age verification mechanisms, if any, belong. If the system does not operate within an ecosystem, i.e. non-web/non-social-media-based technologies, then there&#39;s no point in having age verification within that system. I don&#39;t want age verification anywhere near ssh or rpc or bittorrent. &quot;You must be at least this old to call this remote procedure.&quot;</p>
+
+<p>Now, I would like someone to tell me how age verification would be grafted onto ancient social media technology like Usenet News, IRC, BBSes, and the like.</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Today I have update to Fedora 44 Beta and it's okay with few issues</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Today I have update to Fedora 44 Beta and it's okay with few issues</h2>
+<span class="meta">by fake_agent_smith | <span class="score">22</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>So today I&#39;ve used the standard dnf system plugin, the update itself went well but a word of caution: I as many other people here use the custom build based on fairydust branch and probably because of that during update to F44 the process didn&#39;t create initramfs for the standard asahi kernel.</p>
+
+<p>After boot I&#39;ve noticed that DP Alt mode no longer works and I quickly realized that the typec kernel modules are not loaded. For whatever reason on F43 they loaded automatically(?) and on F44 I had to create a custom modules-load.d file:</p>
+
+<pre><code>cat /etc/modules-load.d/fairydust.conf
+typec_displayport
+typec_nvidia
+typec_thunderbolt
+</code></pre>
+
+<p>Another issue I immediately noticed is that when logging in, the login sound is super loud. I&#39;m not sure why but after login if I don&#39;t modify volume it&#39;s stuck at probably 100%. speakersafetyd works correctly, tried reinstalling both it and asahi-audio, tried to remove wireplumber state because I thought maybe it&#39;s stale, but that didn&#39;t change anything so, for now I have simply disabled the login sound and create a user systemd unit as a temporary fix to make sure I don&#39;t overstretch my laptops speakers:</p>
+
+<pre><code>[Unit]
+Description=Fix WirePlumber Volue at Login
+After=wireplumber.service
+Requires=wireplumber.service
+
+[Service]
+Type=oneshot
+# We wait 2 seconds to ensure the audio stack is fully awake
+ExecStartPre=/bin/sleep 2
+ExecStart=/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+ExecStartPost=/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
+
+[Install]
+WantedBy=default.target
+</code></pre>
+
+<p>Other than I didn&#39;t notice any breakage in user space.</p>
+</div><!-- SC_ON --></div>
+<h3>2 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">wowsomuchempty <span class="score">1</span></span>
+<div class="md"><div class="md"><p>As someone who likes their edge to bleed, even I blanched at upgrading Asahi to 44 right now.</p>
+
+<p>An excellent post. Better posted to a wiki, such as Alpine has (unaware of such an option for Asahi).</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Dazzling_Mountain_99 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Salut, je me demandais un ou deux truc, j&#39;ai fait la Maj Fedora 43 via le terminal, mais se met-t-elle à jour automatiquement via Logiciel ?<br/>
+Le deuxième truc c&#39;est que mon noyau est toujours en version 6.18 et j&#39;ai vu qu&#39;il y avait pas mal d&#39;améliorations dans le 6.19 sur le blog d&#39;asahi. Est ce que ça se met à jour automatiquement via Logiciel ou il faut faire l&#39;update manuellement avec le terminal ?</p>
+
+<p>Je demande cela car j&#39;ai pris Asahi pour tester simplement et finalement j&#39;ai jamais re-ouvert mon mac. Et du coup je voudrais être sûr de ne pas casser mon install en étant trop impatient ou avoir des bug.</p>
+</div></div></div>
+</body></html>

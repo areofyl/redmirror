@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>patches that you have to have for dwm and st??</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>patches that you have to have for dwm and st??</h2>
+<span class="meta">by InTheBogaloo | <span class="score">8</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>hi im new trying st and dwm and im kinda overwhelmed by all the options in the suckless page and i really dont know what i want or need to patch in st and dwm so, you have some recomendation?? I would love to see you recommendations. </p>
+</div><!-- SC_ON --></div>
+<h3>12 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Swallow, vanity gaps, systray </p>
+
+<p>Scroll back, copy/paste </p>
+
+<p>Spiral tiling layout </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">hippor_hp <span class="score">1</span></span>
+<div class="md"><div class="md"><p>wdym by copy/paste</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>St by default can’t copy and paste text into it. The actual name I believe is “clipboard”</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">anamein <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I did a lot of patching.  Then after years realised I didn&#39;t use a lot of it and I had applied them before I really got used to how dwm worked for me.  For example, I don&#39;t need movestack anymore because I only really pop things to the top. So I went back to vanilla dwm and found I don&#39;t need much altered.  Now I just add bstack, and I wrote a function to reset the layout to default (nmaster and mfact).  That&#39;s it!</p>
+
+<p>Also, use sxhkd for all your hotkeys, saves a lot of editing and restarting of dwm, the syntax is better and you can use it on any wm.  Don&#39;t change the dwm defaults (maybe alt to super).  I like that I can just use default dwm if I just need to install it quick on a machine.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">autoerotion95 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>movestack, fullscreen, alwayscenter, scrollback, alpha.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dcpugalaxy <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I only use swallow.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">hippor_hp <span class="score">1</span></span>
+<div class="md"><div class="md"><p>What does it do?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">dcpugalaxy <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The basic idea is that some GUI programs are used to launch other GUI programs and usually you don&#39;t the launcher to stay around while you are using the launched program.</p>
+
+<p>For example if you start a program from the terminal you usually don&#39;t need the terminal to stay visible while you use the program you launched. When you are done with the launched program you want the terminal to come back.</p>
+
+<p>The swallow patch achieves this object by reusing the launcher&#39;s window for the new process.</p>
+
+<p>So for example if you have a terminal open and you launch vim in it, vim will run in that terminal window (because it interacts with the tty that the terminal emulator presents.) But if you run gvim, it creates a new window.</p>
+
+<p>If you use swallow then run gvim from your terminal, the terminal&#39;s window will be reused by gvim. Then when you close gvim the terminal emulator returns.</p>
+
+<p><a href="https://youtu.be/92uo5OBOKfY?si=iUAooDuQEPYsRRue">https://youtu.be/92uo5OBOKfY?si=iUAooDuQEPYsRRue</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ChampionshipIcy7602 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I understand but why do you need it? Don&#39;t you use dmenu to open GUI programs?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">r1w1s1_ <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I don’t use patches in dwm or st. I only backported two commits from st after the stable release.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">VisualSome9977 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I don&#39;t use any patches at all. scrollback patch for st is nice if you&#39;re not the kind of person to use tmux or a pager, but it&#39;s not strictly necessary. I would say just use them stock, and if you catch yourself thinking &quot;man i wish i could x&quot; or &quot;i wish this window would y automatically&quot; then you should look for patches that do x or y</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Elm38 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You may want to try the dwm-flexipatch project to experiment with several dozen patches.  Once you have your set, then you can go back to dwm code or stay as you are.</p>
+</div></div></div>
+</body></html>

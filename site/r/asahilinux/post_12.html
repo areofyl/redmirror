@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Speakers don't work properly and sound lower-quality. (M2, Arch using ALARM)</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Speakers don't work properly and sound lower-quality. (M2, Arch using ALARM)</h2>
+<span class="meta">by Additional-Chef-6190 | <span class="score">9</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Some of the songs I listen to have a much poorer quality when I am on Arch compared to when booted onto macOS. I use the exact same source (YouTube), and while using Bluetooth earbuds there are no issues. Is this a known problem?</p>
+</div><!-- SC_ON --></div>
+<h3>12 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ambient_hammock <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Sound quality has been an issue as far back as this thread when a regression seems to have been released: <a href="https://www.reddit.com/r/AsahiLinux/comments/1r73qt0/distorted_speaker_audio_on_m1_macbook_air_fedora/">https://www.reddit.com/r/AsahiLinux/comments/1r73qt0/distorted_speaker_audio_on_m1_macbook_air_fedora/</a></p>
+
+<p>The experience is that of overly compressed sound, as if gain was cranked way up, possibly to make it sound louder. </p>
+
+<p>It sounds bad regardless of the app used, even when simply using Vol -/+ keys.</p>
+
+<p>I&#39;m happy to help troubleshoot as deeply as required to get this fixed.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Additional-Chef-6190 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>`wpctl status` shows that I&#39;m using both pipewire and WirePlumber. Which one&#39;s settings should I figure out how to change?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Siffredinho <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Have a look at “Audio-&gt;Filter”. I’m using Gentoo with the standard Asahi packages and have “audio_effect.j316-convolver” as my output filter. You may have a similar one (depending on your M2 model). If so, the rules should have been saved under /usr/share/wireplumber/wireplumber.conf.d/&lt;something\_with\_asahi\_in\_the\_name&gt;. The first rule is essential for Pipewire to run on a non-performance core. Don&#39;t delete it!! To make changes, create a directory with `mkdir -p $HOME/.config/wireplumber/wireplumber.conf.d` (as normal user) and copy the aforementioned configuration file to the new location so that you can edit it to suit your needs.</p>
+
+<p>You can find further information on Pipewire and Wireplumber in a excellent Pipewire article on the Arch Linux Wiki. There you can read a lot about filters. The easiest way to tailor the sound to your needs is to install ‘Easyeffects’. It offers many tools to modify the output to your liking. I use the alternative Jamesdsp on my ‘Soundbox’ (Raspberry Pi 5 with external DAC and mpd), as the CPU load is negligible and I only needed a decent EQ.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Additional-Chef-6190 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>So I updated asahi-audio, pipewire, and WirePlumber. Then in pavucontrol audio I changed configuration to pro audio, but that outputted no sound at all (even after reboot).</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">ambient_hammock <span class="score">2</span></span>
+<div class="md"><div class="md"><p>After reviewing the older thread i linked, I followed what this comment did and it seems to be an improvement: <a href="https://www.reddit.com/r/AsahiLinux/comments/1r73qt0/comment/o7xz7q2/">https://www.reddit.com/r/AsahiLinux/comments/1r73qt0/comment/o7xz7q2/</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ambient_hammock <span class="score">1</span></span>
+<div class="md"><div class="md"><p>While the above makes the builtin speakers sound better, it messes with auto-detection of plugged-in headphones, so I end up having to switch from <code>Built-in Audio Pro 1</code> to <code>Built-in Audio Pro</code></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">The_Mild_Mild_West <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Same on M1 air, very bass heavy. I figured it&#39;s from an earlier iteration of speaker drivers, idk if it&#39;s any better on Fedora Remix</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Aware-Bath7518 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Not much, basses distort sound too much.</p>
+
+<p>I feel like it was much better few Fedora releases before.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Serious_Berry_3977 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;m on M2 MBA using Fedora Remix and the sound quality is definitely not as good as macOS. Try <a href="https://github.com/wwmm/easyeffects">Easy Effects</a> as it does help make the sound better for me but I have yet to figure out how to get the sound to stop crackling.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Siffredinho <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Run ‘wpctl status’ to see which filters you’re using. You can customise the settings to your liking using easyeffects or jamesdsp. For example, you can route signals using qpwgraph.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">FlippyFlops99 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yeah I had the same experience on Asahi fedora remix</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">moonpiedumplings <span class="score">1</span></span>
+<div class="md"><div class="md"><p>KDE? </p>
+
+<p>I had an issue where audio was screwed up when KDE connect&#39;s bluetooth backend was enabled at the same time. Disabling fixed it. (Asahi Fedora).</p>
+
+<p>EDIT: wait I had a problem with bluetooth audio as well, your problem is not the same.</p>
+</div></div></div>
+</body></html>

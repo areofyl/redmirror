@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Kernel Panic after Booting</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Kernel Panic after Booting</h2>
+<span class="meta">by Icy_Coffee374 | <span class="score">19</span> points</span>
+<p><a href="https://v.redd.it/oy8k1tn4w6wg1">https://v.redd.it/oy8k1tn4w6wg1</a></p>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hello, I went a month with using just macOS, and then when I tried to boot to Linux again I was getting a kernel panic. Since then (a few months ago), I&#39;ve tried running <code>curl</code> <code>https://alx.sh</code> <code>| sh</code> via macOS again and I&#39;ve tried <code>Rebuild vendor firmware package</code> but that didn&#39;t fix it.</p>
+
+<p>Anyone have any suggestions other than wiping and starting again ?</p>
+</div><!-- SC_ON --></div>
+<h3>7 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">pb278 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The initramfs isn&#39;t there.  Perhaps the last fedora upgrade you did was interrupted.</p>
+
+<p>You can try:</p>
+
+<p>sudo dracut -f --regenerate-all</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Icy_Coffee374 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>At what point should I run that ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Environmental_Lead33 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Попробуй, когда загружаешься, перед тем как система решит выдать kernel panic, быстро нажимать &#39;E&#39;. У тебя должны появиться параметры загрузки ядра. Где-то на строке Linux в конце будет что-то вроде &#39;ro quick splash&#39;. Я заменяю это (что написал) на &#39;rw init=/bin/bash&#39; оставляя всё остальное на этой строке. После жму Ctrl+X и загружаюсь в терминал, где уже от имена root могу делать что хочу с системой</p>
+
+<p>Надеюсь это тебе поможет выйти из ситуации</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">pb278 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Are you able to boot into an older kernel?</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Icy_Coffee374 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>How am I supposed to try that ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">pb278 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>If you don’t have older kernels available, you can try booting into a live USB of Asahi and repairing the initramFS that way. If all of this is foreign to you then it may be best to just back up the data and reinstall </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Environmental_Lead33 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Помню у меня была проблема с /etc/fstab. Пришлось грузиться в bash из под grub, однако сомневаюсь что такое помогло бы вам. Вероятно я бы снёс и заново накатил asahi предварительно постаравшись сохранить важные данные, если бы они у меня были</p>
+</div></div></div>
+</body></html>

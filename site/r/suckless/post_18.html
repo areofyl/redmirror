@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>anyone here knows the mosaic linux?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>anyone here knows the mosaic linux?</h2>
+<span class="meta">by ZealousidealGlass263 | <span class="score">6</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>i was just surfing i2p when find the mosaic linux project, minimal, statically-linked, GNU-free, ports system. sounds like to the other suckless projects. anyone knows about this project or your creator?</p>
+
+<p>the website is on i2p: mosaic.i2p</p>
+</div><!-- SC_ON --></div>
+<h3>7 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">AverageComet250 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Sounds like <a href="https://derivelinux.org/">derive Linux</a>?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">realguy2300000 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>sounds somewhat familiar. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">stef_eda <span class="score">2</span></span>
+<div class="md"><div class="md"><p>what is the main reason to have &quot;everything statically linked&quot;?</p>
+
+<p>Doesn&#39;t this result in bigger code sections of running processes?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">SPalome <span class="score">3</span></span>
+<div class="md"><div class="md"><p>- Dependencies are &quot;easier&quot; to manage, no need to rebuild every package that depend on said dependency to work<br/>
+- Better LTO</p>
+
+<p>But this results in much much bigger programs, a simple &quot;Hello World!&quot; dynamic program is about 5kb on my system but a static one is 550kb</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">stef_eda <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thanks for the explanation.</p>
+
+<p>I mostly rely on packages from official distro repositories, so the rebuild process is done by the package maintainers, and provided packages are all in sync with dependencies.</p>
+
+<p>The problem is probably with alien software, pythonware and other things that &quot;depend on the last feature of the day&quot;.</p>
+
+<p>I don&#39;t use any such software. Off-repo packages I use are always built by me from source. In this usage model I don&#39;t see an advantage of using an all statically linked system. Static objects on my system are limited to <strong>very very few</strong> exceptions that are a nightmare to build. Would definitely like to avoid these exceptions too.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">SPalome <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i agree, statically linked binaries are useless on a desktop</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">fasitgo <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i was just surfing i2p too</p>
+</div></div></div>
+</body></html>

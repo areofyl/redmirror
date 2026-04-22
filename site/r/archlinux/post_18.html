@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Arch vs Mint on very old laptop (i7-2630QM) for thermals + lightweight use?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Arch vs Mint on very old laptop (i7-2630QM) for thermals + lightweight use?</h2>
+<span class="meta">by youfighter | <span class="score">1</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hi everyone,</p>
+
+<p>I’ve got an old laptop running an Intel i7-2630QM. It’s currently on Linux Mint (Cinnamon), but it idles around ~50°C even after a full clean and repaste. I’ve also disabled the NVIDIA GT 540M (Optimus, eek!), since it doesn’t really play nicely on Linux and it is not really need (did help with thermals in case anyone also using a RF511 lol).</p>
+
+<p>I mainly just use this machine for light browsing and video playback when I am in bed.</p>
+
+<p>I was wondering if switching to Arch (with a lightweight DE, taking recommendation) would help at all with thermals (and fan noise!), or if I’m better off staying with Mint.</p>
+
+<p>My thinking is Arch might be more minimal and reduce background overhead, but I’m not sure if that actually translates to lower temps in practice.</p>
+
+<p>If Arch is worth trying, what lightweight DE/WM would you recommend for this kind of setup?</p>
+
+<p>Thanks!</p>
+</div><!-- SC_ON --></div>
+<h3>15 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MilchreisMann412 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>The os does not matter. You can install other desktop environments or window managers in  Mint as well.</p>
+
+<blockquote>
+<p>My thinking is Arch might be more minimal and reduce background overhead</p>
+</blockquote>
+
+<p>It is not, though. The myth that Arch is &quot;minimal&quot; is because it comes naked. If you install a full desktop environment it is not more or less lightweight than an Ubuntu installation with the same DE. Compare a base Arch install with an Debian/Fedora/Ubuntu minimal installation and you won&#39;t find much difference in terms of resource usage.</p>
+
+<p>Actually most other distributions offer split packages for most/all of their packages (e.g. <code>pkg-dev</code> or <code>pkg-lib</code>) while in Arch you often have to install the full package just to use the library because upstream only offers full packages and Arch tries to be as close to upstream as possible. So in term of disk usage Arch is usually <em>heavier</em> than other distributions.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">kimiho_mir <span class="score">4</span></span>
+<div class="md"><div class="md"><p>You&#39;re completely missing the point here by confusing disk space and static RAM allocation with actual CPU activity.
+Saying a &#39;minimal&#39; Ubuntu or Mint install has the same resource usage as Arch is fundamentally misunderstanding how these distros operate under the hood. Ubuntu/Mint &#39;minimal&#39; is just their standard heavy base with some GUI apps like LibreOffice stripped out. The backend is exactly the same. You still have snapd mounting a dozen loop devices, unattended-upgrades polling servers, apport running for crash telemetry, and various auto-updaters hanging around.
+All of these default background services constantly wake up an older CPU like the i7-2630QM from deep C-states. That constant background polling and interrupt handling is exactly what generates heat and keeps the fans spinning at idle.
+Arch isn&#39;t minimal just because it &#39;comes naked&#39; — it&#39;s minimal because of its bottom-up, opt-in architecture. When you install a DE on Arch, you get the pure, vanilla upstream code. No distribution-patched bloat, no forced telemetry, and absolutely ZERO background polling services running unless you explicitly systemctl enable them yourself.</p>
+
+<p><em>Fewer background daemons = fewer CPU wakeups = lower idle temps. It really is that simple</em></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">un-important-human <span class="score">3</span></span>
+<div class="md"><div class="md"><p>He is right! and you are right! (but mainly him)</p>
+
+<p>MY arch is not minimal :P,  see user you are missing the point of arch - unique to the user.<br/>
+Divest yourself of this stupid bloat mentality. I count my RAM in hundreds of GB.</p>
+
+<p>Yes you can have it run in 380mb of ram or less but should you? Is it usable? Maybe.</p>
+
+<blockquote>
+<p>Fewer background daemons = fewer CPU wakeups = lower idle temps. It really is that simple</p>
+</blockquote>
+
+<p>yes yes darling but really those 8mb extra ram do not equate in that much battery loss. Linux itself if not optimised yet for battery usage.</p>
+
+<p>And when you are comparing apples to oranges. Minimal instal !== usable install, a user needs a DE. Well fedora kde and arch kde kinda the same darling. Fucking hell 2-10 MB diff? really ? Post install matters esp a usable install.</p>
+
+<p>You are right, (maybe) but you are not flexible enough. Arch teaches us flexibility and humility. Be humble like me the most humble arch user :P</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">kimiho_mir <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Flexing your hundreds of GBs of RAM is cute, darling, but OP is trying to stop an ancient i7 from melting their lap.
+This isn&#39;t about &#39;humility&#39;. I&#39;m simply correcting a technical misunderstanding: you are <em>still</em> confusing RAM with CPU activity. Static memory allocation doesn&#39;t spin up laptop fans,CPU interrupts and background polling do.
+Stay humble, but next time look at the CPU threads in htop, not just the memory bar ;)</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">MilchreisMann412 <span class="score">2</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Ubuntu/Mint &#39;minimal&#39; is just their standard heavy base with some</p>
+</blockquote>
+
+<p>Sorry, that&#39;s were the confusion stems from. I was thinking about the Debian minimal installation and thought with Ubuntu it would be the same. Didn&#39;t know Ubuntu offers and official minimal version with less software.  Change to Ubuntu server minimal and my post stands correctly. Because then you have a bottom-up, opt-in architecture as well.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Ok-Winner-6589 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Mint autoupdates means constant check on the background, Arch without any feature at all means less services. Not APT, flatpak or anything at all doing anything. Only your Desktop, the open apps and pipewire (and optionally bluetooth if you installed It)</p>
+
+<p>Mint on my fathers laptop with XFCE spends most of the RAM by default on update checkings. Around 25-50% of the RAM used by default (2GB) to autoupdates. A feature that Arch doesn&#39;t even have...</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">youfighter <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Very insightful. Thank you for your comment</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">According-Annual6701 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Arch linux sometimes have a problem with old cpu&#39;s you could just do a quick test<br/>
+i am biggest fan of arch linux it will be worth it all</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">One_Character5231 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>i7-2630QM works just fine on Arch. And so is a patched Nvidia 390 driver with 6.19 kernel and Xorg.<br/>
+Running on Nvidia, CPU idles at ~43C and GPU (GT550M) around the same.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">theschrodingerdog <span class="score">2</span></span>
+<div class="md"><div class="md"><p>My main travel laptop is an i7-3632qm. I use it with Arch and KDE (over Wayland) and it idles at 40°C. But I did a full cleaning and a repaste with PTM7950 (critical for laptops). I also have thermald installed for temp control.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">youfighter <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yip got thermald going on Mint right now and definitely makes a difference, especially at idle a d low usage tasks.</p>
+
+<p>I just repasted mine with some left over artic silver.</p>
+
+<p>I think i will back up and give arch a go tomorrow. Although probably will skip KDE and opt for a xfce.</p>
+
+<p>Will report back.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">un-important-human <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It does not matter at all (withing reason). IF you do not use it it will not &quot;tax&quot; the system.Than again you should not be running kde or gnome or any fancy DE. Use a De, but not insane, i live in the terminal now.</p>
+
+<p>Install stuff , do not run them at startup, you will need them. Do not fall into the trap of &#39;bloat&#39; it&#39;s relative.</p>
+
+<p>And i say this as arch user.</p>
+
+<p>Sure everthing is worth trying but since you are soo limited in hardware go LXFCE or there abouts or i3w, no gnomes (death to garden invaders :P) no kde, no hyperland.</p>
+
+<p>if at the very least i would say maintain your hardware, clean, repasting etc...</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Maybe a stupid question, but has your 50C temp translated into a practical problem? </p>
+
+<p>I just checked my Thinkpad T14 Gen1 AMD, and glances reports it at 39C in ordinary use. My load average shows 0.06. FWIW. </p>
+
+<p>Good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">youfighter <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yeah my issue with this old laptop is thay there fans are either on low or high (no real inbetween) and i think at 50-60ish is when it switches.</p>
+
+<p>So my bedroom constantly sounds like someone spinning up a turbo</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Ok-Winner-6589 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Arch can reduce the RAM usage by offering no automatic service. Specially autoupdates (that make a Big difference on Mint on my little experience with It)</p>
+
+<p>Arch with a Window manager (instead of a Desktop) can run with 1GB of RAM (or even 900MB) + the AUR means better protections for the browser and faster times to open It.</p>
+
+<p>(If you have a home partition and some extra space) You can install Arch without deleting Mint and test the performance. I would go with something like Brave/Hellium to reduce the memory usage at it&#39;s minimum. That can also help on Mint</p>
+</div></div></div>
+</body></html>

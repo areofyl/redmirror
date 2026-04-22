@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Issues with Plymouth</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Issues with Plymouth</h2>
+<span class="meta">by Beefjerkin_ | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I&#39;ve been using Arch for about a week now, and this is the first issue that has really stumped me. I&#39;ve been trying to configure the sizing of a <a href="https://github.com/Hash-AK/ultrakill-plymouth">theme</a> I installed, and I have been completely unable to configure it to the correct setting for my screen (1366x768@60). I am yet to see any posts about on how to decrease the size of the splash screen. Help would be greatly appreciated :3</p>
+</div><!-- SC_ON --></div>
+<h3>2 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Unlikely-Iron-4167 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Been wrestling with Plymouth theming myself recently and it&#39;s such pain when resolution doesn&#39;t match up right. That theme looks pretty sick though</p>
+
+<p>For the sizing issue, you might need to check if there&#39;s a scale parameter in the theme&#39;s script file or maybe edit the .plymouth file directly. Sometimes these custom themes have hardcoded dimensions that don&#39;t play nice with different screen sizes. Also worth checking if your initramfs got regenerated after installing - I forgot that step once and spent hours wondering why nothing changed</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Beefjerkin_ <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I&#39;m looking at animated-boot.script right now, but all I&#39;m seeing that&#39;s related to scaling, is flyingman_sprite.setX, with some other stuff after it.</p>
+
+<p>&quot;flying_sprite.SetX(Window.GetWidth() / 2 - flyingman_image[1].GetWidth() /2);</p>
+
+<p>flyingman_sprite.SetY(Window.GetHeight() / 2 - flyingman_image[1].GetHeight() /2);&quot;</p>
+
+<p>I&#39;m not entirely sure what to do with this information, but I&#39;m presuming it has something to do with this, and maybe the division?</p>
+</div></div></div>
+</body></html>

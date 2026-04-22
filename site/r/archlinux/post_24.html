@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Automating efibootmgr</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Automating efibootmgr</h2>
+<span class="meta">by abu-aljoj04 | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I am currently utilizing kernel-install to create UKIs and am seeking to automate the efibootmgr process via a script, rather than performing it manually.</p>
+
+<p>By default, kernel-install generates UKI filenames that include versioning, which means that each kernel update results in a new filename. Consequently, EFI boot entries might reference outdated paths unless they are updated. My goal is to integrate with `kernel-install` (during both installation and removal) to manage this automatically.</p>
+
+<p>My primary concern lies with the cleanup process. While creating new entries is straightforward, safely removing obsolete ones presents a challenge. The main difficulty arises from reliably parsing `efibootmgr` output to identify and remove entries associated with older UKIs. The output format does not appear to be designed for scripting and seems prone to fragility.</p>
+
+<p>I am trying to determine the following:</p>
+
+<p>- Is it a sensible approach to use efibootmgr within a kernel-install script, or am I perhaps addressing the issue at an inappropriate level?</p>
+
+<p>- Is parsing efibootmgr output the standard method for this task, or are there more suitable interfaces available?</p>
+
+<p>- How can one ensure that valid entries (e.g., for Windows) are not inadvertently affected while still performing a thorough cleanup?</p>
+
+<p>Any guidance, examples, or cautionary advice would be greatly appreciated.</p>
+</div><!-- SC_ON --></div>
+<h3>7 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Ontological_Gap <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I used to do raw UKIs and efimanager too. My recommendation is to just use bootctl, it works great!</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">WolleTD <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Especially with UKIs, they are autodiscovered and don&#39;t need any additional configuration.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Inevitable_Taro4191 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Just configure mkinitcpio to output the UKI with a name of your choosing. &quot;MyLinuxKernel&quot; or whatever you fancy. One line of config instead of a bunch of complexity</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Sea-Promotion8205 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Or go one step farther and have it write to /esp/EFI/BOOT/bootx64.efi and circumvent efibootmgr and nvram entries altogether.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Sea-Promotion8205 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>You could use refind and avoid messing with nvram. It can detect bootable kernels and UKIs automatically and on the fly.</p>
+
+<p>Or configure your uki to be written to the default uefi location. No nvram entries required, no efibootmgr.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">onefish2 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Why are you doing this? Linux, Linux-LTS, Linux-Zen and whatever other kernels in core are not good enough for you?</p>
+
+<p>I run Manjaro in a VM for some strange reason and their naming scheme for kernels suck. Every time there is a new kernel 6.18 for LTS or 6.19 or 7 etc, I have to redo the /etc/mkinitcpio.d/linux-preset files and create a new efibootmgr entry. It really sucks to do that.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Inevitable_Taro4191 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Tell me you don&#39;t know what UKI is without telling me. </p>
+
+<p>Its the same kernel, but you bake in the initramfs in a UKI and this way you 1.dont need a bootloader. 2.its easier to sign one UKI if you want to use tpm and encryption instead of multiple files.</p>
+</div></div></div>
+</body></html>

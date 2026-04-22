@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Black cursor on screen for some reason.</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Black cursor on screen for some reason.</h2>
+<span class="meta">by bluunmusic | <span class="score">5</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Well so my cursor (white) and then the black cursor stuck there for some reason I wanna remove that black cursor. </p>
+
+<p>I’ve tried a lot of stuff and I really don’t know what to do at this point, stresses me out fr.</p>
+
+<p>I’m on arch with hyprland and hyDE dot files </p>
+</div><!-- SC_ON --></div>
+<h3>3 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dmitri_ac <span class="score">1</span></span>
+<div class="md"><div class="md"><p>HyDE has its own cursor theme handling that can conflict with Hyprland&#39;s cursor settings. Check your hyprland.conf for this line:</p>
+
+<p><strong>env = XCURSOR_THEME,yourthem</strong></p>
+
+<p>And make sure it matches what&#39;s actually set in HyDE&#39;s theme config. A mismatch between the two is the most common cause of a ghost black cursor showing up alongside your actual cursor.</p>
+
+<p>Also run:</p>
+
+<p><strong>gsettings get org.gnome.desktop.interface cursor-theme</strong></p>
+
+<p>And make sure that matches too, some apps pull cursor theme from GTK settings independently.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">No-Succotash-9576 <span class="score">-2</span></span>
+<div class="md"><div class="md"><p>prepare to be downvoted</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">bluunmusic <span class="score">0</span></span>
+<div class="md"><div class="md"><p>I am tho😅</p>
+</div></div></div>
+</body></html>

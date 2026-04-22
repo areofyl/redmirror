@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>First arch install</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>First arch install</h2>
+<span class="meta">by M4wolf1 | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I want to install arch with these programs: kde, wayfire, hyperland and quickshell</p>
+
+<ol>
+<li><p>Am i missing an improtant program or are some of these not compatible with eachother</p></li>
+<li><p>What&#39;s the easiest way to install this?</p></li>
+</ol>
+
+<p>I have heard of archinstall but is that compatible with all these problems and if they are not thenhow do i install these programs with arch? (tutorial?) </p>
+</div><!-- SC_ON --></div>
+<h3>11 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Read <a href="https://wiki.archlinux.org/title/hyprland">https://wiki.archlinux.org/title/hyprland</a> to start understanding hyprland, a Wayland compositor. You&#39;ll find a concentrated audience at <a href="/r/hyprland">r/hyprland</a> also. </p>
+
+<p>My general opinion is hyprland is best approached with a fair bit of Linux experience. </p>
+
+<p><strong>You won&#39;t succeed in Arch without learning to leverage the wiki</strong></p>
+
+<p>I wish you success, and good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">M4wolf1 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thanks for your help</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">boomboomsubban <span class="score">4</span></span>
+<div class="md"><div class="md"><p>1, yeah you need more than those. Base and a kernel for a start, but see <a href="https://wiki.archlinux.org/index.php/Installation_guide">https://wiki.archlinux.org/index.php/Installation_guide</a></p>
+
+<p>2, <a href="https://wiki.archlinux.org/title/Pacman">https://wiki.archlinux.org/title/Pacman</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Gloomy-Response-6889 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You can just install them after the install. Though I am sure you can select multiple packages to install in archinstall.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">JennaTools-69 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>If they aren’t listed in archinstall, you can install them through the command line. The wiki (and documents for the specific software) should point you in the right direction</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">No-Dentist-1645 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Installing programs is a very easy and simple thing to do. You just need to use <code>pacman</code> to install any program that is available on the repositories (all of the ones you listed are).</p>
+
+<p>Just install Arch via archinstall, then once you restart and log in, open up a terminal and type <code>sudo pacman -Syu plasma wayfire hyprland quickshell</code></p>
+
+<p>Pacman is one of the fundamental parts of Arch. You need to know how to use it if you want to use Arch. If you did not even know how to install programs on Arch, I&#39;d suggest doing a <em>little</em> bit of research at a minimum (<strong>read the wiki!</strong> the wiki is a <em>very</em> important component of Arch, you will not succeed without it) before choosing to go ahead and install it, and probably stay away from Hyprland for the moment since it does require a bit of manual config file tweaking</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">M4wolf1 <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>I did know the pacman thing but i for some reason thought that you had to install kde in the install
+Also is the plasma in the pacman command kde?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">No-Dentist-1645 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The only think you have to install at the installation is the <code>base</code> and <code>linux</code> package, which contain the absolute base programs for your PC to boot and work. <em>Anything</em> else can be added later.</p>
+
+<p>Yes, &quot;plasma&quot; is the name of KDE&#39;s desktop. KDE is just the name of the group/organization, they make a bunch of other programs besides just a desktop environment</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">M4wolf1 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Thanks!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">thedreaming2017 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Well, KDE is a DE, while wayfire and hyprland are WM and quickshell is just a toolkit.  You generally don&#39;t have a DE and a WM together and you have two.  I would pick either just KDE or wayfire and quickshell, then follow the arch linux wiki to install a minimal system with networking and then start adding packages as needed.  There are various dotfiles floating around that make getting a system up and running with either hyprland or wayfire but you&#39;ll have to look around for them and decide if you want to go that route.  It&#39;s not impossible, but it&#39;s very labor intensive but after it&#39;s all done, the system will be exactly want you wanted and it&#39;ll be all because of your effort.  </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">M4wolf1 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Great advice although i do not know what dot files are</p>
+</div></div></div>
+</body></html>

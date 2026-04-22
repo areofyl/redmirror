@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Is there a backup program to save and restore configuration?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Is there a backup program to save and restore configuration?</h2>
+<span class="meta">by Nate935 | <span class="score">11</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hi i backup my files but if i have to reinstall i don&#39;t want to have to reconfigure the new install is their a program that can save a configuration and restore it? I know of aconfmgr but i find it slow but if that&#39;s the only program that works i will use it.</p>
+</div><!-- SC_ON --></div>
+<h3>23 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">syklemil <span class="score">8</span></span>
+<div class="md"><div class="md"><p>I suspect a lot of us just use <code>git</code>, possibly with some (private)? copy at an otherwise-public git forge like Codeberg, Gitlab, Microsoft Git Copilot 365, etc, etc</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ThePowerOfPinkChicks <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Many. Just rsync your configuration folders to another location, by script and service. Or just use a tool, like deja-vu to do it.</p>
+
+<p>Furthermore:</p>
+
+<p><a href="https://wiki.archlinux.org/title/System_maintenance#Backup">https://wiki.archlinux.org/title/System_maintenance#Backup</a></p>
+
+<p><a href="https://wiki.archlinux.org/title/Synchronization_and_backup_programs">https://wiki.archlinux.org/title/Synchronisation_and_backup_programmes</a></p>
+
+<p><a href="https://wiki.archlinux.org/title/Category:System_recovery">https://wiki.archlinux.org/title/Category:System_recovery</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MelioraXI <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Personally I have a backup script I run as a cron to a external drive, it&#39;s mainly using rsync and tailored for my needs. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Riverside3102 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Use github for dotfiles?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">marlonwood_de <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Backing up your home folder and getting a list of installed packages is usually enough</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Nate935 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Everything i configure is in the home folder?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Hamilton950B <span class="score">7</span></span>
+<div class="md"><div class="md"><p>No it is not. Examples include your hostname and network configuration, users and uids, boot loader config and kernel options, sysctls, firewall, fstab, file system exports, locale, crontab. Most of this is somwhere in /etc but you can&#39;t just backup and restore /etc.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Exotic-Screen-9204 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>&quot;dd&quot; or &quot;rsynch&quot; will clone the entire disk image that can be saved as a backup and restored.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">marlonwood_de <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Most applications will put configurations in ~/.config. Some stuff might be in other directories but it&#39;s a good starting point.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">boutrosboutrosgnarly <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;m using aconfmgr as well and i also find it a a bit pedestrian to use. I use mise-en-place to manage versions of tooling, chezmois for my dotfiles and aconfmgr for the general system. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Ill-Suggestion-349 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>etckeeper for config in /etc, backup your home or at least .config dir - I use backrest with s3 storage in the cloud </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I advise learning to do that manually first, and only then consider a third party script. </p>
+
+<p>For me, most of the difficulty is solved by</p>
+
+<ul>
+<li><p>backing up /home and the critically important ~/.config. Restore that. </p></li>
+<li><p>creating a list of explicitly installed packages.  Example: <code>$ pacman -Qeq &gt; packages-explicit.txt</code> and on the new instance do <code>$ pacman -S - &lt; packages-explicit.txt</code></p></li>
+</ul>
+
+<p>This list of <a href="https://termbin.com/ddxj">vetted packages</a> YMMV is how nearly every single one of my installs begins life. That, and my general config is captured in a custom install script, which includes initial setup of systemd units, any needed files,  and starting them.  From start to end, a new configured instance takes ~4min. </p>
+
+<p>Good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">thesamenightmares <span class="score">1</span></span>
+<div class="md"><div class="md"><p>tar -cvf config.tar /home/$USER</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">UrbanPalladin <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Terraform</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">thebwt <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I use Borg or salt to do this (caddy configs with salt, most other things with just Borg - but trying to 100% saltify) </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">bargu <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Why do you have to reinstall it? Unless you&#39;re doing something drastic like changing your root partition file system, or you fucked up and gave 777 permission to the entire drive, there&#39;s no reason to reinstall arch, you can fix pretty much any problem without reinstalling.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">memilanuk <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Regardless of how you get there, sometimes it&#39;s just faster/easier to wipe the disk, reinstall from scratch and restore from backups. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">po1k <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Search handling dot files with stow</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">stalkeramongstars <span class="score">1</span></span>
+<div class="md"><div class="md"><p>use stow for dots</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Nate935 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Thank you for all the suggestions I found two programs to use. Save desktop and Back In Time. But i need a program or script to save a list of my programs and download it on a new install it doesn&#39;t have to be version specific.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Needieos <span class="score">3</span></span>
+<div class="md"><div class="md"><p>pacman -Qq &gt; applist.txt 
+pacman/yay -S $(cat applist.txt)
+This should work I think, it&#39;s better to use yay if you use aur</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Nate935 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Does paru work instead of yay?</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Needieos <span class="score">3</span></span>
+<div class="md"><div class="md"><p>It should, just pass $(cat applist.txt) as packages, thats it</p>
+</div></div></div>
+</body></html>

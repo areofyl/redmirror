@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>root partition is full</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>root partition is full</h2>
+<span class="meta">by femboy-licker | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>so is there any way to increase the space of root partition without booting into other OS using USB? i am constantly getting root partition is full notification and i did sudo pacman -Sc but i don&#39;t have much of cache filled its the packages getting installed in root. and its a dumb question but can i force a package (the pacman package manager) to install in usr not in root </p>
+</div><!-- SC_ON --></div>
+<h3>13 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ArjixGamer <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Do <code>sudo pacman -Scc</code> (double c)</p>
+
+<p>Also, if you have docker, maybe delete unused images/volumes</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Lichcrow <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I deleted my docker images and volumes, 150gb freed</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">archover <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Stay on top of your space hogs with a tool like ncdu. Nice you fixed it, and good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Master-Ad-6265 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>can’t install packages outside root like that, /usr is still root
+you’ll have to clean space or resize it, no real shortcut </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Miserable-Bonus-4196 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>You could try cleaning out some logs with `journalctl --vacuum-size=100M` - sometimes those get pretty bloated. Also check if you have any old kernels sitting around that you can remove</p>
+
+<p>For resizing without a live USB, you&#39;d need unallocated space right after your root partition which most people don&#39;t have. LVM makes this easier but if you&#39;re on a standard setup you&#39;re kinda stuck with the live USB route</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">un-important-human <span class="score">2</span></span>
+<div class="md"><div class="md"><p>do you have shapshots? if not well make root bigger</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">brightlights55 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Check if your swap file is on root. Delete the swap file and recreate on separate partition.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Grouchy_Carpenter478 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Maybe you&#39;re using Timshift Backup program? Or some other backup program(s)? Timeshift usually puts all its backups in the user home profile! Removing these backups saves your day... IF .. you have a situation like this with e.g. Timeshift...</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Hamilton950B <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Pacman already installs most files in /usr, but that&#39;s almost always on the root partition. You can&#39;t put things in some place other than /usr because that&#39;s set at the time the package is built, not when it&#39;s installed.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">YoShake <span class="score">1</span></span>
+<div class="md"><div class="md"><p>clear your journal and adjust it<br/>
+you don&#39;t need to store gigs of old logs<br/>
+also if you use zram, you can move your paccache to zram, cleared every time you shutdown :&gt;<br/>
+has its cons, but you gotta live with your choices  </p>
+
+<p>staying on topic of spring cleaning in OS, list all your installed packages, read through it and ditch everything you didn&#39;t launch for a year, or even half year. No need to store packages you don&#39;t use, when you can install them again in no time.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Kindly flair post as SOLVED. Good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">DestroyedLolo <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>If you made the mistake to put everything in the root partition, try to do some cleanup about old packages bundle: pacman keeps old versions to make rollback easier.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">archover <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>if you made the mistake to put everything in the root partition,</p>
+</blockquote>
+
+<p>That is the wiki recommendation. It&#39;s called Single Root Partition. </p>
+
+<p>Good day.</p>
+</div></div></div>
+</body></html>

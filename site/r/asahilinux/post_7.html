@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Transferring the system to an external storage medium</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Transferring the system to an external storage medium</h2>
+<span class="meta">by Environmental_Lead33 | <span class="score">7</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hello community! I wanted to know if there is an easy way to install Asahi Linux on an external drive? I don&#39;t have a large disk on my MacBook, so I can&#39;t afford to sacrifice it. I hope for your answer, thank you in advance!</p>
+</div><!-- SC_ON --></div>
+<h3>5 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">mskiptr <span class="score">3</span></span>
+<div class="md"><div class="md"><p>The trick macOS does to accomplish this is currently not implemented. If you&#39;re fine having to always attach the external drive to boot into Asahi, you could just <code>btrfs device add</code> it to your main filesystem. Then your Fedora Asahi will effectively be installed on both the internal drive and the external one. This way you can get away with only assigning Asahi the bare minimum of internal storage that&#39;s necessary for install, and still have a lot of space for any later needs.</p>
+
+<p>Another easy way is using the external drive to store only certain categories of files. For example, you can have the OS installed onto the internal drive, but store your entire home directory (<code>~</code>) on the external one.</p>
+
+<p>And if you&#39;re proficient with Linux administration, it is perfectly possible to move the entire OS partition to the external storage, only leaving the bootloader on the main drive.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Chip2468 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>This project still seems to be relatively unknown, but I&#39;ve been using this for years on external SSDs fine, just keep in mind that u-boot (minimal UEFI environment in the asahi installer) must be installed on the internal SSD (only takes up 2.5gb tho):<br/>
+<a href="https://github.com/leifliddy/asahi-fedora-usb">asahi-fedora-usb</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Basilikolumne <span class="score">0</span></span>
+<div class="md"><div class="md"><p>No, not yet, and maybe never. I read that in the docs iirc, maybe you can find it to be sure.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">cAtloVeR9998 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>It’s impossible to fully boot from external media. The firmware deliberately doesn’t support it. In future IIRC it may be possible to install with only m1n1 stage 1 (not sure if stage 2 is required) on the internal drive, without repartitioning. But that’s not possible rn. The best you can do is to have /boot (and the Asahi-specific partitions) on the internal drive. However, that isn’t plug and play. It requires at least a basic understanding of how to configure disks on Linux. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Natjoe64 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Asahi only works from the internal drive. While you could try and do some janky btrfs workarounds, I would just put any large files on an external drive. </p>
+</div></div></div>
+</body></html>

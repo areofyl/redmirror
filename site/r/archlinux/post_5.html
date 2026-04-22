@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>hello everybody, im a beginner to arch and there is a few problem that i cant seem to fix</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>hello everybody, im a beginner to arch and there is a few problem that i cant seem to fix</h2>
+<span class="meta">by FarInteraction1710 | <span class="score">23</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hello everybody, as the title suggested, im quite new to arch. Im pretty familiar with how a computer work since i code as a hobby, but this is my first time on linux (ik its bad as a first time ios but it already happened). And im just wondering if this is a common issue when installing or i might have broken something?</p>
+
+<p>The issue at hand is:</p>
+
+<ol>
+<li><p>I cant launch any apps other than a browser i install using sudo post install</p></li>
+<li><p>I cant seem to connect to my wifi for more than 15 minutes before disconnecting and never working again. I use a tp-link dongle because i install linux on my pc, not on my laptop.</p></li>
+<li><p>I cant seem to access my second drive? Even though when i do archinstall i make sure to include both my first drive and the second one?</p></li>
+</ol>
+
+<p>Is there any page in the wiki for this specific issue? Or am i doing something wrong? Should i do a reinstall or is it fixable?</p>
+
+<p>Thats all, thank you</p>
+</div><!-- SC_ON --></div>
+<h3>29 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Olive-Juice- <span class="score">30</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>1. I cant launch any apps other than a browser i install using sudo post install</p>
+</blockquote>
+
+<p>What desktop environment or WM are you using and how are you trying to launch your applications.</p>
+
+<hr/>
+
+<blockquote>
+<p>3. I cant seem to access my second drive? Even though when i do archinstall i make sure to include both my first drive and the second one?</p>
+</blockquote>
+
+<p>Verify that your <a href="https://wiki.archlinux.org/title/Fstab">/etc/fstab</a> file has all the partitions you want to mount in it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ArjixGamer <span class="score">11</span></span>
+<div class="md"><div class="md"><p>KDE Partition Manager is nice for visually editing the mount points.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">XcOM987 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Just remember you need to manually add the exec option, for some reason KDE PM doesn&#39;t add it as default</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">ArjixGamer <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;d say it&#39;s a good default, you rarely have executables on &quot;media&quot; drives, and the usual reason to edit the mounts is for external media.</p>
+
+<p>It does mean that you have to know ahead of time to enable that flag if you want it for e.g. steam games or smth else</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">tblancher <span class="score">32</span></span>
+<div class="md"><div class="md"><p>I think you did yourself a disservice by using archinstall;  its purpose is for folks who are familiar with Arch to spin up a system quickly.</p>
+
+<p>Since you&#39;re just starting, follow the installation guide on the Arch wiki.  You&#39;ll learn so much more, and you actually might have enough knowledge to fix all of these on your own by the end of it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">EnhancedEddie <span class="score">16</span></span>
+<div class="md"><div class="md"><p>Furthermore, I’d argue that if you’re not able to troubleshoot these issues after doing a manual install, you probably shouldn’t be using arch. You’re better off learning on a different distro and coming back to Arch with a better understanding of Linux.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">FarInteraction1710 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>thank you, i might just consider going back to windows or trying out ubuntu. But i already go in too deep and already learning too much so i may not stop now. Anyway i post another comment here about my situations now, mind if you could take a look and give an explanation? cause i just cant seem to find one, thank you </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Wertbon1789 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I would say give it a go if you&#39;re not desperately dependant on that machine rn. If you are, you have all rights to switch to something that works out of the box. I would also say you should try Arch in a VM, because if you screw something up it&#39;s easier to just start from scratch, that&#39;s the way I did it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Lawnmover_Man <span class="score">5</span></span>
+<div class="md"><div class="md"><p>You should really try out Ubuntu or any of the other popular distros that are recommended for beginners or people in general who just want a working system. Arch is for people who want to do it themselves by tinkering with the system.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Vector-Zero <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Skip Ubuntu and go with Fedora or Mint. Ubuntu really doesn&#39;t deserve its popularity.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">V2UgYXJlIG5vdCBJ <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Linux Mint is very friendly.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Kitchen_Office8072 <span class="score">-2</span></span>
+<div class="md"><div class="md"><p>Don&#39;t follow this guy&#39;s advice, just use archinstall. fdisk is not a skill.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">apc9kpro <span class="score">2</span></span>
+<div class="md"><div class="md"><p>The archinstall mentality. &quot;learning is gatekeeping!&quot;</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Kitchen_Office8072 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Not a single thing you do while manually installing arch is important for anything other than manually installing arch. You can provision 1000 systems with packer, ansible, and terraform, and not use or need a single thing in the manual installation wiki, except for maybe partitioning a disk, for which you would use parted or fdisk.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Synthetic451 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>You can learn <strong><em>after</em></strong> using archinstall though. Learning is not gatekeeping, but telling someone that they HAVE to start at a specific point in their Arch journey is.</p>
+
+<p>The onus should be put on OP for not consulting the wiki or doing a simple Google search, not archinstall. Also, since they already have Arch setup, the more productive thing would be to tell them to read up on how to use pacman to install apps rather than go on a spiel about archinstall.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">apc9kpro <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I&#39;m mostly just talking shit since kitchen said fdisk is not a skill and I feel personally attacked. (joking)</p>
+
+<p>Manually installed arch almost a decade ago and the partitions is what confused me the most, took me like 3 install attempts before it started to make sense. All the learning builds on itself, so I think it is useful.</p>
+
+<p>I don&#39;t think newbies shouldn&#39;t use archinstall, but I don&#39;t care to the point where I&#39;m trying to offend anyone.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Flurin <span class="score">12</span></span>
+<div class="md"><div class="md"><ol>
+<li><p>what do you mean by &quot;sudo post install&quot;. How did you install those packages?</p></li>
+<li><p>Could be a problem with the driver, maybe google your device and linux and see what others say.</p></li>
+<li><p>Did you mount the drive?</p></li>
+</ol>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">gtsiam <span class="score">19</span></span>
+<div class="md"><div class="md"><ol>
+<li>Arch uses pacman, no idea what <code>post install</code> is.</li>
+<li>You&#39;ll have to look at the logs for a clue on this one, with <code>such journalctl -r</code> (shows top most recent to bottom earlier). <code>journalctl -f</code> to follow the log.</li>
+<li>You&#39;re likely missing the filesystem drivers.</li>
+</ol>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ReptilianLaserbeam <span class="score">4</span></span>
+<div class="md"><div class="md"><p>I&#39;m assuming he&#39;s referring to the &quot;post install&quot; section from the wiki. Looks like he skipped the whole installation article as he used archinstall (no shame on that) but didn&#39;t have any previous linux experience</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">un-important-human <span class="score">3</span></span>
+<div class="md"><div class="md"><ol>
+<li>anything is fixable</li>
+</ol>
+
+<p>what partition format is the second drive?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">FarInteraction1710 <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Hello, update here. I actually manage to fix all the issue myself, which is pretty nice tbh. Turns out most of it is just cause i configure it wrong. But i have one more question regarding the files manager. In the terminal both disk is getting scanned, but my file manager doesnt have two disk like windows would, so is linux automatically doing the sorting for this or is something wrong with my install? Thank you</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">BanaTibor <span class="score">9</span></span>
+<div class="md"><div class="md"><p>On unix like systems the stupid drives concept is not used. Your file systems are organized into one tree with one root. The root / is the starting point, any other file systems on another drives or on the network or on another partition is mounted into this tree. Historically the mount points are in /mnt, these are just directories. Use the &quot;mount&quot; command to list the attached filesystems and there mounting points.   </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">FarInteraction1710 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Oh and i read the wiki now, so i kinda get how all of this works. Im still pretty new with this so im probably gonna learn a lot more by just trying it out for a few months, so yeah excited to join the club</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Wertbon1789 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>For brief conceptual overviews I&#39;d recommend watching some videos on Linux to get some buzzwords and concepts across, like in this case &quot;mounting a drive&quot;, or what the Filesystem Hierarchy Standard is. We basically always use these, or just assume everybody with some experience kinda knows them, so it&#39;s hard to find anything when you don&#39;t know about them.</p>
+
+<p>Looking at the Arch wiki is a great habit, although the installation guide and post-installation stuff are most useful for a manual installation, you should have a look through them, and maybe even consider going for a manual install in a VM once, just to get some more points about the system across.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">FarInteraction1710 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Understandable, im gonna watch a few more videos about how linux keyterms, thanks much</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">YoShake <span class="score">1</span></span>
+<div class="md"><div class="md"><p>get familiar with tools like <code>fdisk</code> and <code>lsblk</code> for seeing your drives and partitions.<br/>
+Also getting skills in mounting drives is highly advised.<br/>
+*nix have completely different approach to managing storage devices.   </p>
+
+<p>tbh after you chose arch as your first distribution, you also chose to learn. Learn many new things, and learn them pretty fast. Thus don&#39;t hesitate to study archwiki, because all your problems emerge from the lack of basic knowledge and reading comprehension.<br/>
+At least nothing that couldn&#39;t be made up.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">stalkeramongstars <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Your main problem is you dont know how to read the WIKI. Arch is def the wrong distro for you if you dont know your way around reading documentary</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">kodirovsshik <span class="score">3</span></span>
+<div class="md"><div class="md"><ol>
+<li><code>alias unfuck_wifi=&quot;sudo systemctl restart NetworkManager&quot;</code></li>
+</ol>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Nottx_ <span class="score">0</span></span>
+<div class="md"><div class="md"><ol>
+<li><p>Try using pacman, it&#39;s native Arch package manager </p></li>
+<li><p>What network manager are you using?</p></li>
+<li><p>Try to find something like sda1 file in /dev directory, then do &lt;sudo mount sda1 {some empty directory}&gt; to mount the partition in you filesystem. BEWARE - the file might be called something else (not sda1). If you&#39;d like to have the second drive mounted every time when you boot up your PC, you&#39;ll have to edit your fstab file (you can find instructions online)</p></li>
+</ol>
+</div></div></div>
+</body></html>

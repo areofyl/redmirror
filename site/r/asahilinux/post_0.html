@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Progress Report: Linux 6.19</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Progress Report: Linux 6.19</h2>
+<span class="meta">by FOHjim | <span class="score">303</span> points</span>
+<p><a href="https://asahilinux.org/2026/02/progress-report-6-19/">https://asahilinux.org/2026/02/progress-report-6-19/</a></p>
+<div class="md"><!-- SC_OFF --><div class="md"><p>The Apple Silicon AV Show, with special guests M3 and PackageKit! Enjoy this very video-output-heavy progress report!</p>
+</div><!-- SC_ON --></div>
+<h3>30 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">darkawower <span class="score">70</span></span>
+<div class="md"><div class="md"><p>A huge thank you to the Asahi team for all your hard work! ❤️</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">cAtloVeR9998 <span class="score">16</span></span>
+<div class="md"><div class="md"><p>Awesome to see!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">roc-ket7 <span class="score">14</span></span>
+<div class="md"><div class="md"><p>Amazing as always! keep it up!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">pizzaiolo2 <span class="score">13</span></span>
+<div class="md"><div class="md"><p>Love these write-ups, thank you!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">200206487 <span class="score">10</span></span>
+<div class="md"><div class="md"><p>Amazing work; read the entire update. Hopefully more people will be exposed to Asahi at the conventions ergo inviting new people across a spectrum of backgrounds! 120hz!!</p>
+
+<p>I’m looking forward to the day where M3 Ultra works and how that will handle LLMs in Linux. HDR support is all I’m missing to daily drive comfortably since my work is in product design. I wish I could contribute with code knowledge but donations will do.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Majestic_Ad_7962 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Hey, out of curiosity, what is your setup for running LLMs on Asahi?</p>
+
+<p>I&#39;m currently on an M1 Pro (16GB RAM) using llama.cpp with the Vulkan backend. The Vulkan performance is about 2x faster than running it CPU-only, but it&#39;s still roughly 3x slower compared to running the same model on macOS via Metal.</p>
+
+<p>Are you using a different backend or some specific configuration to get better performance? Would love to hear your experience!</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">200206487 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Not currently since I’m transitioning laptops, but I use OpenWeb UI with LM Studio to run models and access from anywhere via Pangolin reverse proxy and Tailscale w/Mullvad.</p>
+
+<p>I’m really hoping that I can run models using Asahi and my unified ram, but it’s unclear to me atm. I imagine I won’t be able to use MLX models which is Apple specific and faster, but if I can run GGUFs at normal speeds then that’s golden!</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Pristine_While6691 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>LLMs won&#39;t work as well as macOS until support for the Neural Engine is available in Asahi</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Serious_Berry_3977 <span class="score">12</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Despite repeated polite requests to not ask us for specific feature ETAs, the questions kept coming. In an effort to try and curtail this, we toyed with setting a “minimum” date for the feature and simply doubling it every time the question was asked. This very quickly led to the date being after the predicted heat death of the universe. </p>
+</blockquote>
+
+<p>🤣</p>
+
+<p>This project is freaking amazing with all the work you wonderful people have been doing. I&#39;m very close to making the switch on my M2 MBA. I think one more Time Machine backup soon and I&#39;ll join you all on the Dark Side.</p>
+
+<p>Thank you for helping to make the future of Linux brighter than ever before. I remember the days of Mandrake, Debian, Red Hat, and a few others in the early 2000&#39;s. Since then it&#39;s been proclaimed that &quot;This is the year Linux goes mainstream&quot;. With Apple......well....I&#39;m not going there between Tahoe and iOS 26....but I think this might be the catalyst that makes people notice Linux.</p>
+
+<p>Maybe, just maybe, between you guys and Steam, this will make 2026 the year Linux finally makes a dent in the Windows and MacOS numbers!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Redemption198 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Siuuum</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Blissautrey <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Thank you! I&#39;m really enjoying using my M2 macbook!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Pepparkakan <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Amazing progress guys! Really looking forward to daily driving this in the future, all that’s left for me to be able to do that is Thunderbolt and then I’m dumping macOS!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TnTch <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I&#39;m not even using Asahi at the moment, but I just love reading these reports. So interesting to learn how these machines are reverse-engineered piece by piece. Thanks a lot to the entire team and keep up the great work!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Successful_Exam_6173 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Any indication for when 6.19 is pushed?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">UndulatingHedgehog <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Not at all involved in the project, but looking at the timeline, It took two months and two weeks from upstream 6.18 was released on dec 1st until all the Asashi patches had been applied and tested and we received an Aashi-patched 6.18 on feb 15th.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MikeAndThePup <span class="score">3</span></span>
+<div class="md"><div class="md"><p>This is awesome guys.  Thank you for all the hard work.  Now I know what I am doing this weekend.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Chr0ll0_ <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Amazing</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">movingimagecentral <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Impressive!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">toin9898 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>So cool to see DP-Alt sort of working. I have a Mac Studio and Studio Display so I haven’t been able to play around with Asahi yet. </p>
+
+<p>I’ll still wait for it to be officially released/confirmed functional but nice to see that it’s finally on the horizon.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Majestic_Ad_7962 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>First off, a huge thank you to the Asahi team!</p>
+
+<p>I am really looking forward to seeing improvements to sleep mode. I have a question though: is it fundamentally impossible to achieve the same energy efficiency in sleep mode as on macOS? I know hibernation is incredibly difficult to implement right now due to the complex boot process and various system layers. But macOS-level sleep efficiency is a killer feature—it’s a big part of the &quot;magic&quot; of M-series Macs.</p>
+
+<p>Don&#39;t get me wrong, I&#39;m incredibly happy with the progress. More and more hardware is working, the GPU drivers are amazing, and external monitor support on version 6.19 works almost perfectly.</p>
+
+<p>I also realize that even the current sleep mode is better than what you get on many standard x86 Linux laptops. But considering we already have things like ProMotion working, a fully optimized sleep mode just feels like the next logical step.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">mskiptr <span class="score">3</span></span>
+<div class="md"><div class="md"><p>The problem is that energy efficiency is not a single step. Someone needs to figure out what low power modes <em>each hardware component</em> is capable of, how to activate them correctly, and when is it even possible to do without breaking some functionality.</p>
+
+<p>Hopefully there would be just a few low-hanging fruits that draw the most power and are easy to pinpoint, but idk if that will be enough. It might easily turn into a long and tedious game of whack-a-mole. To see what something like that looks like (though for a much simpler device, with a much smaller battery), you can browse these two links:</p>
+
+<ul>
+<li><a href="https://github.com/InfiniTimeOrg/InfiniTime/issues/53">https://github.com/InfiniTimeOrg/InfiniTime/issues/53</a></li>
+<li><a href="https://www.diva-portal.org/smash/get/diva2:1456582/FULLTEXT01.pdf">https://www.diva-portal.org/smash/get/diva2:1456582/FULLTEXT01.pdf</a></li>
+</ul>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">PeacefulDays <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thank you all contributors!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">tempsanity <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thank you for all your incredible work and the update! Asahi is my favourite OS.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">alfotis <span class="score">1</span></span>
+<div class="md"><div class="md"><p>That’s awesome! Thank you for all your hard work</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">thecurtehs <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Amazing work! Excited to get off MacOS on my M3 Air. Not asking for timelines, but I am not familiar with Asahi Linux&#39;s progress over the years, fairly new to linux in general. When they say, &quot;not too long&quot; for shippable state for m3, do you guys thing that is like, weeks, months or years? just vibe wise based on their release history.  no criticism either way for it, the work Asahi do is amazing and we&#39;re all blessed to get it for free and open sourced. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">etancrazynpoor <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Awesome!!!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">PinPointPing07 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Makes my month. Thanks for all the crazy work, truly! It&#39;s incredible that there&#39;s still exciting progress coming along!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MaxDub12 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>With new people working on the GPUs, does this mean there&#39;s a chance that Asahi for M3/M4/M5 is a possibility?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">triosecat <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thank you!!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">da____we <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Looooove it! Color Management is finally coming together with GNOME 50 ✨✨✨</p>
+</div></div></div>
+</body></html>

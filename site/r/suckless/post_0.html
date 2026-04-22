@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>[ST] remapping ctrl+c/v and standalone sixel patch question</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>[ST] remapping ctrl+c/v and standalone sixel patch question</h2>
+<span class="meta">by vulpes-vulpeos | <span class="score">6</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Is there a way to remap ctrl+c and ctrl+v shortcuts to clipcopy and clippaste? And Ctrl+Shift+C and Ctrl+Shift+V to intr(^C) and lnext(^V)?<br/>
+Adding this to shortcuts[] doesn&#39;t work and still results in ^C and ^V:</p>
+
+<p>```<br/>
+{ ControlMask,              XK_C,           clipcopy,       {.i =  0} },<br/>
+{ ControlMask,              XK_V,           clippaste,       {.i =  0} },</p>
+
+<p>```  </p>
+
+<p>Is there a proper standalone sixel patch for 0.9+? It would be great if it&#39;s compatible with scrollback-reflow-standalone patch.</p>
+
+<p>UPD: Here are shortcuts to remap ctrl+C/V to copy/paste and ctrl+shift+c to kill process:</p>
+
+<p>```<br/>
+{ ControlMask,          99,             clipcopy,       {.i =  0} },<br/>
+{ TERMMOD,              99,             sendbreak,      {.i =  0} },<br/>
+{ ControlMask,          118,            clippaste,      {.i =  0} },</p>
+
+<p><code>
+Here is clipcopy() with smart copy behavior (not sure if this is good implementation):
+</code><br/>
+clipcopy(const Arg *dummy)
+{
+    Atom clipboard;</p>
+
+<pre><code>free(xsel.clipboard);
+xsel.clipboard = NULL;
+
+if (xsel.primary != NULL) {
+    xsel.clipboard = xstrdup(xsel.primary);
+    clipboard = XInternAtom(xw.dpy, &quot;CLIPBOARD&quot;, 0);
+    XSetSelectionOwner(xw.dpy, clipboard, xw.win, CurrentTime);
+            xsel.primary = NULL;
+} else {
+            const char intr = 0x03;
+            ttywrite(&amp;intr, 1, 1);
+    };
+</code></pre>
+
+<p>}
+<code>
+Also here is lnext for ctrl+shift+v if you need it:
+</code><br/>
+Put this into config:
+    { TERMMOD,              118,            lnext,          {.i =  0} },</p>
+
+<p>Put this into x.c:
+static void lnext(){ const char intr = 0x16; ttywrite(&amp;intr, 1, 1); };
+```  </p>
+
+<p>UPD2: I&#39;ve got sixel working. here is my <a href="https://pastebin.com/xLuqufjC">.diff file</a> with following patches:
+- st-bold-is-not-bright
+- st-boxdraw
+- st-clickurl
+- st-csi_22_23
+- st-expected-anysize
+- st-scrollback-reflow-standalone-extended
+- st-sixel (based on <a href="https://codeberg.org/speedie/patches/raw/branch/master/st-sixel-0.9.diff">this diff</a>)
+- the default font is set to IosevkaTerm Nerd Font Mono, color scheme is ayu1nord.</p>
+
+<p>I didn&#39;t properly check if sixel scrolling works correctly as I do not have use cases for it.</p>
+</div><!-- SC_ON --></div>
+<h3>7 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">bakkeby <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Ctrl+c is an essential key combination to stop a running process. It will be better for you in the long run if you just learn to use Ctrl+Shift to copy and paste.</p>
+
+<p>Sixel support is rather invasive which means that it will conflict with a lot of other patches. It is relatively straightforward to create a standalone patch for sixel support, and I believe some may have tried it, but you&#39;d likely run into trouble if you were to try to apply such a patch on to of an already patched st. You could apply the patch on a bare st and start from there, but you&#39;d then have issues applying other patches. There may also be patch compatibility changes that are needed that do not manifest as conflicts.</p>
+
+<p>If you want sixel support then I&#39;d recommend using an existing build as your base. There is sixel support in st-flexipatch, but if you want to apply patches on your own then st-sx would be a good starting point. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">vulpes-vulpeos <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I&#39;ll have ctrl+shift+c to kill the process. It&#39;s not like I want to completely remove ability to kill a process. Plus as I mentioned in my other comment reply, I want to do the same thing as in Kitty: if there is selected text -&gt; copyclip(), if there is no selected text -&gt; sendbreak(). It&#39;s easy to do, but remapping ctrl+c in shortcuts[] does nothing.</p>
+
+<p>I can code in C, so manual patching isn&#39;t a problem for me. My current dwm, slock and st setups are all manually patched. I managed to integrate original sixel patch ( <a href="https://gist.github.com/saitoha/70e0fdf22e3e8f63ce937c7f7da71809">https://gist.github.com/saitoha/70e0fdf22e3e8f63ce937c7f7da71809</a> ) in 0.9.3, but didn&#39;t get anything in vifm preview window. Currently I don&#39;t know where the problem is and that is why I&#39;m asking if anyone already has working patch.  </p>
+
+<p>If no one will suggest anything, I&#39;ll try to go st-flexipatch (only scrolling and sixel patches) + flexipatch-finalither path.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">bakkeby <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;m not entirely sure, but it may be that you need to change some of the escape code bindings in st.info. If you run cat -v then you can see what escape codes come through when you hit certain key combinations, though Ctrl+c probably kills the process. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>You do realize that Ctrl C is used to kill a process right. This is a bad idea and is why Lukesmithxyz-st uses Alt c and alt v</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">vulpes-vulpeos <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I realize that. I&#39;m currently using smart ctrl+c mode in Kitty (map ctrl+c copy_and_clear_or_interrupt) and have 0 problems with that. It&#39;s not difficult to implement the same in ST as copyclip function has selection length check: selection length 0 -&gt; sendbreak(), bigger then 0 -&gt; copy selection.<br/>
+The problem is that remapping ctrl+c in shortcuts[] does nothing. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">vulpes-vulpeos <span class="score">1</span></span>
+<div class="md"><div class="md"><p><a href="https://preview.redd.it/g1es5botfbwg1.png?width=860&amp;format=png&amp;auto=webp&amp;s=3ca2e5df10aaffd75e4ae24136483a3d9929484f">https://preview.redd.it/g1es5botfbwg1.png?width=860&amp;format=png&amp;auto=webp&amp;s=3ca2e5df10aaffd75e4ae24136483a3d9929484f</a></p>
+
+<p>Upd2: I managed to integrate <a href="https://codeberg.org/speedie/patches/raw/branch/master/st-sixel-0.9.diff">this diff</a> (it wasn&#39;t just copy-paste) and now st shows sixel graphics.  </p>
+
+<p>Now the problem is that preview in vifm produces some artifacts on the left panel.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">vulpes-vulpeos <span class="score">1</span></span>
+<div class="md"><div class="md"><p><a href="https://preview.redd.it/p3lqwbkfgbwg1.png?width=1920&amp;format=png&amp;auto=webp&amp;s=676e1c88556ddf57076ef7ed5eb0f2622ceafc3c">https://preview.redd.it/p3lqwbkfgbwg1.png?width=1920&amp;format=png&amp;auto=webp&amp;s=676e1c88556ddf57076ef7ed5eb0f2622ceafc3c</a></p>
+
+<p>Also found out that on arch img2sixel is broken. Didn&#39;t need it anyway as image-magick can do sixel too.</p>
+</div></div></div>
+</body></html>

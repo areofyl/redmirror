@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>St glyph wide support causes ghost artifacts in Neovim intro screen</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>St glyph wide support causes ghost artifacts in Neovim intro screen</h2>
+<span class="meta">by Electrical-Error-942 | <span class="score">4</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I noticed the st glyph wide support patch causes some artifacts in the new Neovim intro screen. If you open Neovim and start typing you can see some parts of the intro text left over. Does anyone have a fix? I&#39;ve tried both 2022 and 2023 versions of the patch. I&#39;m using Jetbrains Mono but I&#39;ve tried the default font and it still has the same issue.</p>
+
+<p><a href="https://preview.redd.it/epiz83jcfgug1.png?width=1091&amp;format=png&amp;auto=webp&amp;s=1b0d74d05f35ae715eb319f5697dfa8acf752596">https://preview.redd.it/epiz83jcfgug1.png?width=1091&amp;format=png&amp;auto=webp&amp;s=1b0d74d05f35ae715eb319f5697dfa8acf752596</a></p>
+
+<p><a href="https://preview.redd.it/ytbapvbdfgug1.png?width=1086&amp;format=png&amp;auto=webp&amp;s=996e8970b5122efa14eda4a6f989a29d017ee631">https://preview.redd.it/ytbapvbdfgug1.png?width=1086&amp;format=png&amp;auto=webp&amp;s=996e8970b5122efa14eda4a6f989a29d017ee631</a></p>
+
+<p>UPDATE: If anyone has this issue, I think I have a fix. I noticed on Luke Smith&#39;s St build (which was where the patch was based off of), it doesn&#39;t have this issue, so I checked what was different and you have to add back these lines that the patch removed:</p>
+
+<pre><code>/* Set the clip region because Xft is sometimes dirty. */
+r.x = 0;
+r.y = 0;
+r.height = win.ch;
+r.width = width;
+XftDrawSetClipRectangles(xw.draw, winx, winy, &amp;r, 1);
+</code></pre>
+
+<p>and</p>
+
+<pre><code>/* Reset clip to none. */
+XftDrawSetClip(xw.draw, 0);
+</code></pre>
+
+<p>Add them in  <code>if (dmode &amp; DRAW_FG)</code> so it looks like this:</p>
+
+<pre><code>  if (dmode &amp; DRAW_FG) {
+    /* Set the clip region because Xft is sometimes dirty. */
+    r.x = 0;
+    r.y = 0;
+    r.height = win.ch;
+    r.width = width;
+    XftDrawSetClipRectangles(xw.draw, winx, winy, &amp;r, 1);
+
+    /* Render the glyphs. */
+    XftDrawGlyphFontSpec(xw.draw, fg, specs, len);
+
+    /* Render underline and strikethrough. */
+    if (base.mode &amp; ATTR_UNDERLINE) {
+      XftDrawRect(xw.draw, fg, winx, winy + dc.font.ascent + 1, width, 1);
+    }
+
+    if (base.mode &amp; ATTR_STRUCK) {
+      XftDrawRect(xw.draw, fg, winx, winy + 2 * dc.font.ascent / 3, width, 1);
+    }
+
+    /* Reset clip to none. */
+    XftDrawSetClip(xw.draw, 0);
+  }
+</code></pre>
+
+<p>You can also use the box draw version of the patch, which doesn&#39;t appear to have this issue but then you need to have the box draw patch installed</p>
+</div><!-- SC_ON --></div>
+<h3>0 comments</h3>
+</body></html>

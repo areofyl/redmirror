@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>My Reviews of Various Minimalist OS's.</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>My Reviews of Various Minimalist OS's.</h2>
+<span class="meta">by LightPrototypeKiller | <span class="score">156</span> points</span>
+<p><a href="https://www.reddit.com/gallery/1sb3wee">https://www.reddit.com/gallery/1sb3wee</a></p>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I daily drive chimera, best MUSL distribution imo.</p>
+</div><!-- SC_ON --></div>
+<h3>16 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Pitiful-Welcome-399 <span class="score">11</span></span>
+<div class="md"><div class="md"><p>yay chimera mentioned </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Ramiferous <span class="score">9</span></span>
+<div class="md"><div class="md"><p>Been running sculpt OS on my x230 ThinkPad for a while now. It&#39;s such an interesting os. Not my daily driver of course, but a fun thing to tinker with for sure.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Away_Page_9457 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Tell us more. I haven&#39;t looked into it since like 2020. What software do you run on it?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">PearMyPie <span class="score">15</span></span>
+<div class="md"><div class="md"><p>Chimera is interesting, and I imagine the developers feel accomplished working on it, but all these distros are such a waste of developer effort...</p>
+
+<p>I hate this obsession with rewriting shit in Rust, throwing away GNU tools, throwing away glibc, throwing away systemd, throwing away X11 (to an extent), just to reinvent the wheel instead of improving Linux.</p>
+
+<p>Congrats, your musl-based FreeBSD-userland-based systemd-free Linux distro is marginally faster, but incompatible with almost all software outside the repos.</p>
+
+<p>The init system and core utilities are less than 5% of the software in a useful system, and I can&#39;t imagine someone would give a shit about using FreeBSD&#39;s <code>ls</code> or <code>cat</code> instead of the GNU implementations.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Key_River7180 <span class="score">14</span></span>
+<div class="md"><div class="md"><p>sorry to be that dude but most of these don&#39;t use rust</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TrainingTheory552 <span class="score">7</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>such a waste of developer effort...</p>
+</blockquote>
+
+<p>idk, i say just let developers develop whatever they want. linux&#39;s biggest strength is that anyone can do anything with it, so to get mad over people doing their own thing feels a bit absurd.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Lizrd_demon <span class="score">4</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>I hate this obsession with rewriting shit in Rust, throwing away GNU tools, throwing away glibc, throwing away systemd, throwing away X11 (to an extent).</p>
+</blockquote>
+
+<p>Sounds like improving linux to me.</p>
+
+<blockquote>
+<p>Incompatible with almost all software outside the repos</p>
+</blockquote>
+
+<p>It&#39;s trivial to do such ports.</p>
+
+<blockquote>
+<p>The init system and core utilities are less than 5% of the software in a useful system.</p>
+</blockquote>
+
+<p>Yes, and the kernel is 0.5%, yet these small pieces are the core atop which the entire system functions upon.</p>
+
+<p>A vulnerability in a core system dependency renders the entire system insecure. A 5% performance benefit in the core system means a 5% performance benefit system-wide.</p>
+
+<p>This is why alpine&#39;s busybox + the musl malloc makes it measurably slower than a GNU based system, because those utilities are built for portability rather than speed.</p>
+
+<p>Your comment is both very ignorant about the architecture of an operating system, and what an improvement means</p>
+
+<p>Chimera linux is objectively a better, cleaner, faster, and a more put-together system from an engineer&#39;s standpoint. Considering that you are commenting on this subreddit, you should be familiar with &quot;engineering first&quot; approach to writing software.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Clear_Inevitable_718 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>There are some people that are convinced that it is worth it for speed or safety to rewrite stuff in rust, and I think in some cases they are right, but let me offer a different perspective as a programmer. </p>
+
+<p>It can kinda suck to use a language with nearly 60 years of crud. Syntax choices, semantics choices, tooling, and design decisions that in hindsight weren&#39;t the best. (C, c++) I won&#39;t do that unless I&#39;m paid, but I will use a modern language that learns from these mistakes, like rust, or other languages.</p>
+
+<p>I suspect for many it is a similar thing. If we&#39;re not being paid, why should we work with languages we don&#39;t enjoy or care about - more projects using more modern languages can attract developer effort</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">LightPrototypeKiller <span class="score">1</span></span>
+<div class="md"><div class="md"><p>[ Removed by Reddit ]</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">uponamorningstar <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i just can’t stand GNU, i get why some like it, but i don’t. and it’s so hard to avoid, nearly everything these days assumes GNU and GNUisms</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">PearMyPie <span class="score">1</span></span>
+<div class="md"><div class="md"><p>wow, I liked some of your rices you posted months ago.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Key_River7180 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>yeah, the world would be better if gnu gave a shit on portability</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">judeuwucute <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>even if you want to do something in <code>sh</code> (the <em>POSIX</em> shell), you have to look up how to do something in <code>bash</code> (GNU bash) to actually get decent results</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">PearMyPie <span class="score">7</span></span>
+<div class="md"><div class="md"><p>`#!/usr/bin/env -S bash --posix`  </p>
+
+<p>`set -o posix`  </p>
+
+<p>Literally skill issue.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Yoshbyte <span class="score">3</span></span>
+<div class="md"><div class="md"><p>No gentoo and arch? D:</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">EchoesInBackpack <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Lada is anything but indestructible. It’s the type of car you’re buying to spend all your free time in garage (gentoo fits better here)</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>How do I troubleshoot which update is messing up my system?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>How do I troubleshoot which update is messing up my system?</h2>
+<span class="meta">by dyingslug | <span class="score">2</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I&#39;m running Niri and with a recent system update, every time I launch Ghostty or click on a specific tab in Nicotine+ my session immediately closes and I have to log back in through the display manager. Tried searching for the issue but can&#39;t find anything related to what&#39;s happening to me. If anyone can point me to what logs to look for and/or how to narrow down a possible cause I&#39;d greatly appreciate it. TIA!</p>
+</div><!-- SC_ON --></div>
+<h3>2 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Gozenka <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Starting the investigtion with the system journal is always good:</p>
+
+<pre><code>journalctl -b -p 4
+# Gives all errors and warnings on the system for the current boot.
+journalctl -b -1
+# For the previous boot. -b -2 for second previous, etc.
+journalctl | grep -i niri
+# You can search for keywords in the journal. -i for case-insensitive search.
+</code></pre>
+
+<p>Otherwise you can check how you can get the app-specific logs for niri, ghostty, nicotine+.</p>
+
+<p>And your GPU might be related too. You can add information about it to your post, from <code>lspci -k</code>.</p>
+
+<p>Also check for any recent issues on niri&#39;s <a href="https://github.com/niri-wm/niri/issues">github</a> issue tracker. Perhaps there is some insight there. For example, could <a href="https://github.com/niri-wm/niri/issues/3850">this</a> issue be related?</p>
+
+<p>Good luck!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">falxfour <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Do you keep snapshots? Rolling back one snapshot and testing suspect packages (by preventing them from updating) is one method</p>
+</div></div></div>
+</body></html>

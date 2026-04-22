@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Is TouchID support considered?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Is TouchID support considered?</h2>
+<span class="meta">by alfotis | <span class="score">38</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I&#39;ve been lurking over the <a href="https://asahilinux.org/fedora/#device-support">Asahi Device Support</a> page for a while now and reading all blog posts but I don&#39;t see any mention on supporting TouchID, yet. </p>
+
+<p>Is this considered?</p>
+
+<p>Thanks!</p>
+</div><!-- SC_ON --></div>
+<h3>23 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ApricotSad9288 <span class="score">50</span></span>
+<div class="md"><div class="md"><p>If would likely be one of the most locked down devices on the board</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">chaosprincess_ <span class="score">26</span></span>
+<div class="md"><div class="md"><p>Yes, but also that does not prevent it from happening. The main issue is that you can&#39;t talk directly to touch id and must go via secure enclave, and RE-ing certain parts of secure enclave needs a dedicated machine that you don&#39;t mind constantly wiping and reloading. Not impossible, just annoying enough to make everyone who looked at it pick some lower-hanging fruit instead.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">alfotis <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Yeah this makes total sense </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">FOHjim <span class="score">18</span></span>
+<div class="md"><div class="md"><p>It was one of the first things I looked at. It requires talking to SEP, talks over a protocol we (at the time) did not fully understand, and does not behave anything like “normal” Linux fingerprint readers. It’s a complex mess that will require significant RE but we’ll get to it. Eventually. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">alfotis <span class="score">2</span></span>
+<div class="md"><div class="md"><p>First of all, thank you for all your amazing work. What you’ve accomplished so far is amazing! </p>
+
+<p>It’s good to know that this is being looked at, I’m sure the team will tackle that one too </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">aliendude5300 <span class="score">20</span></span>
+<div class="md"><div class="md"><p>Developers would love to implement it,.I&#39;m sure. It&#39;d be very hard to do so though </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">0xb311ac0 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>You’re not wrong and all the individual pieces are available with fprint, pam.d, polkit, and sshd. Authentication doesn’t have room for error because of this fingerprint hijacking CVE that remains unsolved.</p>
+
+<p><a href="https://nvd.nist.gov/vuln/detail/cve-2024-37408">https://nvd.nist.gov/vuln/detail/cve-2024-37408</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">tsukiko <span class="score">5</span></span>
+<div class="md"><div class="md"><p>None of those components mentioned deal with the Secure Enclave subsystem nor its interfaces. I don&#39;t see that happening unless Apple published specifications (unlikely) or made an API that other OSs could use (probably even more unlikely). Reverse-engineering the Secure Enclave subsystem would not be an easy nor a feasible one at least from current knowledge.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">0xb311ac0 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>A replay attack is still a replay attack at the end of the day.  I’m purely speaking as a developer  on the political issue that has to be resolved upstream. The asahi team has great documentation that has been very useful in my research but even if I had everything working tomorrow I would not use it</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ohaiibuzzle <span class="score">14</span></span>
+<div class="md"><div class="md"><p>I think the issue with Touch ID is that unlike most fprintd sensors which simply scan your print and then send the raw scan to the daemon, Apple&#39;s Touch ID does the scan &amp; matching within the Secure Enclave.</p>
+
+<p>So you must have that working if you want Touch ID, which is *hard*</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">nyancient <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Fprintd already supports sensors with on-chip matching (those on recent ThinkPads, for instance). It&#39;s not the concept that&#39;s not supported, but the specific implementation of it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">alfotis <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I see, thank you </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Jayden_Ha <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Apple touch is tightly tied to SE, I doubt it will even be readable by host directly at the first place</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Special-Abrocoma575 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You mean the SEP? Because the SE (Secure Element) is a different chip, used exclusively for handling Apple Pay NFC stuff</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Natjoe64 <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Touch ID is one of the most notoriously locked down components in iPhones, Macs, and iPads. Most likely, it will be either the last component to be implemented or more likely never reverse engineered. Don&#39;t hold your breath. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">alfotis <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Makes sense. I’ve seen a wiki page with some information that looked more like a placeholder tbh </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Serious_Berry_3977 <span class="score">8</span></span>
+<div class="md"><div class="md"><p>I think we&#39;ll see M5 support before we see TouchID support. I will admit, I do miss it -- especially for KeePassXC when I could just authenticate with my fingerprint and not have to type in my vault password all the time. But outside of that I didn&#39;t use it for much else on macOS anyway.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">alfotis <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Yeah I kinda think of the same (ie M5 support before Touch ID). Think is it’s become somewhat of a muscle memory to me (which apparently is a great way to lock users in lol) </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RoddyUsher <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Next to zero chance of it happening. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">lox689 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>no</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">IchKaanWas-HD <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I remember a brief mention of it before, its possible but very hard considered how locked down it is for security reasons</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">JG_2006_C <span class="score">-2</span></span>
+<div class="md"><div class="md"><p>Apple pain wold like tought</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Jayden_Ha <span class="score">-2</span></span>
+<div class="md"><div class="md"><p>Biometrics unlock is not secure</p>
+</div></div></div>
+</body></html>

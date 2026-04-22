@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>First &quot;pacman -Syu&quot; and youtube breaks, the second takes my sound away 😀</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>First &quot;pacman -Syu&quot; and youtube breaks, the second takes my sound away 😀</h2>
+<span class="meta">by Nickszz | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Yep, exactly like I said, I waited a few days, did it again, and now I lost sound. Before it was just YouTube not working. ChatGPT couldn’t help. I don’t really know how to read docs or wikis to fix this exact thing. And I made my progress. I’m not giving up, but I miss that Debian comfort.</p>
+
+<p>I want to tame it, since I want to be a real owner of my computer and know exactly what’s going on. So Hyprland arriving to Debian the exact next day I switched to Cachy was ironic. But the full experience is still here on Arch.</p>
+
+<p>I keep wondering why a production product like the Steam Deck is based on Arch.</p>
+
+<p>I was afraid of doing this jump, especially because of that belief that Arch is easily breakable. I really, really was afraid of it. I want to learn, but with a guiding hand.</p>
+
+<p>When I did the jump, everything was great except for a mouse lag in Cinnamon, but not present in Hyprland. So, point to Hyprland on that one.</p>
+
+<p>I want to build my Hyprland DE, but without having incompatibilities. When I get to say that I know Linux, I’ll be my own sysadmin and use Arch or whatever. I’ve learned a lot and fast so far, but maybe not enough. I’ll keep Cachy as a playground, a sandbox, but as a main system maybe Debian again. We Debian users really want Hyprland so bad, ask Jakoolit.</p>
+</div><!-- SC_ON --></div>
+<h3>20 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Gent_Kyoki <span class="score">6</span></span>
+<div class="md"><div class="md"><p>You dont own your computer if you use chatgpt to manage it, youre relying on basically autocomplete to read from its predictive dictionary to fix your computers issues you are better off using something like mint where everything works and all you have to do is learn to install software. </p>
+
+<p>This isnt being elitist btw, you are absolutely welcome to the arch community and break your system but please do learn to read the wiki and documentation if you plan to &quot;own your computer&quot;. It will make you be the sysadmin you want to be.</p>
+
+<p>Anyways check your audio sinks what do you use pipewire pulseaudio? Check what your output device is and if its the speakers/headphones youre using if its still not fixed try another browser if youtube has audio or hell is it only youtube(?) or do other web pages have audio like reddit?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Nickszz <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I use it to learn, not to automate</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Gent_Kyoki <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Great then please read documentation, if you rely on chatgpt you dont use your reading comprehension and you wont learn to be better at it and chatgpt can lead you to hallucinations at times or even feed you stuff that is not best practice which leads to more system failure down the line.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">leopardus343 <span class="score">13</span></span>
+<div class="md"><div class="md"><p>&quot;I don&#39;t know how to read docs&quot; </p>
+
+<p>It&#39;s words on the page, what&#39;s there to know? It feels like you don&#39;t want to take responsibility for knowing how your shit works and want to offload it to AI. That isn&#39;t going to work. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Flapjack__Palmdale <span class="score">4</span></span>
+<div class="md"><div class="md"><p>I was told early on that using LLMs will help with the Linux learning curve. That has been the opposite of my experience. Tried different ones in the beginning. ChatGPT told me I should uninstall Wayland and switch to X1. Fortunately I knew enough to know that&#39;s bullshit.</p>
+
+<p>Honestly the folks using LLMs to answer questions are doing it because they don&#39;t want to take the time to read through documentation and learn the tool they want to use, but it&#39;s moot because you&#39;ll end up spending even more time troubleshooting the problems the LLM instructions caused in the first place.</p>
+
+<p>To compare some things, I read the Arch setup wiki. I looked up instructions written by a human for installing Arch. I then asked Claude how to install Arch. I ran the Claude instructions first, kind of knowing already that it would fail, and hit roadblock after roadblock because it skipped steps and got important facts wrong. I then used the human instructions and subbed in info from the wiki that was relevant to my scenario. Took less than a half hour to get into Steam.</p>
+
+<p>Bottom line is stop trusting AI with your PC and RTFM</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">rain_luau <span class="score">17</span></span>
+<div class="md"><div class="md"><p>TLDR: user error and skill issue</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Terrible-Camera9236 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>The learning curve is brutal but you&#39;re actually doing fine - breaking things and fixing them is literally how everyone learns Arch. Two updates breaking different things isn&#39;t unusual at all, especially when you&#39;re still figuring out the ecosystem</p>
+
+<p>For the sound issue, check if your audio driver got updated and needs a reboot, or if pulseaudio/pipewire services are running. Sometimes the kernel updates mess with audio modules and you just need to reload them. The YouTube thing might be codec related or browser sandbox issues</p>
+
+<p>Steam Deck works because Valve has a whole team maintaining their specific Arch setup and they control exactly what hardware it runs on - way different from us fumbling around on random hardware configs. Don&#39;t let that fool you into thinking Arch should be that stable out of the box</p>
+
+<p>Keep that Debian install around as backup while you mess with Cachy, that&#39;s smart. The &quot;breakage&quot; fear is overblown anyway - most of the time it&#39;s just spending 20 minutes googling error messages and running a few commands</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">morseerman <span class="score">-2</span></span>
+<div class="md"><div class="md"><p>Wow bro you&#39;re so clever. Bet you got an erection typing this out. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Nickszz <span class="score">-5</span></span>
+<div class="md"><div class="md"><p>How would you fix it, and why did it not happend to you? </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">DaiiPanda <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Read the wiki </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">11</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>ChatGPT </p>
+</blockquote>
+
+<p>Stopped reading there, my friend. </p>
+
+<p>Please, for your own benefit, polish your reading comprehension skills, and follow the guidance in the Arch wiki. It&#39;s the best example of technical writing I know. </p>
+
+<p>You won&#39;t succeed in Arch without the wiki. </p>
+
+<p>Good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Flapjack__Palmdale <span class="score">2</span></span>
+<div class="md"><div class="md"><p>The Arch wiki is a modern marvel of FOSS nerd dedication. It&#39;s very dense but it&#39;s not hard to follow. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">FactoryOfShit <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Don&#39;t use ChatGPT for this. Like, at all. It will drive you crazy with the random small lies it says that you won&#39;t be able to detect. You have to get over your fear of reading the documentation. If you don&#39;t - Archlinux is not for you, it will keep breaking due to user errors.</p>
+
+<p>SteamOS isn&#39;t Archlinux. It&#39;s &quot;based on Archlinux&quot;, as in they use the Arch Build System and pacman to build the system, as well as using the package build scripts, but it doesn&#39;t work like Archlinux at all. SteamOS only ships are prebuilt, pre-configured and unmodifiable images, there&#39;s no need for user to do anything.</p>
+
+<p>Archlinux doesn&#39;t &quot;break all the time&quot;. It only &quot;breaks&quot; when you run a command that indirectly tells it to break. For example, doing an update without carefully reading the pacman output or the Arch news - automatic upgrades are not supported! </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Nickszz <span class="score">0</span></span>
+<div class="md"><div class="md"><p>I find to types of people respondig, you are one of the kind ones, this people just keeps getting kind of offended</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">The_Villabouts <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Don&#39;t take it personally. People in this community hate talking to other people almost as much as they hate other people talking to ai. </p>
+
+<p>These guys are all miserable because their &quot;super cool and technically advanced to install&quot; distro got that complex installation boiled down to a single command. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Time-Worker9846 <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Don&#39;t use ChatGPT for tech support</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Internal_Leke <span class="score">4</span></span>
+<div class="md"><div class="md"><p>AI can easily fix most of the issues... As long as you ask the correct questions and have a basic understanding of what is going on.</p>
+
+<p>I would suggest to cut back on AI a bit, and learn by yourself. At least installing using only the wiki, and setting up the system.</p>
+
+<p>You won&#39;t learn anything copy pasting commands from a chatbot. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Nickszz <span class="score">0</span></span>
+<div class="md"><div class="md"><p>I use to learn, kind of a teacher, not an automática solver
+I process everything </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">YoShake <span class="score">1</span></span>
+<div class="md"><div class="md"><p>What exact problems did you experience and need guidance with?<br/>
+Post&#39;s content doesn&#39;t elaborate on the title.         </p>
+
+<p>If you don&#39;t learn the basic approach to troubleshooting, learn how to use basic system tools available in every gnu linux, you will never fix any single problem, even prosaic one, on your own.<br/>
+Having to rely only on hints thrown by AI will get you nowhere in long terms.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RiabininOS <span class="score">-7</span></span>
+<div class="md"><div class="md"><p>A days readed conversation on aur</p>
+
+<ul>
+<li><p>test section crushes build. What can i do with that</p></li>
+<li><p>i don&#39;t have that problem. Ijust swiched off all tests, cause i trust ci of upstreamer</p></li>
+</ul>
+
+<p>Earlier i called archers a nurgle cultists, now i dont think so. Them are rather an orcs. They even have their own waagh - &quot;i us arch btw&quot;. A few hammer blows, a plasma blast, and a lucky drop - the new version is ready to use.</p>
+</div></div></div>
+</body></html>

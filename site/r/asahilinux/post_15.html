@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Made a 3D Rotating System Fetch That Runs Natively on Asahi!</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/asahilinux</a>
+<h2>Made a 3D Rotating System Fetch That Runs Natively on Asahi!</h2>
+<span class="meta">by areofyl | <span class="score">60</span> points</span>
+<img src="https://i.redd.it/q5v08h172fvg1.gif" alt="">
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hey! I made a system fetch tool called fetch that turns your distro logo into a spinning 3D object in the terminal - and I wanted to share it here because I built and use it on my M1 MacBook Air running Gentoo Asahi with the fairydust kernel!</p>
+
+<p>It detects the Apple M1 CPU and GPU from /proc/device-tree/model, gets accurate battery from energy_now/energy_full (not the capacity file which can be off by like 5-10%!), and picks up the Asahi logo with all its original colors automatically. All system info is gathered natively - it reads /proc and /sys directly, no external dependencies for the info panel. Single C file, only depends on libm.</p>
+
+<p>Some features:</p>
+
+<ul>
+<li><strong>Live-updating stats</strong> - memory, battery, uptime tick in real-time while the logo spins!</li>
+<li><strong>500+ distro logos</strong> with per-character colors preserved</li>
+<li><strong>Configurable</strong> - light direction, shading ramp, rotation speed, field ordering, label colors</li>
+<li><strong>--size flag</strong> to scale the logo up or down</li>
+</ul>
+
+<p>Try <code>fetch -l asahi</code> to see the Asahi logo spin!</p>
+
+<pre><code>make
+sudo make install
+</code></pre>
+
+<p>Would love to hear from other Asahi users! Let me know if anything doesn&#39;t work right on your setup - and stars are very much appreciated!</p>
+
+<p>GitHub: <a href="https://github.com/areofyl/fetch">https://github.com/areofyl/fetch</a></p>
+</div><!-- SC_ON --></div>
+<h3>4 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">aieidotch <span class="score">3</span></span>
+<div class="md"><div class="md"><p>now share the 3d models as obj so we can use 3d-ascii-viewer</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">areofyl <span class="score">5</span></span>
+<div class="md"><div class="md"><p>The code actually just uses some depth analyzation of ASCII logos, so there aren’t any 3D models! I think that doing it like this is a large advantage to making special models for each distro and then just projecting with ASCII.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">mskiptr <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;m not on Asahi, but this got me curious: Would simply setting <code>PREFIX</code> to <code>~/.local</code> allow installing without sudo? (assuming <code>~/.local/bin/</code> is on one&#39;s <code>PATH</code> ofc)</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">areofyl <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Yep! PREFIX=~/.local make install works perfectly! It just copies the binary to your bin. As long as that’s on your path you’re good. No sudo required!</p>
+</div></div></div>
+</body></html>

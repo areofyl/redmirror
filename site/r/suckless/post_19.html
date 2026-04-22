@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>which patch introduces the functionality of maximizing the window without hiding the bar (if more than 1 window over tag)? 
+
+Patches i tryd hide bar or set window in floating maximize (not hiddint other windows in tag).</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/suckless</a>
+<h2>which patch introduces the functionality of maximizing the window without hiding the bar (if more than 1 window over tag)? 
+
+Patches i tryd hide bar or set window in floating maximize (not hiddint other windows in tag).</h2>
+<span class="meta">by [deleted] | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>which patch introduces the functionality of maximizing the window without hiding the bar (if more than 1 window over tag)? </p>
+
+<p>Patches i tryd hide bar or set window in floating maximize (not hiddint other windows in tag).</p>
+</div><!-- SC_ON --></div>
+<h3>8 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ohohuhuhahah <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Why not monocle layout? It should do what you are asking for, just keep an eye on what you change inside this layout</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">[deleted] <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Monocle put one window on top of another and if composer transparency is working, the second window is visible underneath.</p>
+
+<p><a href="https://preview.redd.it/7p14bavj59rg1.png?width=1920&amp;format=png&amp;auto=webp&amp;s=899426e3efdfd44ae528ca92587ce5cbca3737d6">https://preview.redd.it/7p14bavj59rg1.png?width=1920&amp;format=png&amp;auto=webp&amp;s=899426e3efdfd44ae528ca92587ce5cbca3737d6</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">bakkeby <span class="score">2</span></span>
+<div class="md"><div class="md"><p>That is how the monocle layout works yes. The minimalistic solution here is to use fake or pseudo-transparency which shows just the background wallpaper as transparency effect, as opposed to true transparency that shows windows beneath.</p>
+
+<p>You can change the monocle layout such that it only moves the currently focused window into view (and hides the rest), but this can get messy pretty quickly. An arrange needs to be forced on focus change and window movement should be avoided on showhide when monocle layout is used.</p>
+
+<p>I created an example patch for reference. There may be other edge cases that I have missed.</p>
+
+<p><a href="https://github.com/bakkeby/patches/blob/master/dwm/dwm-solo_monocle-6.8.diff">https://github.com/bakkeby/patches/blob/master/dwm/dwm-solo_monocle-6.8.diff</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">[deleted] <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i wonder if awasome bar patch could be a thing to actual tooglemaximized function tho.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">bakkeby <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Technically possible, but you&#39;d need to introduce a new state to know whether the window was minimized due to being on a monocle layout and being lower in the stack order, and you&#39;d run into the same issues wrt. handling focus change or view changes. Overall it would end up as a more complicated solution I think, unless of course you&#39;d want to handle the minimizing / maximizing by hand.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">autoerotion95 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Fullscreen</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">[deleted] <span class="score">1</span></span>
+<div class="md"><div class="md"><p>it hides bar.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">autoerotion95 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Si, pero solo haz mod + b y regresa</p>
+</div></div></div>
+</body></html>

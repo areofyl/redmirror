@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Grub ignores grub.cfg when booting</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/archlinux</a>
+<h2>Grub ignores grub.cfg when booting</h2>
+<span class="meta">by cotenter | <span class="score">5</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>It used to work fine and showed all menu entries including zen, lts, and surface kernels, windows 10, and UEFI settings with a custom theme. But I had to reinstall and regenerate the config so I used <code>sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB</code> which worked fine</p>
+
+<p>Then <code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code> gave me <a href="https://pastebin.com/GJKJ12HX">this result</a></p>
+
+<p>Looked fine so I restarted my system but grub only showed &quot;Arch linux, Arch linux, Windows 10, UEFI settings&quot; as the 4 options and didn&#39;t load the theme. First entry is for linux-zen and second is for linux-lts, but this doesn&#39;t include the linux-surface kernel that grub found while generating the config</p>
+
+<p>Trying to make any changes to the grub.cfg in /boot/grub/ doesn&#39;t make a difference during boot. This config and the theme worked fine earlier but not sure why just reinstalling broke it. I already tried a couple fixes like looking for other grub.cfg files grub might be reading but only one exists. I suspect grub is either reading an internal config (like one embedded during install) or falling back to it&#39;s default config instead of using /boot/grub/grub.cfg. For completion, I am running it on a Surface Pro 4 and here&#39;s also the <a href="https://pastebin.com/zd5Wbimf">/boot/grub/grub.cfg</a> and <a href="https://pastebin.com/UyYyqU7r">/etc/default/grub</a> files</p>
+</div><!-- SC_ON --></div>
+<h3>10 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">archover <span class="score">3</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>--efi-directory=/boot/efi</p>
+</blockquote>
+
+<p>Let me share that isn&#39;t how I configure that. The only two variations are</p>
+
+<ul>
+<li><p><code>--efi-directory=/boot</code> What I do in almost every case</p></li>
+<li><p><code>--efi-directory=/efi</code>  What I do when I want /boot encrypted for Grub of course.</p></li>
+</ul>
+
+<p><strong>which are driven by wiki examples.</strong> </p>
+
+<p><strong>Unsure about your reason.</strong> since the wiki advises against it. Read the note on <a href="https://wiki.archlinux.org/title/EFI_system_partition#Typical_mount_points">https://wiki.archlinux.org/title/EFI_system_partition#Typical_mount_points</a></p>
+
+<p>Hope to see your root cause, and SOLVED flair soon! </p>
+
+<p>Good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">cotenter <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Using /boot/efi instead of /boot turned out to be the issue so thanks for suggesting that. It kindof works now which I mentioned a bit more in a different reply</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">archover <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Good. It&#39;s always best to use the wiki instead of third party guides. Good day.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Affectionate_Pea_553 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Did you first run mkinitcpio -P ? And have you checked ti see if they are nested under advanced linux options (or something along those lines. thats what caught me off guardwhen i manually installed arch. )</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">cotenter <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Sure, I could try that command, tho I don&#39;t remember doing that for any past grub configurations. Also, there is no advanced options sub-menu. Those 4 options (2 kernels, windows, and uefi) are all there is</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Affectionate_Pea_553 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Mkinitcpio -P generates your ininramfs images, running it again won&#39;t hurt then run grub-mkconfig again right after, it could help eliminate that as being the issue. See if anything jumps out at you while they are being rebuilt. Do you know of any changes or updates since the last time it worked? Any chance you have snapper or timeshift set up? Just throwing ideas out there.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">cotenter <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Not sure what the last 2 packages are so probably not that. I also forgot to run the command as sudo so it failed to write 3 files (2 initramfs files for zen and lts, .img file for linux-surface) but those files already exist so that&#39;s unlikely as well. The only other change I can remember is uninstalling grub-customiser but that didn&#39;t make any difference because when grub started misbehaving, I assumed grub-customiser might&#39;ve messed something up so I did a clean reinstall of grub after unistalling it. Thanks for the suggestions tho</p>
+
+<p>Edit: Figured out the issue from a different comment</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">sausix <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Run <code>efibootmgr</code> to see a list of the registered bootloaders and order. Maybe you have a wrong one set for booting up. Is <code>/boot/efi</code> your mounted UEFI partition?</p>
+
+<p>And maybe this is your moment of realizing grub isn&#39;t always easy and stable and you may switch to a more modern bootloader. With your Arch Linux powers (and the wiki) you are free to choose from multiples ones instead of having grub preinstalled on beginner distros. While some people claim they &quot;never&quot; had any problems other people often end up in the grub-rescue environment and ask for help in the communities.<br/>
+If you don&#39;t have any good reason for using grub then try rEFInd for example. It&#39;s not bound to a specific OS and has dynamic but statically configurable logic to detect OSes and kernels. It&#39;s not bound to any dynamic config generation which often is the breaking point for grub.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">cotenter <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I checked using gparted and the efi partition is mounted at /boot, so I reinstalled grub at /boot instead and now it somewhat works. The entries for it are now: Arch with zen, Arch with surface, Arch with lts, Arch linux, Arch linux, Windows 10, Uefi settings, Windows 10. The first and second &quot;Arch linux&quot; still refer to zen and lts but now there are also labeled entries for each of the 3 kernels and windows 10 shows up twice for some reason</p>
+
+<p>Not ideal but this is usable for now since my main goal was using linux-surface so thanks for the help. I&#39;ll mark this as solved but I&#39;m curious about the other modern bootloaders you mentioned that are easier to configure and don&#39;t break so easily. Could be useful to know for next time</p>
+
+<p>Edit: The duplicate entries were caused by having 2 os-prober scripts and a uki script in /etc/grub.d. Deleting the second os-prober script removed the duplicate windows entry and deleting the uki script removed the non-descriptive &quot;Arch Linux&quot; entries. Now it&#39;s back to how it was before with just the 5 essential entries</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">onefish2 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>It&#39;s so much easier to use a UKI with EFI stub. It takes less than 10 minutes to setup. </p>
+</div></div></div>
+</body></html>
