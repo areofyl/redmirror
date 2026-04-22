@@ -1,7 +1,1 @@
-linux
-gentoo
-unixporn
-programming
-suckless
-archlinux
-asahilinux
+mathmemes
