@@ -28,6 +28,16 @@ jobs:
       - name: Build redmirror
         run: make
 
+      - name: Test Reddit access
+        run: |
+          echo "=== www.reddit.com ==="
+          curl -sI "https://www.reddit.com/r/linux.json?limit=1" | head -5
+          echo "=== with UA ==="
+          curl -sI -H "User-Agent: linux:redmirror:1.0 (by /u/redmirror_bot)" "https://www.reddit.com/r/linux.json?limit=1" | head -5
+          echo "=== api.reddit.com ==="
+          curl -s -H "User-Agent: linux:redmirror:1.0 (by /u/redmirror_bot)" "https://api.reddit.com/r/linux/hot.json?limit=1" | head -c 200
+          echo ""
+
       - name: Fetch subreddits
         timeout-minutes: 15
         run: |
