@@ -701,7 +701,7 @@ fetch_comments_thread(void *arg)
 {
 	CommentJob *job = arg;
 	char url[1024];
-	snprintf(url, sizeof(url), "https://old.reddit.com%s.json?limit=50",
+	snprintf(url, sizeof(url), "https://www.reddit.com%s.json?limit=50",
 		job->post->permalink);
 
 	char *cjson = fetch_url(url);
@@ -732,18 +732,14 @@ static_export(const char *sub, const char *sort, const char *outdir)
 	}
 
 	char url[512];
-	snprintf(url, sizeof(url), "https://old.reddit.com/r/%s/%s.json?limit=25", sub, sort);
+	snprintf(url, sizeof(url), "https://www.reddit.com/r/%s/%s.json?limit=25", sub, sort);
 	printf("fetching %s ...\n", url);
 
 	char *json = fetch_url(url);
 	if (!json) { fprintf(stderr, "failed to fetch subreddit\n"); return; }
 
-	/* debug: show first 200 chars of response if no posts found */
 	Post *posts = calloc(MAX_POSTS, sizeof(Post));
 	int npost = parse_posts(json, posts, 25);
-	if (npost == 0) {
-		fprintf(stderr, "0 posts! response starts with: %.200s\n", json);
-	}
 	printf("parsed %d posts\n", npost);
 	free(json);
 
@@ -873,7 +869,7 @@ static void
 render_subreddit(int fd, const char *sub, const char *sort)
 {
 	char url[512];
-	snprintf(url, sizeof(url), "https://old.reddit.com/r/%s/%s.json?limit=25", sub, sort);
+	snprintf(url, sizeof(url), "https://www.reddit.com/r/%s/%s.json?limit=25", sub, sort);
 
 	char *json = fetch_url(url);
 	if (!json) {
@@ -956,7 +952,7 @@ static void
 render_comments(int fd, const char *permalink)
 {
 	char url[1024];
-	snprintf(url, sizeof(url), "https://old.reddit.com%s.json?limit=200", permalink);
+	snprintf(url, sizeof(url), "https://www.reddit.com%s.json?limit=200", permalink);
 
 	char *json = fetch_url(url);
 	if (!json) {
