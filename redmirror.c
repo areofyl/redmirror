@@ -76,7 +76,7 @@ fetch_url(const char *url)
 	curl_easy_setopt(curl, CURLOPT_URL, url);
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_cb);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buf);
-	curl_easy_setopt(curl, CURLOPT_USERAGENT, "redmirror/1.0");
+	curl_easy_setopt(curl, CURLOPT_USERAGENT, "linux:redmirror:1.0 (by /u/redmirror_bot)");
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 15L);
 
@@ -740,8 +740,6 @@ static_export(const char *sub, const char *sort, const char *outdir)
 
 	Post *posts = calloc(MAX_POSTS, sizeof(Post));
 	int npost = parse_posts(json, posts, 25);
-	if (npost == 0)
-		fprintf(stderr, "debug: %.500s\n", json);
 	printf("parsed %d posts\n", npost);
 	free(json);
 
