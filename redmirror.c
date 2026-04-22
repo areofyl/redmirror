@@ -738,8 +738,12 @@ static_export(const char *sub, const char *sort, const char *outdir)
 	char *json = fetch_url(url);
 	if (!json) { fprintf(stderr, "failed to fetch subreddit\n"); return; }
 
+	/* debug: show first 200 chars of response if no posts found */
 	Post *posts = calloc(MAX_POSTS, sizeof(Post));
 	int npost = parse_posts(json, posts, 25);
+	if (npost == 0) {
+		fprintf(stderr, "0 posts! response starts with: %.200s\n", json);
+	}
 	printf("parsed %d posts\n", npost);
 	free(json);
 
