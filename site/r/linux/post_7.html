@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Ryzen igpu UMA carveout, VRAM allocation on linux, finally found how to change it</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>Ryzen igpu UMA carveout, VRAM allocation on linux, finally found how to change it</h2>
+<span class="meta">by Olwaht | <span class="score">7</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>so I have an HP OmniBook X Flip 14 (Ryzen AI 7 350, Radeon 860M 24ram/1tb). when I was still on Windows I used to change the UMA carveout directly in AMD Adrenalin, Then as planned for that laptop, I switched to Linux (arch btw) and realized there&#39;s just no option to change it anymore. the HP BIOS doesn&#39;t have a setting for iGPU VRAM at all and as i understand a lot of laptops with this APU have the same problem, it&#39;s completely hidden.</p>
+
+<p>I started looking for ways to fix it. Smokeless UMAF can actually find the hidden AMD CBS settings in the BIOS, but HP uses Insyde H2O so UMAF can read everything but can&#39;t save anything. every other tool people recommend hits the same wall. the only remaining options were finding a way to boot Windows again and use Adrenalin, that not sounded fun.</p>
+
+<p><strong>Kernel 7.0</strong> added some new sysfs files for AMD APUs specifically for UMA carveout. So i checked if its here on my machine</p>
+
+<pre><code>ls /sys/class/drm/card*/device/uma/
+</code></pre>
+
+<p>It was here, genuinely didn&#39;t expect that after 2-3 months of trying and using this laptop</p>
+
+<pre><code>cat /sys/class/drm/card1/device/uma/carveout_options
+
+cat /sys/class/drm/card1/device/uma/carveout
+</code></pre>
+
+<p>Mine showed: <code>0: Minimum (512 MB) 1: (1 GB) 2: (2 GB) 3: (4 GB) 4: (6 GB) 5: Medium (8 GB) 6: (12 GB),</code> and confirmed I was sitting at index 0 (512MB). so I just did:</p>
+
+<pre><code>echo 5 | sudo tee /sys/class/drm/card1/device/uma/carveout
+
+reboot
+</code></pre>
+
+<p>After reboot i&#39;m back to 8GB,  finaly</p>
+
+<p>Then i changed gtt memory settings so i dont use so much of so called shared memory bc i don&#39;t need it anymore</p>
+
+<p>As far as i find, its related to Atom ROM. if your BIOS doesn&#39;t expose ATCS the <code>/uma/</code> directory simply won&#39;t be there, so there&#39;s no harm in checking.</p>
+
+<p>Posting this because I couldn&#39;t find anyone talking about it and spent way too long thinking I needed Windows for this. if you&#39;re on any AMD APU laptop and you&#39;ve been stuck fighting with BIOS restrictions for this, just check if the directory exists. might save you a lot of pain</p>
+</div><!-- SC_ON --></div>
+<h3>0 comments</h3>
+</body></html>

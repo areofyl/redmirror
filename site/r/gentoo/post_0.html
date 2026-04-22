@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Una ayudita a este pobre caramelito</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Una ayudita a este pobre caramelito</h2>
+<span class="meta">by PovUsuario | <span class="score">66</span> points</span>
+<img src="https://i.redd.it/tx4woq4xrkwg1.jpeg" alt="">
+<div class="md"><!-- SC_OFF --><div class="md"><p>Hola, necesito consejos de veteranos en esta distro,  ya tengo varios meses en GNU/Linux pero hay la posibilidad que obtenga una lap algo antigua y para aprobecharla pense en Gentoo pero e oido que no es tan facil asi que les pregunto si tienen algun tip o truco para principiantes, (descuiden me leeré el manuar &quot;RTFM&quot; y me veré varios tutoriales antes de hacerlo) pero quiero un poco de ayuda con:</p>
+
+<p>1.- Tengo entendido que se compila mucho y cual seria su estrategia para no saturar sus almacenamientos con toda esa compilacion</p>
+
+<p>2.- E visto que tienes que tener encuenta para la instalacion cuantos nucleos e hilos tienes en tu procesador</p>
+
+<p>3.- Algun paquete que les ha ayudado a gestionar el sistema o que no venga en la instalacion simple en el manual pero si tiene que ir</p>
+
+<p>4.- Gentoo tiene algo como el AUR de Arch??? (No es 100% oficial pero esta respaldado por la cominudad)</p>
+
+<p>5.- Memes o referencias de Gentoo</p>
+
+<p>Gracias por leer todo esto y agradesco cualquier aporte positivo, saludos 👋
+Pd. Quiero hacer una instalación minima y todo desde terminal</p>
+</div><!-- SC_ON --></div>
+<h3>10 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TheShredder9 <span class="score">11</span></span>
+<div class="md"><div class="md"><ol>
+<li><p>No need to compile <em>everything</em>, the binhost is already preconfigured, you just need to tell Portage to use the precompiled binaries instead of compiling locally.</p></li>
+<li><p>As far as i know, for a while now the compilation flags are defaulted to <code>-j $(nproc)</code>, which uses 100% of your CPU to compile, it used to not be the case and would use only 1 thread which could take many hours to compile anything</p></li>
+<li><p>Gentoolkit (i think that&#39;s the name) has a few goodies for packages such as <code>equery</code>, where you can see why a package is installed, what depends on it and many more things.</p></li>
+<li><p>Gentoo has &quot;overlays&quot;, which are basically user repositories, the &quot;official&quot; one being GURU, i&#39;d say that&#39;s the biggest AUR equivalent, though there are many of them.</p></li>
+<li><p>No memes, we are serious here ;)</p></li>
+</ol>
+
+<p>Good luck!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RedditAdminsSDDD <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Remueve los directorios /var/cache/distfiles y /tmp/portage de vez en cuando. </p>
+
+<p>Si</p>
+
+<p>app-portage/gentoolkit y app-portage/eix</p>
+
+<p>Overlays</p>
+
+<p>🤷‍♂️</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ExcellentRuin8115 <span class="score">3</span></span>
+<div class="md"><div class="md"><ol>
+<li><p>A menos de que tu laptop tenga muy muy poco almacenamiento no te preocupes del espacio </p></li>
+<li><p>Respecto a los hilos puedes poner una opción para seleccionar cuantos quieres al mismo tiempo (ejemplo: -j 5)</p></li>
+<li><p>Equery y emaint son dos paquetes q no vienen por default pero son buenos y ayudan bastante</p></li>
+<li><p>Como AUR tienes GURU </p></li>
+<li><p>Si quieres memes búscalos en el subreddit hay alguno q otro </p></li>
+</ol>
+
+<p>Buena suerte con gentoo 👍</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Starshipfan01 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Agree there. Installed KDE on mine yesterday, first one to insist on minimum 4gb ram and 11gb disk free, other than that it’s great.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">PovUsuario <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Gracias, yo me referia a algo como: &quot;i use Arch BTW&quot; o como los usuarios de Arch se ponen medias y se toman fotos con sus arrozes, cabe aclarar que yo nunca lo he hecho</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">ExcellentRuin8115 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Lol. Los memes de gentoo son acerca de los tiempos de compilacion. Puedes meterte dias compilando dependiendo de la pc y el paquete. Por ejemplo un tipo compilo gentoo kernel en una PS2 y duro 1 mes y pico compilando en total </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">undrwater <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I had a laptop with soldered storage, so I put the package database on a USB drive. </p>
+
+<p>It worked pretty well for a while, but honestly, these kinds of devices are a pita no matter what OS lives on them. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">PovUsuario <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Sip, confirmo, tengo una chromebook con Arch y con 24 GB de almacenamiento y es un suplicio 😫😫😫</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Wonderful-Moose7556 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>carameliton&#39;t</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Live_Task6114 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Honestly? Just go for it and have fun. Maybe just not in you&#39;re main laptop, go for a potato and have fun with the distro. Coming from arch that got really easy after a while, gentoo is really refreshing! </p>
+
+<p>If you ask me going for a distro in hard times is dumb unless is a not a DIY kinda distro. You&#39;ll be stressed out quickly in the need of making things work because works need to be done. </p>
+
+<p>At least a dual boot if insecure. Youre doubts have been answered as well, its just a friendly aproach :)</p>
+</div></div></div>
+</body></html>

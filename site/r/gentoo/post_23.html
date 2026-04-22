@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Gentoo with OpenRC and elogind: DBUS_SESSION_BUS_ADDRESS never set after login</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Gentoo with OpenRC and elogind: DBUS_SESSION_BUS_ADDRESS never set after login</h2>
+<span class="meta">by Icy-Clothes-2556 | <span class="score">2</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>So, im new to gentoo and im havind some issues with dbus and pam</p>
+
+<p>all services start correctly.XDG_RUNTIME_DIR is set properly to /run/user/1000 by pam_elogind.so, but DBUS_SESSION_BUS_ADDRESS is never set after I log in.</p>
+
+<p>here&#39;s some info ( i can provide more just need to know what)</p>
+
+<p>/etc/pam.d/system-login<br/>
+session     optional    pam_loginuid.so</p>
+
+<p>session     required    pam_env.so envfile=/etc/profile.env</p>
+
+<p>-session    optional    pam_elogind.so</p>
+
+<p>-session    optional    pam_dbus.so</p>
+
+<p>-session    optional    pam_openrc.so</p>
+
+<p>session     include     system-auth</p>
+
+<p>session     optional    pam_motd.so motd=/etc/motd</p>
+
+<p>session     optional    pam_lastlog.so never showfailed</p>
+
+<p>session     optional    pam_mail.so</p>
+
+<p>- elogind is running, XDG_RUNTIME_DIR=/run/user/1000 is created correctly</p>
+
+<p>- pam_elogind.so exists at /usr/lib64/security/ and /lib64/security/</p>
+
+<p>- No bus socket appears in /run/user/1000/ after login</p>
+
+<p>also here are my use flags<br/>
+USE=&quot; -bluetooth -bluez -dvd -dvdr -cdr -cdda -cddb -optical -floppy -pcmcia -gps </p>
+
+<pre><code>\-systemd -seatd -webcam -gnome -kde -plasma -nvidia -amd -cups
+
+X wayland vulkan opengl alsa pipewire gtk gtk3
+
+dbus elogind policykit dhcpcd nvme
+
+git curl wget text
+
+png jpg jpeg webp tiff svg
+
+man bash-completion
+
+pipewire wireplumber alsa pulseaudio
+
+gnu postproc harfbuzz&quot;
+</code></pre>
+</div><!-- SC_ON --></div>
+<h3>14 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Adventurous-Will9026 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>have you emerged elogind package and start rc-update elogind on boot?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Icy-Clothes-2556 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i have elogind runlevel as default, should i change that to boot?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">varsnef <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Is the dbus daemon running? Sometimes on a a minimal system with nothing that &#39;needs&#39; dbus it won&#39;t start dbus.</p>
+
+<p>dbus will start elogind but elogind won&#39;t start dbus. It seems like something changed.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Icy-Clothes-2556 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>now i checked rc-status and i see dbus ar runlevel needed/wanted ? i think it might be the issue, but i cloudnt manage to remove it from that level idk how</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">varsnef <span class="score">1</span></span>
+<div class="md"><div class="md"><p>is it running or did it crash?</p>
+
+<pre><code>/etc/init.d/dbus status
+/etc/init.d/dbus restart
+</code></pre>
+
+<p>I would just add it to the default runlevel.</p>
+
+<pre><code>rc-update add dbus default
+</code></pre>
+
+<p>and relogin</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Icy-Clothes-2556 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>it was running, didn&#39;t crash. added it to default , restarded, logged in and... still no dbus session</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">varsnef <span class="score">1</span></span>
+<div class="md"><div class="md"><p>How are you starting your WM or whatever?</p>
+
+<p>You would want to use dbus-launch with X11 and dbus-run-session for Wayland</p>
+
+<p>so .xinitrc</p>
+
+<p>exec dbus-launch --exit-with-session openbox</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">Icy-Clothes-2556 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I just type sway in tty. I know the workarounds, actually right now I have dbus-launch in .bash_profile, it works for me. but that&#39;s not the point, I want to know the root cause, simply saying i want to learn what went wrong, so when see similar problem i wont make another reddit post</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">fix_and_repair <span class="score">1</span></span>
+<div class="md"><div class="md"><p>openrc<br/>
+configure xdm service<br/>
+set there lxdm from the default value</p>
+
+<p>works for years with i3wm and openrc </p>
+
+<p>i would ignore all that nonsense with startx or the .xinitrc . that is broken for a while</p>
+
+<p>and i will not bother with it, as it seems x11 goes the pathway of bad unmaintained code in the long run.</p>
+
+<p>u made a mistake, set -pulseaudio // i replaced pulseaudio with pipewire. i still use the emulation layer for pulseaudio, but pulseaudio is broken since a year</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dddurd <span class="score">0</span></span>
+<div class="md"><div class="md"><p>just do exec dbus-launch --exit-with-session bspwm from xinitrc. no elogind needed, it&#39;s trash.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Icy-Clothes-2556 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>fair point, but its more about getting to the bottom of it, i want to learn on that expirience. simply for my own sake</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">dddurd <span class="score">1</span></span>
+<div class="md"><div class="md"><p>you can&#39;t be serious. the root cause is because you are not using dbus launch. </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Icy-Clothes-2556 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>But shouldnt the dbus be launched with pam? Without manual start?</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">dddurd <span class="score">1</span></span>
+<div class="md"><div class="md"><p>definitely not. do you know even what dbus is for, let alone the responsibility of pam? </p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>GNU Coreutils 9.11 Brings New Performance Improvements: Up To 15x Faster cat</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>GNU Coreutils 9.11 Brings New Performance Improvements: Up To 15x Faster cat</h2>
+<span class="meta">by anh0516 | <span class="score">497</span> points</span>
+<p><a href="https://www.phoronix.com/news/GNU-Coreutils-9.11">https://www.phoronix.com/news/GNU-Coreutils-9.11</a></p>
+<h3>49 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">tes_kitty <span class="score">113</span></span>
+<div class="md"><div class="md"><p>&#39;cat&#39; never felt slow to me on Linux.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">DeeBoFour20 <span class="score">65</span></span>
+<div class="md"><div class="md"><p>Yeah I think you’re normally limited by the terminal. Maybe you can notice the improvement if you redirect the output to a file on a ram disk.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">tes_kitty <span class="score">19</span></span>
+<div class="md"><div class="md"><p>I&#39;ve also used &#39;cat&#39; to reassemble files that were split apart using &#39;split&#39;. Even that never felt slow.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">yawara25 <span class="score">74</span></span>
+<div class="md"><div class="md"><p>Using cat to concatenate. How &#39;bout that!</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">TheG0AT0fAllTime <span class="score">10</span></span>
+<div class="md"><div class="md"><p>Crazy concept</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">CrankBot <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Goddamn noble prize winner over here</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Top-Rub-4670 <span class="score">24</span></span>
+<div class="md"><div class="md"><p>Because you&#39;re limited by your disk&#39;s speed.</p>
+
+<p>With SSDs now routinely getting 5GB/s I can see how cat&#39;s overhead became noticeable and quantifiable enough that a 15x improvement became noteworthy.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">TheG0AT0fAllTime <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I&#39;ve found the past decade or so that  the bottleneck for cat has always been a host cpu&#39;s single thread and boost clock performance. It always 100%&#39;s a cpu core and <em>could go faster</em> if the computer itself could, too.</p>
+
+<p>I have a similar problem with `pv`, if you cat zeros into pv, pv itself 100%&#39;s a cpu thread just counting the bytes flowing through, coming up with a metric second to second. cat could go faster but the act of measuring the throughput maxes out a another cpu thread next to cat and rate limits it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">iamapizza <span class="score">2</span></span>
+<div class="md"><div class="md"><p>TIL about split</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">tes_kitty <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Very useful if you need to move a file too large for a given medium.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Sol33t303 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>For random terminal usage, the speed the terminal can print to the screen is the bottleneck.</p>
+
+<p>This is more an improvement for if your piping cat elsewhere.</p>
+
+<p>Generally, you shouldn&#39;t be using cat in scripts, but you know people do so...</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">okktoplol <span class="score">186</span></span>
+<div class="md"><div class="md"><p>leopard</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Pitiful-Welcome-399 <span class="score">86</span></span>
+<div class="md"><div class="md"><p>Cheetah </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Thundechile <span class="score">32</span></span>
+<div class="md"><div class="md"><p>Puma</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Caraotero <span class="score">23</span></span>
+<div class="md"><div class="md"><p>Jaguar</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">benny-powers <span class="score">18</span></span>
+<div class="md"><div class="md"><p>Caracal</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">Maybe-monad <span class="score">20</span></span>
+<div class="md"><div class="md"><p>Lynx </p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">Fr0zzen_HS <span class="score">19</span></span>
+<div class="md"><div class="md"><p>Lion</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">Quinocco <span class="score">15</span></span>
+<div class="md"><div class="md"><p>Mavericks</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">WoomyUnitedToday <span class="score">14</span></span>
+<div class="md"><div class="md"><p>Yosemite</p>
+</div></div></div>
+<div class="comment" style="margin-left:180px;">
+<span class="meta">riskaigc <span class="score">12</span></span>
+<div class="md"><div class="md"><p>El Capitan</p>
+
+<p>edit: reddit auto translation moment</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">dr_Fart_Sharting <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Cougar</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">JockstrapCummies <span class="score">3</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Lynx</p>
+</blockquote>
+
+<p>ELinks</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">WoomyUnitedToday <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Panther</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">FLMKane <span class="score">12</span></span>
+<div class="md"><div class="md"><p>Snow leopard </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Megame50 <span class="score">36</span></span>
+<div class="md"><div class="md"><p>TL;DR it uses splice for pipes now. This mostly optimizes the &quot;useless cat&quot; case, since most utilities can read from files other than stdin.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">nicman24 <span class="score">27</span></span>
+<div class="md"><div class="md"><p>so i can <code>cat foobar | grep whatever</code> now without guilt?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">throwaway234f32423df <span class="score">25</span></span>
+<div class="md"><div class="md"><p>smug people are still going to be smug about it but now you can counter-smug them</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">TampaPowers <span class="score">6</span></span>
+<div class="md"><div class="md"><p>I spent hours changing that in dozens of lines of code and afterwards checked the execution time... it became 15ms slower on average. It&#39;s less code at least, but I haven&#39;t found a performance difference yet.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TerribleReason4195 <span class="score">56</span></span>
+<div class="md"><div class="md"><p>Take that Canonical!</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">mrtruthiness <span class="score">22</span></span>
+<div class="md"><div class="md"><p>Competition is good.</p>
+
+<p>But, to be clear, Canonical didn&#39;t create uutils.  They simply are going to make uutils their default in the soon-to-be-released 26.04 LTS.</p>
+
+<p>Canonical is simply one of the many sponsors of that project.  Another
+sponsor is the Sovereign Tech Fund.  That&#39;s right the German government has
+identified uutils as an important project to support!  There is also the Trifecta Tech Foundation, a Dutch based non-profit (who also sponsored sudo-rs).</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Maybe-monad <span class="score">13</span></span>
+<div class="md"><div class="md"><p>I don&#39;t believe they care, they made uutils the default for marketing, they don&#39;t even pass all GNU tests </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">nobody-5890 <span class="score">34</span></span>
+<div class="md"><div class="md"><p>GNU doesn&#39;t pass all GNU tests either.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Maybe-monad <span class="score">5</span></span>
+<div class="md"><div class="md"><p>That&#39;s unfortunate, I&#39;ll look into it and try to fix it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">jyte_ <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Make multibyte UTF-8 character work... Commands like <code>tr</code> </p>
+
+<blockquote>
+<p>printf &#39;aébéc&#39; | cut -dé -f2</p>
+
+<p>cut: the delimiter must be a single character</p>
+</blockquote>
+
+<p>or </p>
+
+<blockquote>
+<p>printf &#39;aébéc&#39; | cut -c2</p>
+
+<p>�</p>
+</blockquote>
+
+<p>It&#39;s a shame that text utilities are broken for texts...</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">AdventurousFly4909 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Not to sound like a broken record but rust eliminates a whole class of vulnerabilities and bugs.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Maybe-monad <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Indeed but in uutils you can find a fair share of unsafe Rust where issues you mentioned can stll occur</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">OnlyDeanCanLayEggs <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;m skeptical of absolutist language.</p>
+
+<p>Does Rust <em>eliminate</em> a whole class of vulnerabilities and bugs or just make them less likely to occur?</p>
+
+<p>I don&#39;t know enough about how the Rust compiler works.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Sharp-Debate-523 <span class="score">7</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>the date command now parses dot delimited dd.mm.yy formats. </p>
+</blockquote>
+
+<p>Does it have some heuristics.  Like if the year &gt; 31 then its definitely a year.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">the_humeister <span class="score">17</span></span>
+<div class="md"><div class="md"><p>Nice cat</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TheG0AT0fAllTime <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Petition to rename the cat binary to car</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">fortnite_pit_pus <span class="score">6</span></span>
+<div class="md"><div class="md"><p>I will never forget this release</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">nonaveris <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Cat.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">nacaclanga <span class="score">7</span></span>
+<div class="md"><div class="md"><p>My guess is that this is kind of the same story as with gcc. Compition drives improvement. Probably basic programs like &quot;cat&quot; have been written ages ago without much effort put into them and thus have a great deal of improvement potential, but it takes a compatitor to motivate someone to actually use it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">syldrakitty69 <span class="score">11</span></span>
+<div class="md"><div class="md"><p>GNU implementations have always been extremely well optimized and an order of magnitude faster than other free software implementations which tend to maximize minimalism. <code>cat.c</code> is almost 1000 lines of code.</p>
+
+<p><del>This speedup is basically just [...]</del></p>
+
+<p>Actually, it seems like the performance gain is a little situational, and they fixed what seems like a fairly big oversight <strong>only when using cat with inputs and outputs that aren&#39;t both regular files</strong> (i.e. the performance of <code>cat a b &gt; c</code> should be unchanged).</p>
+
+<p><code>cat</code> already used <code>copy_file_range</code> for regular files -- and the change is that they fixed the implementation so that <code>splice</code> can be used as well, which will work for things other than just regular files.</p>
+
+<p>Or, more likely, it wasn&#39;t an oversight, and either the kernel implementation has improved over the last 20 years, or hardware has evolved (i.e. multi-core becoming standard), to the point that it became a performance gain to use <code>splice</code> over a heavily optimized user-space implementation. <em>( <code>copy_file_range</code> would have always had performance advantages over <code>splice</code>, because of vague reasons like &quot;disk IO&quot; and &quot;page cache&quot; )</em></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Mordiken <span class="score">6</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>cat.c is almost 1000 lines of code.</p>
+</blockquote>
+
+<p>Not that I disagree with your general assessment, but I think it bares mentioning that the number of lines of code of the various utilities is not a useful metric when comparing the relative complexity of GNU Coreutils with that of uutils or busybox, because each application in the GNU Coreutils is built as an independent standalone binary whereas uutils and busyboyx applications are implemented as modules of a toolkit, and that&#39;s the main culprit behind most of the source-code size disparity...</p>
+
+<p>Let&#39;s take <code>yes</code> as an example: GNU Coreutils <code>yes</code> is 260 LOC, busybox <code>yes</code> is only 22 LOC, and uttils <code>yes</code> is 107 LOC (or 161 if we include the tests), but that&#39;s because stuff like command-line argument handling and architecture-specific behavior is handled by the main busybox/uutils executable.</p>
+
+<p>However, when you compile busybox or uutils <code>yes</code> as a standalone binary, which is a supported build mode on either project, the resulting binary will contain not just the logic encoded in those 22/107 lines but also a significant chunk of the logic present in the main toolkit executable. And in the case of uutils specifically, it will also includes some of the logic of it&#39;s <a href="https://github.com/uutils/coreutils/blob/main/src/uu/yes/Cargo.toml">external dependencies</a>, adding to the overall complexity.</p>
+
+<p>EDIT: Spelling and added specific references to uutils.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">vip17 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I&#39;ve had some chance to look at busybox source code and realized that it&#39;s so much inefficient compared to BSD and GNU tools. Even BSD tools are so far behind GNU in terms of performance when I did many benchmarks</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">karuna_murti <span class="score">7</span></span>
+<div class="md"><div class="md"><p>So competition is good after all.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">tryfap <span class="score">3</span></span>
+<div class="md"><div class="md"><p>You can&#39;t really apply random aphorisms to all cases. Open Source projects are already unique, and the GNU project is also on a whole different level by virtue of being part of most distros. These projects don&#39;t really have the same incentives or goals as for-profit businesses do.</p>
+</div></div></div>
+</body></html>

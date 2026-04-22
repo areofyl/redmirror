@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>bugs.gentoo.org not working correctly?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>bugs.gentoo.org not working correctly?</h2>
+<span class="meta">by bdblr | <span class="score">2</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Trying to have a look at <a href="https://bugs.gentoo.org/972359">https://bugs.gentoo.org/972359</a> and whenever I try to click on an attachment link, I get a non-working URL, like this: <a href="https://972359.bugs.gentoo.org/attachment.cgi?id=958948">https://972359.bugs.gentoo.org/attachment.cgi?id=958948</a></p>
+
+<p>If anybody else is also seeing this, where should I report this?</p>
+</div><!-- SC_ON --></div>
+<h3>16 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Works for me</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Description SigHunter 2026-04-06 13:41:56 UTC
+with dev-libs/botan-3.11.1 installed, it fails with</p>
+
+<p>FAILED: [code=1] src/sshagent/CMakeFiles/sshagent.dir/OpenSSHKeyGen.cpp.o 
+/usr/bin/x86_64-pc-linux-gnu-g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_CAST_TO_ASCII -DQT_NO_DEBUG -DQT_NO_DEBUG_OUTPUT -DQT_NO_DEPRECATED_WARNINGS -DQT_NO_EXCEPTIONS -DQT_STRICT_ITERATORS -DQT_WIDGETS_LIB -I/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236_build/src/sshagent/sshagent_autogen/include -I/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236/src -I/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236_build/src -I/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236/src/sshagent -I/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236_build/src/sshagent -isystem /usr/include/botan-3 -isystem /usr/include/PCSC -isystem /usr/include/libusb-1.0 -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtNetwork  -march=native -O2 -pipe -flto -Werror=odr -Werror=lto-type-mismatch -Werror=strict-aliasing -fno-common -fopenmp -Wall -Wextra -Wundef -Wpointer-arith -Wno-long-long -Wformat=2 -Wmissing-format-attribute -fvisibility=hidden -fvisibility-inlines-hidden -fstack-protector-strong -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -Werror=format-security -Wcast-align -fsized-deallocation -Wno-deprecated-declarations -std=gnu++20 -fPIC -mno-direct-extern-access -MD -MT src/sshagent/CMakeFiles/sshagent.dir/OpenSSHKeyGen.cpp.o -MF src/sshagent/CMakeFiles/sshagent.dir/OpenSSHKeyGen.cpp.o.d -o src/sshagent/CMakeFiles/sshagent.dir/OpenSSHKeyGen.cpp.o -c /var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236/src/sshagent/OpenSSHKeyGen.cpp
+/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236/src/sshagent/OpenSSHKeyGen.cpp: In function ‘bool OpenSSHKeyGen::generateECDSA(OpenSSHKey&amp;, int)’:
+/var/tmp/portage/app-admin/keepassxc-2.8.0_pre260316-r1/work/keepassxc-379be00127db60b1ddee9c67f4bfc49c15db8236/src/sshagent/OpenSSHKeyGen.cpp:92:43: error: variable ‘Botan::EC_Group domain’ has initializer but incomplete type
+   92 |             Botan::EC_Group domain(QString(&quot;secp%1r1&quot;).arg(bits).toStdString());
+      |                                           ^</p>
+
+<p>Reproducible: Always</p>
+
+<p>works when masking &gt;=dev-libs/botan-3.11 and downgrading to botan-3.10
+Comment 1 SigHunter 2026-04-06 13:42:47 UTC
+Created attachment 958417 [details]
+build.log app-admin/keepassxc-2.8.0_pre260316-r1 with dev-libs/botan-3.11.1
+Comment 2 Mike Gilbert  gentoo-dev 2026-04-06 16:45:31 UTC
+Please provide emerge --info.
+Comment 3 SigHunter 2026-04-06 17:24:56 UTC
+Created attachment 958427 [details]
+emerge --info and friends</p>
+
+<p>This file contains, in this order:
+- emerge --info
+- the last few days of emerge history (qlop -mv)
+- the list of installed packages (qlist –ICvUSS)
+Comment 4 Andreas Sturmlechner  gentoo-dev 2026-04-12 21:41:26 UTC
+They are so slow to fix their stuff ...
+Comment 5 Attila Tóth 2026-04-14 12:27:45 UTC
+Created attachment 958948 [details, diff]
+keepassxc-botan-3.11.patch</p>
+
+<p>Works for me
+Comment 6 Sam James  archtester  Gentoo Infrastructure  gentoo-dev  Security 2026-04-17 03:41:15 UTC
+*** Bug 972752 has been marked as a duplicate of this bug. ***
+Comment 7 Benjamin Réveillé 2026-04-17 15:01:25 UTC
+(In reply to Attila Tóth from comment #5)</p>
+
+<blockquote>
+<p>Created attachment 958948 [details, diff] [details, diff]
+keepassxc-botan-3.11.patch</p>
+
+<p>Works for me</p>
+</blockquote>
+
+<p>Builds for me too</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">bdblr <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Can you download the attachment?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I can see code? </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">bdblr <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Got to be a problem with my name resolution; nslookup does find an IPv4 and IPv6 address, but browsers nor wget seem able to resolve this hostname: <a href="http://972359.bugs.gentoo.org">972359.bugs.gentoo.org</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Kangie <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Weird. That&#39;s how it&#39;s supposed to look.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">bdblr <span class="score">1</span></span>
+<div class="md"><div class="md"><p>See below - it turns out to be a possible DNSSEC issue.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">bdblr <span class="score">2</span></span>
+<div class="md"><div class="md"><p>When I click on the attachment link I get this:</p>
+
+<h1>Server Not Found</h1>
+
+<p>Firefox can’t connect to the server at <a href="http://972359.bugs.gentoo.org"><strong>972359.bugs.gentoo.org</strong></a></p>
+
+<p>(not only in Firefox. I&#39;ve tried Chrome as well)</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Can you ping it? </p>
+
+<p>Please don’t ever use Chrome for any reason it’s absolute malware </p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">bdblr <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I know Chrome is pure evil, but I must use it as a fallback browser for certain professional activities.</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Well that’s an injustice. We should have a libre protect that spoofs your browser. </p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">anh0516 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>ungoogled-chromium is what I use. It&#39;s available in the PF4Public overlay.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">bdblr <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Found the cause:</p>
+
+<p>Apr 21 08:04:57 orion systemd-resolved[468]: [🡕] DNSSEC validation failed for question <a href="http://972359.bugs.gentoo.org">972359.bugs.gentoo.org</a> IN A: invalid</p>
+
+<p>Apr 21 08:04:57 orion systemd-resolved[468]: [🡕] DNSSEC validation failed for question <a href="http://972359.bugs.gentoo.org">972359.bugs.gentoo.org</a> IN AAAA: invalid</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I’m sorry I’m not advanced enough to understand that best of luck! </p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">bdblr <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I think there&#39;s a problem with the DNSSEC configuration for *.bugs.gentoo.org. Unless you use DNSSEC you will be blissfully unaware of this issue.</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">FranticBronchitis <span class="score">2</span></span>
+<div class="md"><div class="md"><p>It&#39;s always DNS</p>
+</div></div></div>
+</body></html>

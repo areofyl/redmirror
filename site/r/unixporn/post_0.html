@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>| 2026 Weekly Workshop - Week 15</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/unixporn</a>
+<h2>| 2026 Weekly Workshop - Week 15</h2>
+<span class="meta">by AutoModerator | <span class="score">8</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>This is a thread to get answers for all your questions about *NIX desktop configuration! Feel free to share your setups here and ask for advice. In short, you can make any on-topic comment, in any format you like. We hope this gives new users a chance to get some help with any problems they&#39;re having and more experienced users a chance to show off their knowledge by helping those in need.</p>
+
+<p>Not sure how to get started? Consider reading <a href="https://www.reddit.com/r/unixporn/wiki/index/">our wiki</a>!</p>
+</div><!-- SC_ON --></div>
+<h3>2 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Blablabla_3012 <span class="score">2</span></span>
+<div class="md"><div class="md"><h1>Cava; don&#39;t capture discord?</h1>
+
+<p>arch linux hyprland with pipewire.</p>
+
+<p>is there a way to make Cava capture everything besides discord?</p>
+
+<p>other subreddits where i can ask are also welcome.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Blablabla_3012 <span class="score">1</span></span>
+<div class="md"><div class="md"><h1>Waybar; make pinned windows not activate <code>#workspaces button.empty {…}</code> ?</h1>
+
+<p>arch linux hyprland</p>
+
+<p>i want to add a screen wide terminal window with cava behind my waybar. i want it to be in every workspace, but now my workspace module registers &quot;empty&quot; workspaces not as empty anymore because that pinned window is there. </p>
+
+<p>Module config:
+```</p>
+
+<h1>workspaces {</h1>
+
+<pre><code>background-color: alpha(@background, 0.7);
+border-radius: 10px;
+
+padding: 3px;
+margin: 4px 1px;
+</code></pre>
+
+<p>}</p>
+
+<h1>workspaces button {</h1>
+
+<p>font-size: 16px;
+  color: @color2;
+  border: none;
+  margin: 0px;
+  min-width: 12px;
+  min-height: 16px;
+  padding-right: 11px;
+}</p>
+
+<h1>workspaces button.empty {</h1>
+
+<p>color: @color6;
+}</p>
+
+<h1>workspaces button.visible{</h1>
+
+<p>box-shadow: 0 5px 0 -3px @color2;
+}
+```</p>
+
+<p>cava window windowrule:
+<code>
+windowrule {
+    name = cavaBehindWaybar
+    match:class = kitty
+    match:title = cavaWaybar
+    float = on
+    no_initial_focus = on
+    move = 0 0
+    size = monitor_w 57
+    pin = on
+    border_size = 0
+    rounding = 0
+    no_anim = on
+    no_blur = on
+    no_dim = on
+    no_shadow = on
+    no_focus = on
+}
+</code></p>
+
+<p>other subreddits where i can ask are also welcome.</p>
+</div></div></div>
+</body></html>

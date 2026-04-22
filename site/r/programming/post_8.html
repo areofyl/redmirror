@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>An interactive explainer of how audio fingerprinting lets Shazam identify a song in seconds</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>An interactive explainer of how audio fingerprinting lets Shazam identify a song in seconds</h2>
+<span class="meta">by Shriracha | <span class="score">483</span> points</span>
+<p><a href="https://perthirtysix.com/how-the-heck-does-shazam-work">https://perthirtysix.com/how-the-heck-does-shazam-work</a></p>
+<h3>25 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">OMG_A_CUPCAKE <span class="score">171</span></span>
+<div class="md"><div class="md"><p>Eons ago, when services like Shazam were starting to pop up, there was a small website that let you tap the spacebar on your keyboard to the rhythm of a song, and it told you pretty accurately which one you were looking for.</p>
+
+<p>I found that pretty cool back then, but I can imagine it worked on a smaller dataset than the modern services.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Irregular_Person <span class="score">67</span></span>
+<div class="md"><div class="md"><p>It was &quot;SongTapper.com&quot;, i think, but closest i could find still active is here: <a href="https://songguesser.com/">songguesser.com</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Jejerm <span class="score">28</span></span>
+<div class="md"><div class="md"><p>Ty so much, I&#39;ve had a classical song on my head for weeks now and it got it on the first try lol.</p>
+
+<p>It was clair de lune by debussy</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">edgmnt_net <span class="score">12</span></span>
+<div class="md"><div class="md"><p>SoundHound also used to work for that purpose if you hummed the song, while Shazam couldn&#39;t identify songs that way.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">ComfortingSounds53 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>These days, I use YouTube for that, through the voice search on the mobile app. 
+I&#39;m on Android so I know it&#39;s available there, but I&#39;m assuming it&#39;s on every OS for mobile. </p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">Somepotato <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Google Assistant can identify from hums</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">googol88 <span class="score">7</span></span>
+<div class="md"><div class="md"><p>I hate that they&#39;ve effectively replaced assistant with Gemini - half the time when I say &quot;hey Google - what song is this?&quot; Gemini tries to answer based on the contents of my screen </p>
+
+<p>Took perfectly good behavior and broke it</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">syopest <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I just tap the note icon in the google search bar in my home screen and it starts the old functionality.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">mjd5139 <span class="score">7</span></span>
+<div class="md"><div class="md"><p>As someone with no rhythm, I don&#39;t know if I&#39;m more impressed in that site or myself that it was able to figure out what I was thinking.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Feral_goat <span class="score">8</span></span>
+<div class="md"><div class="md"><p>I wonder what happened to that site. It was pretty useful.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ronakg <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Google Assistant used to be able to (and now Gemini can) find songs just by humming. </p>
+
+<p>Song stuck in your head? Just hum to search <a href="https://blog.google/products-and-platforms/products/search/hum-to-search/">https://blog.google/products-and-platforms/products/search/hum-to-search/</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">currentscurrents <span class="score">11</span></span>
+<div class="md"><div class="md"><p>And they wrote a paper that describes how it works: <a href="https://arxiv.org/pdf/1711.10958">https://arxiv.org/pdf/1711.10958</a></p>
+
+<p>It&#39;s a small neural network (8000 parameters) that creates a fingerprint embedding, which is then compared against an on-device library of song fingerprints.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">SpezIsAWackyWalnut <span class="score">2</span></span>
+<div class="md"><div class="md"><p>SoundHound&#39;s been able to do this (recognize humming) since like 2010, too.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Yeugwo <span class="score">4</span></span>
+<div class="md"><div class="md"><p>I&#39;ve thought about that site a few times...I recall it&#39;s name being something like &quot;tap it out&quot;</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">DigThatData <span class="score">1</span></span>
+<div class="md"><div class="md"><p>bored.com</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">QuerulousPanda <span class="score">46</span></span>
+<div class="md"><div class="md"><p>Nice, i&#39;ve seen people try to explain how these things work, but it&#39;s usually a &quot;rest of the owl&quot; situation where they jump from talking about the frequency spectrum and finding peaks, all the way to just saying &quot;and it matches that!&quot; without explaining how it&#39;s able to find the hashes from the middle of the song.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">_disengage_ <span class="score">39</span></span>
+<div class="md"><div class="md"><p>tldr: They compare FFTs of short audio segments to a database of indexed FFTs</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Dragdu <span class="score">24</span></span>
+<div class="md"><div class="md"><p>The visualizations are really nice, 10/10.</p>
+
+<p>As far as I am aware, the current SOTA for song identification (across exact song, melody, vocals) is Pex.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Agret <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Is there any app you can use to search Pex?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Dragdu <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It is B2B only.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">[deleted] <span class="score">2</span></span>
+<div class="md"><div class="md"><p>[removed]</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">programming-ModTeam <span class="score">23</span></span>
+<div class="md"><div class="md"><p>No content written mostly by an LLM. If you don&#39;t want to write it, we don&#39;t want to read it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Le_Vagabond <span class="score">3</span></span>
+<div class="md"><div class="md"><p>that was a very good way of explaining an interesting but complex topic, I&#39;m impressed.</p>
+
+<p>reminded me of reading about the MP3 codec research by the Fraunhofer institute in &quot;How Music Got Free&quot;.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Uberhipster <span class="score">2</span></span>
+<div class="md"><div class="md"><p>fantastic work </p>
+
+<p>thank you</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Alomari_767 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Pretty solid work. Congratulations 🎉 </p>
+</div></div></div>
+</body></html>

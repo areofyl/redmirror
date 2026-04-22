@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Git 2.54 released with new experimental &quot;git history&quot; command</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>Git 2.54 released with new experimental &quot;git history&quot; command</h2>
+<span class="meta">by Fcking_Chuck | <span class="score">285</span> points</span>
+<p><a href="https://www.phoronix.com/news/Git-2.54-Released">https://www.phoronix.com/news/Git-2.54-Released</a></p>
+<h3>20 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Professional-Disk-93 <span class="score">39</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>The git history split [commit] command can be used to interactively split a commit into two by selecting the hunks that should be carved out into a new parent commit.</p>
+</blockquote>
+
+<p>That&#39;s the same terrible UX that <code>git add -p</code> uses. It&#39;s unusable for any good-sized commit.</p>
+
+<p>This is how you split up a commit easily:</p>
+
+<ol>
+<li>Commit  everything.</li>
+<li><code>git rebase -i</code> and break immediately before the commit in question.</li>
+<li><code>git checkout &lt;hash&gt; .</code></li>
+<li>Use all of your usual IDE features to revert those parts of the working directory that you don&#39;t want to be part of the first commit.</li>
+<li>Compile, run tests, etc.</li>
+<li><code>git commit</code></li>
+<li><code>git rebase --continue</code> or go to step 3 if you want to split it up even more.</li>
+</ol>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">frankster <span class="score">30</span></span>
+<div class="md"><div class="md"><p>what is it you don&#39;t like about the ux? my only gripe is when I can&#39;t split a chunk into smaller pieces and have to edit the diff manually. 90% of the time it is able Split diffs into the pieces I want.</p>
+
+<p>I haven&#39;t had to split apart changes spread across multiple files, it&#39;s generally been 1 file when I&#39;ve need to do this. Has your bad experience been with multiple files or a large diff on a single file? </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">gmes78 <span class="score">25</span></span>
+<div class="md"><div class="md"><p><code>git add -p</code> is fine, and any decent IDE will provide similar functionality.</p>
+
+<p>Committing changes just to undo them sounds like a terrible way to do things (and a great way to accidentally commit stuff you didn&#39;t mean to).</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">dddd0 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Just use git gui for committing lmao</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Professional-Disk-93 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It&#39;s terrible. Have you never used a proper IDE with good git integration?</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">dddd0 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I tried most of them and they&#39;re usually pretty bad and slow as fuck. IME seeing others mostly rely on the IDE integrations, they&#39;re responsible for approximately 100% of git hangups that get to my desk.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Megame50 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>The config based hooks sound pretty useful.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">IskaneOnReddit <span class="score">10</span></span>
+<div class="md"><div class="md"><p>The git history commands appear jujutsu inspired with the &quot;auto rebase&quot; philosophy.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">bonzinip <span class="score">1</span></span>
+<div class="md"><div class="md"><p>They are indeed.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Skaarj <span class="score">1</span></span>
+<div class="md"><div class="md"><p>How is the new hook feature not an obvious security failiure?</p>
+
+<p>Am I missing something obious? To me this reads like the most trivial way to create a malicious git repo ever.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">platinummyr <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Hooks can&#39;t be automatically installed with a clone. You have to do something (outside of git) to install them. Blindly running some setup script to add hooks from a repository is no more dangerous now than it was before.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Skaarj <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Hooks can&#39;t be automatically installed with a clone. </p>
+</blockquote>
+
+<p>But it says </p>
+
+<blockquote>
+<p>. Since this is just configuration, it can live in ... or in a repository’s local config. </p>
+</blockquote>
+
+<p>So it is in a file created by cloning a repo?</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">DHermit <span class="score">1</span></span>
+<div class="md"><div class="md"><p>No, it&#39;s the config specific to this repo.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">platinummyr <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Local repository config does not get cloned.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Destroyerb <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>Features already existing in Jujustu</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">FryBoyter <span class="score">2</span></span>
+<div class="md"><div class="md"><p>So? Git is still the standard, so to speak.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Destroyerb <span class="score">-7</span></span>
+<div class="md"><div class="md"><p>I suppose progress is a frightening concept for those who view their workflow as a museum exhibit</p>
+
+<p>Regardless of that detail, I meant it informatively. But even if I didn&#39;t, your point is still dumb</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Damglador <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I might say that there&#39;s no point in learning Jujutsu since everyone uses Git, but if I&#39;m not mistaken, jj can be used alongside git in the same repo.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Destroyerb <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>Yes you can use can (and currently do) use Jujustu over Git repositories</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Maskdask <span class="score">2</span></span>
+<div class="md"><div class="md"><p>jj is awesome </p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>CONFIG_VT=n in 2026</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>CONFIG_VT=n in 2026</h2>
+<span class="meta">by n3rdopolis | <span class="score">69</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>CONFIG_VT=n in 2026      </p>
+
+<p>This is continuing the series on the progress of Desktop Linux software supporting VT-less kernels. Previous ones can be found here:<br/>
+<a href="https://old.reddit.com/r/linux/comments/njlr5n/life_without_config_vty_in_2021_on_the_desktop">2021</a><br/>
+<a href="https://old.reddit.com/r/linux/comments/sycbn0/showstoppers_in_desktop_linux_without_vts_in_2022">2022</a><br/>
+<a href="https://old.reddit.com/r/linux/comments/10eccv9/config_vtn_in_2023">2023</a><br/>
+<a href="https://old.reddit.com/r/linux/comments/1dpeqay/config_vtn_in_2024">2024</a><br/>
+(There was none for last year)     </p>
+
+<p>The background:     </p>
+
+<p>The kernel devs have been trying to <a href="https://web.archive.org/web/20111216082455/http://virtuousgeek.org/blog/index.php/jbarnes?author=1">deprecate the VT subsystem</a> for some time, at least since 2011 (<a href="https://lore.kernel.org/all/21d7e9970605291623k3636f7hcc12028cad5e962b@mail.gmail.com/">The idea was even floated as early as 2006 it seems</a>, although at that point, it was a long way off) .     </p>
+
+<p>The reasons for deprecating the subsystem include the fact that fbcon and the VT102 terminal emulator for the VT subsystem add complexity to the kernel. Also the subsystem doesn&#39;t have many maintainers familiar with it. Some developers consider it &quot;bitrot&quot;, so much so that when <a href="https://www.cvedetails.com/cve/CVE-2020-14390">CVE-2020-14390</a> was discovered, the fix was to disable the ability to scroll up due to the complexity of a fix that would still allow users to scroll. Also VT&#39;s only support a limited number of characters for upper unicode support, and don&#39;t have nicer text rendering features, where adding new ones is too complex to add into kernel mode.     </p>
+
+<p>As an update since the last post, there have been some progress since the last one from mid 2024:     </p>
+
+<ul>
+<li><p>GDM has the logind SecureAttentionKey handling <a href="https://gitlab.gnome.org/GNOME/gdm/-/merge_requests/256">merged now</a> .<br/>
+SDDM also <a href="https://github.com/sddm/sddm/commit/5c7af4e5c02247962da528d2ff49c162706fcecb">merged it</a>, but <em>after</em> v0.21 (v0.22 was never released yet). However, <a href="https://invent.kde.org/plasma/plasma-login-manager">plasma-login-manager</a> being a SDDM fork does have these changes.<br/>
+Lightdm has yet to <a href="https://github.com/ubuntu/lightdm/pull/354">merge the patch</a>, but lightdm also has not had a patch merged <em>at all</em> for over a year, and only a handful were merged in the past 2 years...      </p></li>
+<li><p>More kernel mode graphics drivers do support drm_panic now. I don&#39;t have a definite list, The 3 major ones (i915/amdgpu/nouveau) in the vanilla kernel do, as well as virtio, bochs, simpledrm, hyperv based on the fact they implement <code>get_scanout_buffer</code> that is needed to support drm_panic.   </p>
+
+<ul>
+<li>drm_panic allows the kernel to draw on the screen when a panic occurs to display a message. For many years, it was not able to do so, and kernel panics would appear as apparent hangs to most users when a modesetting driver was loaded. (Even when using a text mode VT)<br/></li>
+</ul></li>
+<li><p>The encoding of stack traces, and dmsg logs into a QR code that is displayed by drm_panic is also merged now into the kernel.        </p></li>
+<li><p><a href="https://github.com/kmscon/kmscon/">kmscon</a>, which was dormant for years, is now active again.    </p></li>
+<li><p>While Fedora is looking to use kmscon soon, they are not at the point where they are flipping CONFIG_VT off yet in their kernel. What they are doing is replacing the <a href="mailto:autovt@.service">autovt@.service</a> for now.
+This is an early step, the VT subsystem is still enabled in the kernel, but instead of starting a getty on the tty itself, kmscon is started on the tty instead with the login prompt.          </p>
+
+<ul>
+<li><a href="https://lore.kernel.org/all/20260126092234.713465-1-jfalempe@redhat.com/">They also did try to make an equivalent boot time option to CONFIG_VT, but that got rejected by kernel maintainers</a> .<br/></li>
+</ul></li>
+<li><p>With kmscon being maintained again, I renamed the fakekmscon project. The new name is <a href="https://gitlab.freedesktop.org/n3rdopolis/reterminatevt">ReterminateVT</a> . fakekmscon was an OK name in 2020 when kmscon was only getting a handful of commits a year, but now that kmscon is active, the similar name would have been more likely to cause confusion.        </p>
+
+<ul>
+<li>ReterminateVT has its first tagged pre-release, with contributions from <a href="https://github.com/WavyEbuilder">WavyEbuilder</a> who beefed up the Meson build files, and <a href="https://github.com/eaglgenes101">eaglgenes101</a> who also fixed up Meson, and added initcpio support for recinit, in addition to the existing dracut and mkinitramfs support.<br/></li>
+<li>ReterminateVT now clones the output, instead of using cage&#39;s <code>last</code> screen function, meaning the console is not fixed to one random screen anymore.<br/></li>
+<li>The vTTY services can now have multiple instances on a seat, <a href="https://gitlab.freedesktop.org/n3rdopolis/reterminatevt/-/commit/23e2e97d10ed7b34667670815607b7d7cbcbe1ab">instead of just one</a> .<br/></li>
+<li>ReterminateVT has a new service, <code>vtty-seatmanager</code> which can now be used as a minimal display manager replacement. It starts the vTTY instances on the seats. This is mostly for systems without a desktop environment. Enabling vtty-seatmanager.service acts as display-manager.service .<br/></li>
+<li><p>There is now a working <code>vtty-launch</code><br/>
+ Until now, users logging in to a VT-less system <em>without a display manager</em> really could not start a display server from a vTTY, unless users were admins, and knew how to do so with <code>systemd-run</code>, and the correct PAMName and environment options.     </p>
+
+<pre><code> - With this, commands like `startx` or `weston --backend=drm` are `vtty-launch startx` or `vtty-launch weston --backend=drm`      
+</code></pre></li>
+<li><p>With multiple instances of vTTY supported per-seat, vtty-seatmanager to manage them, and a working vtty-launch, this negates the proposed need for seatd on vt-less and display managerless systems that was mentioned in the 2024 post.      </p></li>
+<li><p>ReterminateVT now allows vTTY&#39;s, UvTTYs, and recinit to be configured to optionally use the <code>Fenrir</code> screenreader to read the contents of the pty to the user for <em>accessibility</em>. This should hopefully give users who would have other relied on <code>speakup</code> a chance at still being able to use their systems.      </p></li>
+</ul></li>
+</ul>
+
+<p>Many of the remaining problems are small now, these are the ones I am aware of:   </p>
+
+<ul>
+<li><p>This is more of a papercut, but the <a href="https://bugs.kde.org/show_bug.cgi?id=466178">kscreenlocker fail message</a> still doesn&#39;t make sense if there is a failure on VT-less systems. On VT-less seats, It tells the user to press Ctrl+Alt+F0 when the screen locker fails and needs manual intervention to switch back after unlocking. It does so, because it uses the VTNr attribute, assuming the seat has VTs.          </p></li>
+<li><p>Another small papercut is wlroots has a <a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/work_items/4040">small issue</a><br/>
+It seems to only impact some virtual GPUs and not others, not sure why. ReterminateVT works around this by setting <code>WLR_DRM_DEVICES</code> to the first GPU of the seat. The VT console tends to only clone among the first GPU, so it&#39;s not too much of a problem, it does cause a need for more complexity to recinit and the vTTY and UvTTY frontend scripts though.      </p></li>
+<li><p>cage doesn&#39;t really support clone mode itself yet, ReterminateVT uses kanshi, a small daemon that runs under the WAYLAND_DISPLAY to use wlr-output-management to enforce clone mode at this time, instead of the default spanning. There is an <a href="https://github.com/cage-kiosk/cage/pull/470">upstream patch</a> though.<br/>
+kanshi is fairly small though, so it might not matter.   </p></li>
+<li><p>ReterminateVT&#39;s initrd builder hooks currently modify the script functions in the tmpdir as the intrd is being built, so that recinit actually starts when the initrd would usually need to start a shell. Usually initrd hooks don&#39;t modify files like <code>${DESTDIR}/scripts/functions</code> (Or the like for dracut and initcpio). The changes would have to be made upstream instead...            </p></li>
+</ul>
+
+<p>In the end, the first Desktop distribution to disable VTs <a href="https://sourceforge.net/p/rebeccablackos/code/7777/">that is NOT a test distro</a> , or is not embedded-like is probably closer than ever. It will probably be a bit longer before it is disabled by default in the upstream kernel though, as other distributions might not be as quick as Fedora.  This is excluding ChromeOS (not sure if it does or not) as ChromeOS is a lot more limited....</p>
+</div><!-- SC_ON --></div>
+<h3>19 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">marcthe12 <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Nice. </p>
+
+<p>A couple of questions, can either kmscon or reterminate act as bootsplash and tty. If I can figure how to jerry rig kmscon to act as /dev/console from initramfs, it could increase testing as it will make sense on server distros. </p>
+
+<p>Is there a universal handoff protoco for drm master. Plymouth, kms and vTTY seem to use different methods to start.</p>
+
+<p>I wish the ability to turn off the kernel cmdline was not rejected but well it was. I wonder how much can we emulate CONFIG_VT=N in userspace. Could help testing if we can set up the system to ignore vt subsytem if possible. That should make the transition faster.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">n3rdopolis <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I don&#39;t think there is a universal drm master handoff method in the kernel, for a process to say &quot;hey, I am taking over now&quot;. Plymouth needs to be told to <code>quit</code> or <code>deactivate</code> where deactivate actually just holds the last image it drew, dropping master, so that the display server can take over, so that the transition is flicker-free. I never heard of one anyway, but I am not familiar with that part</p>
+
+<p>I did not experiment too much with making vTTY the login splash, it would have to be <code>recinit</code> or something similar, as the vTTYs are meant to start later, the frontend starts as a daemon system user, instead of root.    </p>
+
+<p>It is possible to make a PTY as the console though, you just have to call the <code>TIOCCONS</code>  ioctl on it, it&#39;s actually how Plymouth gets the logs. It likely won&#39;t be able to accept questions that way though, (like a LUKS password)    </p>
+
+<p>One way, I think to fake no TTYs for a display server is to move ALL the devices, the input device, and the card, to a seat1 as only seat0 has VTs, but that&#39;s probably more later boot as it&#39;s a udev setting that logind responds to...</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">marcthe12 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yeah. Bootstrap issues i suspected for some.</p>
+
+<p>Kernel does not nessary need a handover mechanism, can be userspace. But should be standardized.</p>
+
+<p>Will look into TIOCCONS. Because to me pet servers (like some homelab or vps) is more likely benefit from a userspace tty, but has almost 0 use case for Plymouth. Is there any forum where progress is tracked or can be discussed. Would like to test it out as much as possible (probaly not changing the distro kernel though). </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">n3rdopolis <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Plymouth is used on some servers actually though, they usually just use the logging features that Plymouth provides. At least that is what I was told when writing <code>ply_console_viewer</code> and <code>ply_terminal_emulator</code><br/>
+although for servers a splash screen type that is just the <code>ply_console_viewer</code> without any logo or animation or anything might make sense,    </p>
+
+<p>I don&#39;t think there is any active forum or IRC or mailing list dedicated to CONFIG_VT=n. If there is, I never found one. <a href="https://github.com/n3rdopolis/rebeccablackos/releases/download/2026-02-22/RebeccaBlackOS_amd64.iso">This is a Live CD that you can test</a> though. It has a VT-less kernel, and you can fully use the vtty frontend if you install to a VM, run <code>systemctl disable waylandloginmanager</code> and then <code>systemctl enable vtty-seatmanager</code></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">renhiyama <span class="score">10</span></span>
+<div class="md"><div class="md"><p>VT is still good for developers who develop gui desktops, like I was developing one where I keep my usual development workflow and other opened code editors, browsers, chatting apps in gnome (it exists in tty2) while I can switch to some free tty like tty3 and start another new desktop compositor from there.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">lunarequest <span class="score">15</span></span>
+<div class="md"><div class="md"><p>That&#39;s where kmscon, and reterminatevt come in. They essentially give you a better more complete userspace vte implementation. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">digitalsignalperson <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Curious how those work. Right now my systemd default target is getty and I log into a VT. I prefer booting into the CLI like this in case I want to mess with stuff either without the desktop environment, or before starting it. And just a `exec startplasma-wayland` away from the DE at any time</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">lunarequest <span class="score">6</span></span>
+<div class="md"><div class="md"><p>It is at the end of the day just a vte, you can use it just like you did in the past</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">kolorcuk <span class="score">10</span></span>
+<div class="md"><div class="md"><p>Hello. Mind me i do not understand. The ability to communicate with linux over parport or rs232 seems very integral to the kernel for me. It&#39;s something i would never want in userspsce and something i would want in kernel forever loaded and ready and available very very very early in the boot in initfs after just kernel loaded.</p>
+
+<p>Does disabling vt disables terminals over rs232?</p>
+
+<p>Does disabling vt disables ctrl+alt+f1/f2/f*?</p>
+
+<p>Does disabling VT disables early boot panics to be received over uart?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">hackerbots <span class="score">8</span></span>
+<div class="md"><div class="md"><p>The vt subsystem has nothing to do with the serial stack.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">n3rdopolis <span class="score">3</span></span>
+<div class="md"><div class="md"><p>As <a href="/u/hackerbots">/u/hackerbots</a> said, this doesn&#39;t impact serial consoles (/dev/ttyS0, /dev/ttyUSBS0, and the like)<br/>
+The VT subsystem is only /dev/tty1 - /dev/tty63<br/>
+So any serial device, logging will still work.     </p>
+
+<p>for Ctrl+Alt+F1 - Ctrl+Alt+F12. Yes and no, there has to be a display server active to handle those key presses.<br/>
+When a display server is active, and your seat has VTs, it calls an ioctl on the tty device it is running under, and it takes all keyboard handling away from the kernel. On VT-less seats, it doesn&#39;t need the ioctl.   </p>
+
+<p>When you hit Ctrl+Alt+F1 for instance, the display server has to handle it. On logind distros, the display server does not run <code>chvt 1</code> but it calls the logind method <code>SwitchTo(1)</code> with dbus. All of the ones I tested do this.  </p>
+
+<p><code>SwitchTo</code> on VT-enabled seats changes the VT.<br/>
+<code>SwitchTo</code> also works on VT-less seats, but it only works when there are two or more running sessions on the seat. It switches between the first session if you hit Ctrl+Alt+F1, and the second if you hit Ctrl+Alt+F2, etc. Can&#39;t add new sessions, that is why I added the SecureAttentionKey Ctrl+Alt+Shift+Esc to logind in 2024, so that a login manager (or vtty-seatmanager) gets attention.               </p>
+
+<p>Note: I say &quot;VT-less seats&quot; specifically, because even on kernels with VTs, if there is a second seat, the second seat can never have VTs. Only seat0 has VTs on VT enabled kernels.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">2rad0 <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Does disabling vt disables ctrl+alt+f1/f2/f*?</p>
+</blockquote>
+
+<p>I think you mean &quot;alt+f1/f2/f*&quot; ? linux kernel handles those key combos by default but a display server can override it and e.g. Xorg replaces it with &#39;ctrl+alt+f1&#39;. </p>
+
+<p>Though I assume disabling VT would break this, I can&#39;t answer your question without digging through the kernel source I&#39;m a bit lazy and don&#39;t care enough to ever disable the default console configuration.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Hadi_Chokr07 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I made KDE Linux use KMSCON instead of getty for <a href="mailto:autovt@">autovt@</a>. Making us probably the first distro to take this radical approach before even Fedora.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">n3rdopolis <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Only if you don&#39;t count test distros, because if you do, you&#39;re still the second to do something similar. :P   </p>
+
+<p><a href="https://sourceforge.net/p/rebeccablackos/code/6469/">https://sourceforge.net/p/rebeccablackos/code/6469/</a>    </p>
+
+<p>It wasn&#39;t actual KMSCON though</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Hadi_Chokr07 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Goddamn rebeccablackos sees something come out and enables it without second thought 😭</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">shibe5 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Oh crap, I didn&#39;t know about that. I use VT a lot. Will Alt-&lt;function key&gt; or Ctrl-Alt-&lt;function key&gt; switching still work in distros that will have <code>CONFIG_VT=n</code>?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">n3rdopolis <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yes, I explained it here better, <a href="https://old.reddit.com/r/linux/comments/1srbr7m/config_vtn_in_2026/ohh42cw/">https://old.reddit.com/r/linux/comments/1srbr7m/config_vtn_in_2026/ohh42cw/</a> but basically the display servers of today handle Ctrl+Alt+Fx already, and they call the logind SwitchTo method already that already handles VT-less seats.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">void4 <span class="score">-27</span></span>
+<div class="md"><div class="md"><p>systemd gibberish</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">LinuxSBC-Anna <span class="score">12</span></span>
+<div class="md"><div class="md"><p>This has nothing to do with systemd.</p>
+</div></div></div>
+</body></html>

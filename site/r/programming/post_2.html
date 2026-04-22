@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Announcing TypeScript 7.0 Beta</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>Announcing TypeScript 7.0 Beta</h2>
+<span class="meta">by DanielRosenwasser | <span class="score">157</span> points</span>
+<p><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/">https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/</a></p>
+<h3>38 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">aes110 <span class="score">54</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Over the past year, we have been porting the existing TypeScript codebase from TypeScript (as a bootstrapped codebase that compiles to JavaScript) over to Go. With a combination of native code speed and shared memory parallelism, TypeScript 7.0 is often about 10 times faster than TypeScript 6.0.</p>
+</blockquote>
+
+<p>If I understand correctly, this is specifically about the transpiling process? Was that an issue before?</p>
+
+<p>At first i thought they were saying code written in ts7 would be so much faster, which doesn&#39;t make much sense</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">airemy_lin <span class="score">91</span></span>
+<div class="md"><div class="md"><p>10x for compilation and type checking yes. TS 7.0 is more about developer experience.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">well-now <span class="score">88</span></span>
+<div class="md"><div class="md"><p>All of TypeScript is about developer experience :)</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">airemy_lin <span class="score">19</span></span>
+<div class="md"><div class="md"><p>Actually, yeah. My comment was redundant lol</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">CherryLongjump1989 <span class="score">30</span></span>
+<div class="md"><div class="md"><p>You don&#39;t need it for transpiring, you need it for type checking.  There are plenty of very fast transpilers that simply strip away the type annotations and turn the code into plain javascript.   You also don&#39;t write the code &quot;in&quot; ts7, you <em>compile</em> it with ts7.   Just like you don&#39;t write C++ &quot;in&quot; gcc.  That said...</p>
+
+<blockquote>
+<p>thought they were saying code written in ts7 would be so much faster,</p>
+</blockquote>
+
+<p>It is faster, when you look at the use case.  A lot of modern JavaScript tooling is trying to switch away from running JavaScript and instead run TypeScript &quot;natively&quot;.  But to be able to do that successfully, you need to have a far faster compiler.  If you imagine, it would suck loading a &quot;TypeScript&quot; website that took 3 minutes for your web browser to compile.  To get around this, a lot of tools like Vite or Bun have abandoned type checking and just opted for a very lightweight transpiler that simply deletes the type type information.  As you can imagine, this kind of defeats the whole point of having a type checker.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">lesleh <span class="score">17</span></span>
+<div class="md"><div class="md"><p>TS is basically a linter. Zero runtime overhead (for the most part). And there&#39;s a proposal to add optional type annotations to JavaScript itself so browsers can run the code (not type check the code) without having to strip the types first. </p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">AnnoyedVelociraptor <span class="score">4</span></span>
+<div class="md"><div class="md"><p>The only thing with typescript that survives compilation is enums. </p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">lesleh <span class="score">5</span></span>
+<div class="md"><div class="md"><p>And namespaces.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Mognakor <span class="score">3</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>You also don&#39;t write the code &quot;in&quot; ts7, you compile it with ts7</p>
+</blockquote>
+
+<p>Given that ts7 also identifies a typescript standard and constructs that are valid in ts7 would error in ts3 it is correct to say &quot;we&#39;re writing in ts7&quot; just like you could say it about C++17</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">CherryLongjump1989 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Ts7 does not introduce any new language features, so all the more reason you are not programming &quot;in&quot; ts7.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Kapps <span class="score">6</span></span>
+<div class="md"><div class="md"><p>On larger codebases, or just codebases that trigger slow paths in the TS type checker, it could get very slow. This is used in your IDE too via the language server, so performance improvements make a big difference. On our codebase, go to definition often took 20+ seconds and code completion was barely functional. With tsgo, it&#39;s smooth (albeit at the cost of using ~10GB of RAM).</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Swie <span class="score">0</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>With tsgo, it&#39;s smooth (albeit at the cost of using ~10GB of RAM)</p>
+</blockquote>
+
+<p>oh the insane RAM usage is still a thing? great. Maybe in another 10 years they&#39;ll do another rewrite to make it actually performant... webdev really cannot beat the allegations.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">These-Maintenance250 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>why would they implement the transpiler in Javascript in the first place...</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">slaymaker1907 <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>I’m kind of surprised they were allowed to use Go. When I was at MS there was a big bias against Go because it is Google and Google is known for killing things off.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Atraac <span class="score">31</span></span>
+<div class="md"><div class="md"><p>Been using tsgo preview to build and typecheck our project for a while. It&#39;s pretty great. Managed to finally do a full typecheck on pre-commmit(via lefthook) and it&#39;s fast enough to not even bother me when committing work.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">CherryLongjump1989 <span class="score">-56</span></span>
+<div class="md"><div class="md"><p>Running the compiler in a pre-commit hook is redundant.  You still have to run it on your CI/CD server.  I don&#39;t think this was really the point of having a faster TypeScript compiler.  But I&#39;m wondering why you believe that it&#39;s beneficial.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">lifeliverDTN <span class="score">47</span></span>
+<div class="md"><div class="md"><p>it&#39;s nice to be able to catch a small compiler error immediately before you even push rather than need to rerun the entire CI pipeline after context switching to something else</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">CherryLongjump1989 <span class="score">-57</span></span>
+<div class="md"><div class="md"><p>So you&#39;ve decided that pushing your code to other people is the appropriate way to check if it works?  You just write some code and immediately push?  Why not take this all the way and push as soon as you save the file?</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">azsqueeze <span class="score">26</span></span>
+<div class="md"><div class="md"><p>What&#39;s wrong with pushing code to a feature branch for a pull request?</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">CherryLongjump1989 <span class="score">-40</span></span>
+<div class="md"><div class="md"><p>Nothing at all.  That&#39;s where you have a CI/CD tool that will compile your code and run the tests and then report the issues back to you.</p>
+
+<p>The problem I have is with this concept of trying to run your CI/CD tools as part of a pre-commit hook on your local machine.</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">battlesqui_d <span class="score">21</span></span>
+<div class="md"><div class="md"><p>...they aren&#39;t mutually exclusive...? you can run locally to catch things quick w/o waiting for your pipeline, while still letting your pipeline be the single source of truth for standards, formatting, etc</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">CherryLongjump1989 <span class="score">-15</span></span>
+<div class="md"><div class="md"><p>It&#39;s <em>problematic</em>.  Let&#39;s use that word.  CI/CD is a productivity tax because it does take time to run, and so you have to decide how many times you want to pay that tax.  An &quot;awake&quot; developer is going to test their code to make sure it actually works before pushing up to CI/CD.  That means you&#39;re asking them to pay the tax 3 times -- once because they&#39;re competent, twice because some of their colleagues might be asleep behind the wheel when they push up CRs, and thrice when your actual CI/CD pipeline must run.  Take a CI/CD run that takes 5 minutes to run, and suddenly that&#39;s already 15 minutes minimum.  For a highly productive developer who is capable of publishing, let&#39;s say, 10 pull requests per day, that&#39;s 150 minutes of their day.</p>
+
+<p>The point of making CI/CD fast isn&#39;t to multiply the number of times that you have to run it, as that defeats the whole point of lowering the productivity tax.  By making it fast, you are directly lowering the costs of running your CI/CD server.  So it&#39;s even more reason to <em>remove</em> the pre-commit hooks.  It&#39;s just a pointless block on your local repo, preventing you from changing branches and writing the next set of code.</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">lifeliverDTN <span class="score">13</span></span>
+<div class="md"><div class="md"><p>&quot;Competent&quot; people are capable of occasionally forgetting to run type checking/linting/formatting checks prior to committing their code. </p>
+
+<p>The productivity cost of getting an email 5 minutes after you push your code and having to context switch back, read the error message, swap branches, fix the issue, test, and push again is way higher than the cost of hitting that same error when you are about to commit the code when you still have the full context so you can resolve the issue faster.</p>
+
+<p>Also the entire premise of this suggestion was that the new typescript compiler is fast enough that this is feasible. I don&#39;t think anyone is suggesting forcing developers to wait 15 minutes before they can <code>git commit</code>, but 1-2 seconds is a perfectly reasonable cost to ensure that any committed code is considered correct from the perspective of tsc.</p>
+</div></div></div>
+<div class="comment" style="margin-left:180px;">
+<span class="meta">CherryLongjump1989 <span class="score">-4</span></span>
+<div class="md"><div class="md"><p>You&#39;re trying to sell me on the idea that I should pay the 5 minute tax 100% of the time because if I don&#39;t, then 1% of the time I might lose 5 minutes.  Your math doesn&#39;t math.  </p>
+
+<p>Why don&#39;t you actually consider that you might be wrong, and maybe ask me some questions that could maybe help you understand just how important 5 minutes can be?</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">shadowndacorner <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Your perspective here is <em>problematic</em>.  Let&#39;s use that word.</p>
+
+<p>You don&#39;t need to wait for a CI run to complete to continue working.  If the pre-commit hook takes on the order of a couple of seconds, it is essentially free relative to the network traffic.</p>
+
+<blockquote>
+<p>It&#39;s just a pointless block on your local repo, preventing you from changing branches and writing the next set of code.</p>
+</blockquote>
+
+<p>Have you never heard of stashing?</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">belavv <span class="score">5</span></span>
+<div class="md"><div class="md"><p>You seem awful confused. Devs often use pre commit hooks to verify specific things are done/valid on a file before pushing their code.</p>
+
+<p>That precommit hook can run on only the changed files in some cases. You aren&#39;t running the entire ci/cd pipeline in a precommit hook.</p>
+</div></div></div>
+<div class="comment" style="margin-left:180px;">
+<span class="meta">CherryLongjump1989 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I&#39;ve disabled enough pre-commit hooks to know what developers use them for and why it&#39;s almost always a bunch of aspirational bullshit with zero real-world value.</p>
+
+<p>The only valid reason to use a pre-commit hook is for things that can&#39;t be undone once pushed.  Like a secrets scanner.</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">azsqueeze <span class="score">3</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>The point of making CI/CD fast isn&#39;t to multiply the number of times that you have to run it, as that defeats the whole point of lowering the productivity tax.</p>
+</blockquote>
+
+<p>Right so running operations locally to make sure it&#39;s clean before moving to a CI/CD pipeline reduces cycles and ensures it remains fast and error free.</p>
+
+<p>Things like local linting on files changed, type checking, or even in extreme cases testing on either pre-commit or pre-push ensures that errors doing get leaked into a pull request to annoy you since it does for whatever reason</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">sorahn <span class="score">32</span></span>
+<div class="md"><div class="md"><p>Why waste CI/CD money if you can have a pre-commit hook catch a stupid mistake?</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">CherryLongjump1989 <span class="score">-27</span></span>
+<div class="md"><div class="md"><p>It doesn&#39;t save money on CI/CD.  All it does is save face for the one guy who doesn&#39;t bother to test his code before pushing it up for review.  It hides the signal from the rest of the coworkers that oh, here comes an incompetent/distracted colleague who didn&#39;t test their own code, this code review is going to be a doozie, better take lunch back to our desks guys, we&#39;re going to be here all day...</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">schtinkelpecker <span class="score">31</span></span>
+<div class="md"><div class="md"><p>This is the dumbest thing I’ve read today</p>
+</div></div></div>
+<div class="comment" style="margin-left:180px;">
+<span class="meta">CherryLongjump1989 <span class="score">-11</span></span>
+<div class="md"><div class="md"><p>Congratulations.</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">AmorphousCorpus <span class="score">10</span></span>
+<div class="md"><div class="md"><p>holy larp</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">lifeliverDTN <span class="score">6</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>So you&#39;ve decided that pushing your code to other people is the appropriate way to check if it works?</p>
+</blockquote>
+
+<p>It sounds like you understand the utility of ensuring that the code passes type checking before it ever gets pushed to remote and run through a CI pipeline.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">CherryLongjump1989 <span class="score">-8</span></span>
+<div class="md"><div class="md"><p>There is no utility in what you&#39;re describing.  The CI pipeline isn&#39;t getting its feelings hurt.  What are you even talking about?  The whole point of a CI pipeline is to break.  That <strong>IS</strong> the gatekeeping step.  You&#39;re talking about posting a gatekeeper in front of a second identical gatekeeper.  Where is the utility in that -- honestly?  None.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TechWizardJohnson <span class="score">-3</span></span>
+<div class="md"><div class="md"><p>Always interesting to see how TypeScript evolves without breaking everything. Curious if 7.0 brings more performance improvements or if it’s mostly type system tweaks this time.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">MedicOfTime <span class="score">2</span></span>
+<div class="md"><div class="md"><p>The tech wizard has managed to avoid all TS news over the past year…</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">germanheller <span class="score">0</span></span>
+<div class="md"><div class="md"><p>the Go rewrite compile speedup is the headline but the real win for large monorepos is incremental checks that actually finish. Waiting 45s for tsc --noEmit to rescan after a one-line change was the worst part of 6.x.</p>
+</div></div></div>
+</body></html>

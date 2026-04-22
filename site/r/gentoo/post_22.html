@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Ah, --depclean reclaimed some considerable amount of disk space ...good ...good...But I had to reinstall some pieces....</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Ah, --depclean reclaimed some considerable amount of disk space ...good ...good...But I had to reinstall some pieces....</h2>
+<span class="meta">by unixbhaskar | <span class="score">13</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>...and webkit-gtk is out of the window too....bloody hell....just one piece was holding that back ...irks ...</p>
+
+<p>But the Ruby versioning bump is showing a few warnings...not that stopping anything, but it&#39;s annoying though...wondering</p>
+</div><!-- SC_ON --></div>
+<h3>4 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">AiwendilH <span class="score">12</span></span>
+<div class="md"><div class="md"><p>Always use <code>--ask</code> with <code>--depclean</code> and look through the list of stuff it wants to remove. And if something is on the list you want to keep either see if you can make it a dependency by setting a use-flag of some other package or if that&#39;s not an option add it to the world file manually with <code>emerge --noreplace &lt;package&gt;</code> (Just don&#39;t add dependency packages to the world file as it can make updates a lot harder) then run <code>emerge -a --depclean</code> again.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ChampionshipIcy7602 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>I also got issue with the new ruby version.  I only update with --getbinpkg but now I can&#39;t run depclean without re-running emerge update.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">madjic <span class="score">5</span></span>
+<div class="md"><div class="md"><p>That&#39;s why I store all self-built packages (<code>emerge -b</code> or <code>FEATURES=&quot;buildpkg&quot;</code> in <code>make.conf</code>)</p>
+
+<p>Takes some disk space, but <code>eclean-pkg</code> does a pretty good job cleaning old packages (<code>-d</code> is more aggressive)</p>
+
+<p>You could of course limit package building to the usual suspects for <em>fck, that&#39;ll take ages</em> via package.env</p>
+
+<p>already installed packages can be packaged with <code>quickpkg category/package-name</code></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">mjbulzomi <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Now try <code>eclean-dist</code> to remove all the downloaded distfiles.</p>
+</div></div></div>
+</body></html>

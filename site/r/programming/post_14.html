@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Modern Frontend Complexity: essential or accidental?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>Modern Frontend Complexity: essential or accidental?</h2>
+<span class="meta">by BinaryIgor | <span class="score">99</span> points</span>
+<p><a href="https://binaryigor.com/modern-frontend-complexity.html">https://binaryigor.com/modern-frontend-complexity.html</a></p>
+<div class="md"><!-- SC_OFF --><div class="md"><p>Given that the current frontend ecosystem complexity is rivaling Tower of Babel, I asked:</p>
+
+<blockquote>
+<p>Can we start from scratch and figure out a much simpler approach, given how browsers have evolved in recent years?</p>
+</blockquote>
+
+<p>Have a read to find out ;)</p>
+</div><!-- SC_ON --></div>
+<h3>47 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Kwantuum <span class="score">39</span></span>
+<div class="md"><div class="md"><p>All these articles are like &quot;WE CAN DO IT WITH LESS!&quot; but then they don&#39;t do <em>it</em> with less. They just do less.</p>
+
+<p>Your HTMX app is nowhere near the level of dynamism and interactivity that frontend frameworks enable. You can do less when you need less. Not everyone needs less.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">kayinfire <span class="score">14</span></span>
+<div class="md"><div class="md"><p>needless to say, it goes both ways. there are tons of scenarios where a frontend framework introduces more accidental complexity than it&#39;s worth. i would argue most websites don&#39;t truly need a frontend framework. notable exceptions are sites like framer, figma, Google maps, excalidraw, etc. if a website is merely informational, there&#39;s usually no real need to even use a frontend framework, let alone an SPA</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Yawaworth001 <span class="score">7</span></span>
+<div class="md"><div class="md"><p>The examples you gave also don&#39;t need a general purpose frontend framework - they need a specialized one with a custom renderer. There&#39;s a vast amount of web apps and websites that fall somewhere between a static blog and a heavy desktop application with a web build target. Those benefit from a general purpose frontend framework the most.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">kayinfire <span class="score">1</span></span>
+<div class="md"><div class="md"><p>my mistake. i was imprecise with my language. i lumped frameworks and spa&#39;s in one single category when making that comment. point taken. as far as spa&#39;s go, also point taken.  </p>
+
+<p>admittedly, even the very use case you&#39;ve mentioned for spa&#39;s on desktop application leaves me suspicious whether it was even a sound technical decision to begin with, but this is mere conjecture, and it&#39;s for another topic. insofar as the business of software goes, i can understand the productivity benefits it offers for maintenance, hiring, and onboarding. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">CherryLongjump1989 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>The examples you&#39;re giving are far more complex than what anyone does with a framework.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">lugh_longarm <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Most of it is accidental, driven by hiring pipelines more than technical requirements. React became the default because it&#39;s what new grads know, not because most apps actually need a client-side virtual DOM. Something like HTMX covers 80% of &quot;web app&quot; use cases with a fraction of the toolchain. The remaining 20% -- rich collaborative editors, complex offline-first -- genuinely earns the complexity. The problem is we reach for the 20% solution for every problem.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">giantsparklerobot <span class="score">26</span></span>
+<div class="md"><div class="md"><p>There&#39;s whole generations of web devs that have never done native development on a platform with robust standard/system libraries. They don&#39;t have good examples of what a <em>good</em> system looks like. They then go off to build bullshit frameworks in an awful language with effectively no standard library. It&#39;s no surprise everything sucks.</p>
+
+<p>JavaScript as a platform is awful. HTML was not designed for what modern devs want to do. So frameworks need to reinvent the wheel using existing DOM elements. This is usually &quot;fuck it everything is just divs and spans&quot;. Or reinvent <em>even more</em> by doing everything in a canvas element(s). This is all made worse with no standard library and the absurd model of pulling in one or two line external dependencies.</p>
+
+<p>Gigawatts of power are wasted every year because web devs is so fucking ridiculous. Platforms (language plus ecosystem) like Java, .NET, Cocoa have their challenges and idiosyncrasies and aren&#39;t perfect but are a far cry from the bullshit that is web development.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">inamestuff <span class="score">10</span></span>
+<div class="md"><div class="md"><p>Last time I tried to use those &quot;robust system libraries&quot; I had to write a ton of code to make a transition that would&#39;ve been a one liner in CSS</p>
+
+<p>We&#39;ve gotten to a point where the browser rendering engine is very often better than most native libraries can offer</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Yawaworth001 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>The same web development is done in .net and java, and it can produce the same garbage or worse, what are you talking about?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">CircumspectCapybara <span class="score">41</span></span>
+<div class="md"><div class="md"><p>The modern SPA and React (which I&#39;ll treat as a stand-in for all similar technologies like Angular or Vue) paradigm evolved because we&#39;ve grown accustomed to the power and expressivity of JSX / TSX and because our product requirements have evolved now that users have grown accustomed to the interactivity and highly dynamic, native-like UX of SPAs which just can&#39;t be achieved through vanilla HTML / HTMX without adding JavaScript which the dev ends up implementing a complicated state machine on top of to handle state management and reconcilation anyway.</p>
+
+<p>If you, think about it, TSX really is quite an elegant and powerful DSL for describing UI--you get strongly typed, rigorous types for the UI, over the loosey-goosey mess of HTML, and it&#39;s fully Turing-complete (vs the context-sensitive grammar of HTML), so you can express extremely dynamic UI. React is essentially a functional language for describing the UI. Sometimes devs would overdo it and you get a functional hell of deeply nested wrappers and a soup of higher order components that are impossible for a human to reason about what they&#39;re doing, but React has introduced much better functional paradigms for a while now with hooks. You can actually write pure (with side effects being modeled in a similar way to monads), functional code to describe a highly dynamic UI. When I first thought of React as a functional language for UI and state (which go together because state needs to drive UI, and UI interactions need to drive state), it clicked for me why React is simpler than the alternatives.</p>
+
+<p>And then there&#39;s power of the React engine which elegantly represents state and state transitions, models side-effects functionally (React is essentially an <a href="https://en.wikipedia.org/wiki/Effect_system">effects system</a> for UI), and abstracts away all the reconciliation that you would otherwise have to manage roll yourself.</p>
+
+<p>Anyone who&#39;s tried to build a big enough app and had it evolve over time knows you end up rolling your own abstractions and pseudo-frameworks to accomplish your needs, until you eventually end up reimplementing parts of React in order to manage state, reconcile UI, model side effects, etc., except it&#39;s course all custom hacks (and unmaintainable tech debt) just meant to unblock you.</p>
+
+<p>The appeal of React and co is let some dedicated teams at FAANG companies who know what they&#39;re doing and are dedicated full time to this and have put some thoughtful design into this highly flexible UI and state management framework do the hard work, and you just use it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">jessepence <span class="score">12</span></span>
+<div class="md"><div class="md"><p>Turing complete and context-sensitive are not mutually exclusive. C is a turing-complete, context-sensitive language.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">CircumspectCapybara <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Sorry, good catch. But what I mean is that while the meta-languages (the set of all valid source code strings) of both HTML and JSX / TSX are context-sensitive, the <em>computation</em> they express (translating HTML code to a DOM tree in the browser vs the V8 JIT virtual machine) is not. One is capable of computing anything a Turing machine can (because it&#39;s literally just JavaScript), while the other is a simple, single-pass transformation of markup to UI in a browser. Intuitively, one of these is vastly more powerful for expressing dynamic &quot;UI as a process of computation&quot; than the other, because the nature of the computation they can model is very different.</p>
+
+<p>In order to let HTML express Turing-complete computation, you need to add JavaScript. And therein lies the problem: if you want to make JavaScript do complicated things for you in a way that&#39;s maintainable and has reasonable devx, you often need to engineer a framework on top of it so you as a dev can work in higher-level abstractions. Build a big enough app that has to evolve over time, and you know what I mean: state management is a big pain. Building some kind of reconciliation workflow to reconcile the state you&#39;re abstractly representing in your code and the UI is a big pain. You can do all that in &quot;VanillaJS&quot; or jQuery. But React / Angular / Vue is much more appealing because it handles <em>all</em> of that for you and just gets out of the way.</p>
+
+<hr/>
+
+<p>Although technically, if we want to be really pedantic, while C might be context-sensitive, C++ is <em>not</em>, because you have Turing complete computation powers right in the preprocessor and template metaprogramming and <code>constexpr</code> / <code>consteval</code>, which let the compiler do unbounded computation right at compile-time.</p>
+
+<p>The C++ type system is straight up undecidable (the act of type checking if a particular string is valid C++ source code is undecidable) <em>in general</em>. In practice you have compiler limits on recursion depth for metaprogramming, and of course the real-life limits of physical platforms, but in theory the way the spec describes the C++ meta-language, you can perform arbitrary, unbounded computation within the act of type checking and compiling a piece of C++ source code lol.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ZippityZipZapZip <span class="score">15</span></span>
+<div class="md"><div class="md"><p>The SPA paradigm did absolutely not evolve from JSX or TSX. </p>
+
+<p>It was about rendering the view. It was always about JavaScript and state management becoming messy, relying on refreshes. The MVC. The backend calls, the (shadow) DOM, element (/component) creations, value binding, synchronization of state for client between components and client-server.</p>
+
+<p>React is not essentially an effects system. It&#39;s also, very much, not a functional language for UI. Parts of the React library and their imperative declaration are likely misleading you. The synctactic sugaring.</p>
+
+<p>Comparing React features to HTML is misleading. That is JS versus a templating language, yes. Note: React always produces HTML. If you specifically compare JSX to HTML it is best to think of JSX as a templating tool with value binding.</p>
+
+<p>It is easily possible to make the same type-safe assertions about DOM-elements being created (either directly or using shadow-DOM components) by use of standard libraries, typescript or not.</p>
+
+<p>A lot of the time it is not needed. And React lovers are rather pushy about including it everywhere. And are kind of stuck in its paradigm(?). </p>
+
+<p>It is very useful, obviously. Make no mistake: it is great. The funny thing is that the things you mention are very much good arguments, just technically slightly incorrect and overreaching.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">lechatsportif <span class="score">5</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>The appeal of React and co is let some dedicated teams at FAANG companies who know what they&#39;re doing and are dedicated full time to this and have put some thoughtful design into this highly flexible UI and state management framework do the hard work, and you just use it</p>
+</blockquote>
+
+<p>Yikes, please don&#39;t let &quot;FAANG&quot; do all the thinking.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">CircumspectCapybara <span class="score">5</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Yikes, please don&#39;t let &quot;FAANG&quot; do all the thinking.</p>
+</blockquote>
+
+<p>Do you implement your own container orchestration platform too because you don&#39;t trust Google to do a good job with Kubernetes or your own RPC transport framework because you don&#39;t trust them to do a good job with gRPC + protobuf?</p>
+
+<p>Half the CNCF landscape which powers the world was thought up and advanced by these big tech companies. Wherever you work, you&#39;re statistically likely to probably be using OpenSearch built and maintained by Amazon so that you don&#39;t have to design and hand-roll your own inverted index, search engine, and vector database. You&#39;re likely (statistically) to be on AWS because your org has better things to do than reimplement their own equivalent.</p>
+
+<p>While I know of some big tech companies that have hybrid cloud postures and have their own internal reimplementations of S3 or DynamoDB that are wire compatible with AWS&#39; versions, most of the world is built on primitives and platforms invented and maintained by others. Most companies&#39; core business competency and where they want to direct their limited engineering resources toward is business logic for their core products, not on rolling and maintaining their own frontend framework that handles all the intricacies of state management and UI reconciliation.</p>
+
+<p>Theorists can wax eloquent about all the things wrong with React or whatever other popular technology that half the internet is built on. People who are just trying to get stuff done have a long-term strategic perspective (this thing&#39;s gotta be maintainable and needs the long-term ability to evolve with our org and our the product&#39;s needs, so either we need to dedicate a full time team to not only build this primitive, but maintain it for the next 50y, or else we need to take a dependency on an existing third-party solution and be confident it&#39;s high quality and the vendor will continue to support and evolve it long-term), will just use React or Angular or Vue and be done with it, because they already exist, they&#39;re high quality and serve 99.999% of common use cases, they have a vibrant community and ecosystem, and the vendors behind them are industry trusted.</p>
+
+<p>Also, I don&#39;t &quot;let FAANG do all the thinking.&quot; I work <em>at</em> Google as a Staff SWE, so <em>I&#39;m doing the thinking</em> you&#39;re referring to in FAANG. And because I&#39;ve done the thinking, I can appreciate well designed and well-executed technologies like React from competitors like Facebook.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">lechatsportif <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Oh sorry.  I&#39;ll go post an apology on Orkut after I finish committing my changes to Google Code on my new GWT app.</p>
+
+<p>Snark aside, its a lazy attitude that simply because one of those companies has produced a solution there is no point to contesting the order, and it shouldn&#39;t work like that in real life.  People should be encouraging healthy competition from everyone, not just people who optimize for hiring at a few companies.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">KremBanan <span class="score">9</span></span>
+<div class="md"><div class="md"><p>Agreed. Nothing really compares to TSX. I can’t believe people fight for untyped html with random magic attributes. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">TheWix <span class="score">7</span></span>
+<div class="md"><div class="md"><p>I feel like the people pushing for this either didn&#39;t live through the &quot;good ol&#39; days&quot; or they are working on over engineered products and are over correcting</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">axonxorz <span class="score">7</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>didn&#39;t live through the &quot;good ol&#39; days&quot;</p>
+</blockquote>
+
+<p>The good old days are what let me excuse the immense upfront complexity of modern frameworks. Implementations using things like jQuery/Moo/PrototypeJS just move that complexity to the maintenance cycle, I&#39;d argue with a fairly hefty multiplier.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">TheWix <span class="score">2</span></span>
+<div class="md"><div class="md"><p>There are people pushing to go back to vanilla JS (or TS now). Most don&#39;t realize the pain of that. I&#39;ve been doing this since IE 5.5. I don&#39;t wanna go back</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Uristqwerty <span class="score">6</span></span>
+<div class="md"><div class="md"><p>I watched an interview recently where some game programmers brought up a good point about React: It&#39;s an immediate-mode style single-point-of-truth framework layered atop the browser&#39;s retained-mode DOM. And if you have server components? Stack on another layer of <em>each</em>.</p>
+
+<p>It&#39;s paradigm mismatches all the way down.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Zardotab <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p> now that users have grown accustomed to the interactivity and highly dynamic</p>
+</blockquote>
+
+<p>The problem is customers don&#39;t know the cost of such extras. There is a <strong>selfish incentive in our industry to up-sale;</strong> we know the importance of YAGNI but the customer doesn&#39;t.</p>
+
+<p>I know multiple GUI CRUD apps built in the 90&#39;s that still do their job just fine. Fancier stuff would not notably improve them. I think we threw the productive baby out with the bathwater for ordinary CRUD. Incremental improvements could have been done to our GUI systems or conventions, we didn&#39;t have to sacrifice them do <a href="https://www.reddit.com/r/CRUDology/comments/10ze9hu/missing_or_defective_gui_idioms_in_htmldom/">the bloated God of DOM</a>, rather build on what mostly worked. &quot;Stretch zones&quot; allowed grid-based spacing to change with monitor size, for example, allowing us to continue using WYSIWYG. </p>
+
+<p>And making the same app work well on both mobile and desktop is a very tricky goal. The lowest-common-denominator sucks. UI Shelden Coopers can do it, but they are expensive, not pleasant to work with, and a big maintenance dependency. It may be cheaper to have 2 different apps: mobile and desktop. Most businesses just use desktop anyhow for most their internal apps. Making them mobile-enabled may be a waste.</p>
+
+<p>Why does the same app take roughly 3x the code and cost 3x more? We are doing something wrong, it appears to be reverse evolution. 🐵 Reverse-YAGNI-Milking might be good job security for us techies, but screwing over biz.</p>
+
+<p>Anyone here honest enough to confess their selfishness? Honesty may hurt at first, but frees your soul 🕊️</p>
+
+<p>React has a long learning curve, by the way, because it has lots of gotcha&#39;s. Most the gotcha&#39;s are because DOM and JS suck for job they are being asked to do. You can force a dolphin to act like a leopard with enough behavioral translation layers, but the end result is a Rube Goldberg Frankenstein.</p>
+
+<p>Epicycles actually can be made to accurately predict the position of the planets with enough layers of circles and offset bars (think &quot;circular regression&quot;), but the end result is far far less pleasant than Newton&#39;s gravity formula. DOM/JS-based GUIs are epicycles. Gimme Newton back.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">mazing <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I&#39;m happy for you, react, and Imma let you finish, but Vue is the greatest of all time</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">BinaryIgor <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Can you elaborate on what kind of interactivity you cannot achieve with HTMX? I don&#39;t see any limitations there (in this context).</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">CircumspectCapybara <span class="score">7</span></span>
+<div class="md"><div class="md"><p>HTMX just pushes the question of &quot;how do we map some abstract, dynamic state we as a dev like to work in to the HTML the browser will render&quot; from the browser to the server.</p>
+
+<p>If you&#39;re just pushing static or simple HTML (e.g., something constructed from a template in a single pass of variable substitution) over the wire, HTMX is a great choice.</p>
+
+<p>But the moment you have highly stateful, complex apps with a lot of state to manage and a lot of interactivity so that state needs to flow both ways and be reconciled carefully, you&#39;re back to the problem of needing to use JavaScript (whether on the browser side or on the server side) to manage that state and compute how the HTML (or equivalent DOM nodes) should change so the user sees what you want them to see in that moment.</p>
+
+<p>There has to be some kind of computation or workflow (whether it&#39;s happening on the client side, or the server side) that connects these:</p>
+
+<ul>
+<li>the internal abstract state devs are working in</li>
+<li>the actual state of the UI (this could your server-pushed HTML fragments in the HTMX world, or it could be the virtual DOM in React world)</li>
+<li>user interactions</li>
+<li>changes to your internal state based on events that happen on the server side or outside world, beyond user interaction</li>
+</ul>
+
+<p>Once you have a big enough and complex enough app, state and computation has to flow between these four in a clean and manageable way.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">BeautifulCuriousLiar <span class="score">13</span></span>
+<div class="md"><div class="md"><p>good read, i’ll have to check it again and the repo when i’m not on my phone. one thing we can disagree on though, i rather just use css than tailwind, but that’s my opinion.</p>
+
+<p>i think we did get to a spot where everything front-end is overly complicated. there are some features from react for example that are nice to have, but imo all this tooling, frameworks and dependencies kinda surged a while back where doing something a bit more complicated was fairly easy compares to javascript only which needed way too many lines of code. today it still fairly is depending on what, but things have advanced a lot and we have a lot of great documentation. we all got used to the perks of using everything but native, we had to learn how to use these dependencies and more likely than not going back to the pure side is a hassle. we got no time for that now, especially since we (mostly) never thought about any kind of modularity to replace those things in the future.</p>
+
+<p>i myself need to dig deeper in web components and even htmx since all we do is follow what we hear as industry standard (react for ex) and forget or not even see what have right in our face.</p>
+
+<p>it is a breath of fresh air doing things natively and the hard way or reinventing the wheel on personal projects, but at work that always isn’t possible. all of this over complexity is definitely something we should talk about more especially since the latest supply chain attacks and vulnerabilities.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TheWix <span class="score">23</span></span>
+<div class="md"><div class="md"><p>Web Components have loads of drawbacks, and I don&#39;t have any experience with htmx. The issue really is that we are building apps on a document viewer. This thing was never meant to do what we need it to do. Add to that a complete lack of a decent standard library and it&#39;s no wonder we have thousands of libraries to fill all the niches not filled by 1st party libraries. </p>
+
+<p>The foundations of web development are deeply flawed, so it&#39;s no surprise that most things built on top of it are also flawed.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">BeautifulCuriousLiar <span class="score">3</span></span>
+<div class="md"><div class="md"><p>yeah. just look at the abomination of js’s Date object. that brought us moment/dayjs, date-fns, luxon… and only now we are getting close to the temporal api becoming standard. well until all browsers support it properly. yes we are looking at you safari.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">ValuableKooky4551 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>In particular that the page comes together from parts written in three different languages (HTML, CSS, Javascript) that don&#39;t share any developer tooling always leads to decelopers trying to do everything with one of them, the one that has the most tooling: Javascript (or even Typescript).</p>
+
+<p>Ie, with multiple teams working on multiple apps you want reusable components, you can write importable Javascript modules that you can package in libraries. But you cant do the same with the HTML and CSS that should come with the components. So you end up doing it all in Javascript.</p>
+
+<p>If all three things had been in more similar languages with the same tooling from the start, that could have been prevented. But yeah, that wasnt the initial goal of the Web.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">lanerdofchristian <span class="score">8</span></span>
+<div class="md"><div class="md"><p>I do have some experience with HTMX -- I don&#39;t think it&#39;s suitable for most tasks, if only because it <em>requires</em> complete full-stack integration. There&#39;s no such thing as a quick frontend tweak, because anything touching the DOM or scripts needs a backend change if it&#39;s in an area swapped by HTMX. You can&#39;t sneak some more fields into your API responses for later frontend changes because your API responses <em>are</em> your frontend.</p>
+
+<p>It&#39;s phenomenal if you control the entire stack and only want to do little things like refresh a server-rendered table when a form is submitted or send some out-of-band messages back without doing a full refresh, but anything more complex with a large team quickly starts becoming a ravioli-spaghetti hybrid without extremely diligent review and shared understanding (moreso than more decoupled frameworks provide).</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">shorugoru9 <span class="score">4</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>There&#39;s no such thing as a quick frontend tweak, because anything touching the DOM or scripts needs a backend change if it&#39;s in an area swapped by HTMX</p>
+</blockquote>
+
+<p>As someone who has worked on older Java SSR frameworks (like Struts and Spring MVC), this is not a problem at all in Java, and has not been for decades. Java has had the ability to hot-reload frontend template changes since the days of JSP. With more modern frontend templating like Thymeleaf, just turn off template caching.</p>
+
+<blockquote>
+<p>anything more complex with a large team quickly starts becoming a ravioli-spaghetti hybrid without extremely diligent review</p>
+</blockquote>
+
+<p>This seems like a well known problem with well known implementation patterns going back decades. In Java, we developed the &quot;Model 2&quot; MVC architecture and &quot;Three Tier&quot; architecture to carefully structure the application to prevent it from turning into a spaghetti mess between the presentation layer and all the stuff behind it, and to allow the effective isolation of changes.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">lanerdofchristian <span class="score">2</span></span>
+<div class="md"><div class="md"><p>What I more meant by that is you can&#39;t make a change that&#39;s <em>just</em> a client change or <em>just</em> an API change -- even something that seems as straightforward as a small inline script update or a class change requires reaching to the other half of the application and making the change there, because the client <em>is</em> the API and vice-versa. It&#39;s just not as clean a separation when your API is returning partial presentations mixed with out-of-band client updates instead of serialized models.</p>
+
+<p>HMR is accessory to that (though I will say Vite does a much better job of it than Qute does, what with actually doing the HMR in the client instead of requiring a full page refresh). I haven&#39;t worked with Thymeleaf, so I can&#39;t comment on that specifically.</p>
+
+<p>My main argument in the latter half is that the presentation layer itself becomes a spaghetti nightmare on its own, given the comparatively primitive composition capabilities of nearly every server-side templating library for traditional stacks (vs the likes of Angular, Svelte, and Razor). Templates requiring specific endpoints expecting specific templates or fragments in response just isn&#39;t as easy to test and develop as independent components with stub callbacks and fake data.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">yawaramin <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Your assumptions are what we would expect from people who don&#39;t really know how htmx is supposed to be used. With htmx we tend to use templating engines or HTML generation libraries with more sophisticated composition capabilities. Here&#39;s an example: <a href="https://htmx.org/essays/template-fragments/">https://htmx.org/essays/template-fragments/</a> (the article says it&#39;s &#39;relatively rare&#39; but nowadays, 3 years later, many engines support it).</p>
+
+<p>Also we structure htmx apps differently, in such a way that makes them easy to test. See <a href="https://htmx.org/essays/locality-of-behaviour/">https://htmx.org/essays/locality-of-behaviour/</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">lanerdofchristian <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Most of the template engines listed on the first linked essay are tools I would not describe as &quot;sophisticated&quot; or &quot;having good composition capabilities&quot; (Latte is close, and Templ/Blade basically get it). I&#39;ve done my time with Twig and mustache. In the latest project I&#39;ve worked on, I went down the Qute road, worked with template fragments and includes -- they&#39;re still a good order of magnitude less powerful and harder to work with than the half of the application that was written with a more powerful component-based system (Svelte, in that particular example).</p>
+
+<p>In Svelte, there&#39;s little functional difference between an HTML element and a component -- both have strong type checking for attributes, both can have non-string values passed where that makes sense, both can be packaged into intra-component fragments or other components. It&#39;s the same story in Vue, Angular, Ember, Mithril, Aurelia, Marko, or JSX-based frameworks like React, Solid, Qwik, or Ripple.</p>
+
+<p>HTMX provides no such equivalent, and no template language (that I&#39;m aware of) exists that provides it for it. Making little testable pieces of an app is comparatively hard because (to point directly at the second essay) a button may perform some action targeting an element completely outside of its fragment -- whereas all other frameworks mentioned expect dependencies like that to be explicitly declared and passed in as properties (either callbacks or state controllers) that can be stubbed and mocked.</p>
+
+<p>Behavior becomes very <em>non</em>-local in HTMX, given that these dependencies are not declared, often requiring other elements to perform spooky-action-at-a-distance to provide values or act as state holders and recipients -- and once out-of-band responses are taken into account you&#39;re right back to needing to work in the context of the entire page, with logic and behavior split between potentially multiple fragments in multiple templates in addition to the controllers/resources that render them. Is HTMX more local than jQuery or vanilla JS? Yes, absolutely. Does it lend itself to locality more than languages that aren&#39;t stringly-typed and heavily prioritize compartmentalization? Not really, no.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">BinaryIgor <span class="score">6</span></span>
+<div class="md"><div class="md"><p>I think it depends - with HTMX you would have a team(s) of full-stacks (no front/back distinction) and then I don&#39;t see it as a problem :)</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">lanerdofchristian <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Another major issue I see with HTMX is severely degraded type-safety and static verification capability compared to other full-stack frameworks like Nuxt or SvelteKit. The article directly shows this flaw: arguments are passed as <code>Map&lt;String, Object&gt;</code> in most templating engines (something you now need to tack on in addition to HTMX, and hope you get all the data-to-string conversions right yourself). Even when you have frameworks that can compile-time check template arguments, compile-time checking the template itself is rarer still, requiring test suites to catch errors other frameworks handle at write-time with LSP servers or IDE plugins and compile-time with whatever compile step they&#39;re using.</p>
+
+<p>Throwing web components in on top of this just compounds the DX difficulties and user experience, given their utter lack of ability to cleanly be server-rendered. If having your site work with minimal to no JS loaded is important, HTMX and Web Components are antithesis to that: rather than starting from functional and making the page progressively more interactive the more loads for basically free, HTMX requires developers to carefully build both JS-free and JS-able models in the same markup; and web components just throw up their hands and refuse to play nice at all.</p>
+
+<p>Modern component languages are first evolutions of templating languages like Mustache, and second evolutions of client-side and full-stack interactivity frameworks. As a tool for authoring pages (even statically or SSR-only), the likes of Vue, Svelte, and Angular far outstrip the capabilities of more primitive templating languages like Mustache or Twig -- in such a world, where components can be statically checked and freely composed, what advantages do the simpler frameworks really have?</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">yawaramin <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You can use JSX on the server side with htmx too and get all the type safety benefits. Nothing about htmx forces the use of primitive templating languages. The advantage of htmx is that you can avoid the entire npm ecosystem (<code>node_modules</code> et al.).</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">lanerdofchristian <span class="score">2</span></span>
+<div class="md"><div class="md"><p>If you&#39;re using JSX/Svelte/Vue, you&#39;ve already bought into NPM or its competitors. And at which point, if you&#39;re using the framework for templating, why not use it for interactivity too and save the headache of trying to mesh disparate systems together?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">BinaryIgor <span class="score">1</span></span>
+<div class="md"><div class="md"><p>100% - I&#39;m torn on the Tailwind use ;) On the one hand it allows me to write less CSS, on the other it gets you away from the native approach. To be reconsidered</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">roodammy44 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>One thing I noticed is that it’s fine for simple stuff, but can become totally unreadable for complex css.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">[deleted] <span class="score">3</span></span>
+<div class="md"><div class="md"><p>[removed]</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">programming-ModTeam <span class="score">2</span></span>
+<div class="md"><div class="md"><p>No content written mostly by an LLM. If you don&#39;t want to write it, we don&#39;t want to read it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Plank_With_A_Nail_In <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Web pages aren&#39;t the be all and end all of Front ends. My advice is to get out of webdev.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">joe-knows-nothing <span class="score">8</span></span>
+<div class="md"><div class="md"><p>This really reads as a very narrow perspective even within the webdev. No mention of cgi-bin, java applets, flash or PHP in the history lesson.</p>
+
+<p>Not to mention that thin clients (server side rendering) has been on-again off-again since UIs have been around (mainframes, anyone?)</p>
+
+<p>It&#39;s a classic case of the &quot;I don&#39;t understand this complexity, so it must be wrong&quot; fallacy. Abstractions and complexities don&#39;t appear out of nowhere and for no reason. They solved a problem for someone at some point in time.</p>
+
+<p>The kicker is that the &quot;we should talk about all the complexity before we build it into the system&quot; is how the complexities tend to get put into the system! HTML, JavaScript (via ecmascript), etc have huge governing bodies and formal processes for modifying the standards.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">gnuban <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Webpages were designed to be rendered fully on the server. And each webpage had a separate URL, which lead to the RESTfulness of the web. Each application &quot;state&quot; had an URL, so deeplinking always worked. Navigation was automatic in this system, and handled by the browser. Webpages were also designed to do HATEOAS, and did so by design through html features like forms and buttons navigating to new URLs. So you could control the app flow fully from the server without writing any special client code. And the pages were always built from scratch from the URL and params, so there was literally no state updates or sync to care about. It did away with that by using a clever and deliberate design.</p>
+
+<p>This model was hard enforced. There was no way to escape it, it was all on purpose as laid out in Roy Fielding&#39;s REST dissertation. Simple and effective, if you followed the guidelines.</p>
+
+<p>But it was a novel concept, and hard to wrap your head around if you were used to writing stateful desktop apps. Why not just have state soup like people were used to?</p>
+
+<p>So Microsoft, in their infinite wisdom, invented a way to break the REST model by allowing JavaScript to download more data from the server to amend the webpage. And by doing so, all the nice properties of the web page system could no longer be guaranteed, and chaos ensued.</p>
+
+<p>Cue 25 years of trying to tame the chaos, in large part by emulating the original REST webpage idea of one URL per state, but now doing it on the client instead using a million naive but eager JS tech bros.</p>
+
+<p>It&#39;s slight insanity. If we wanted stateful web pages, we shouldn&#39;t have started with REST. And instead of trying to tame the introduced statefullness with Restish frameworks on the client, like what React and friends are doing, we should have reverted to the old model or developed a new type of client that could do the same natively on the client.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">remontantcoprology <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The &quot;a server in Java&quot; proposed here looks a lot like Wt in C++ <a href="https://www.webtoolkit.eu/wt">https://www.webtoolkit.eu/wt</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Kwantuum <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Bro I&#39;m not that blind, why is your font so huge? It&#39;s unbearable to read on mobile</p>
+</div></div></div>
+</body></html>

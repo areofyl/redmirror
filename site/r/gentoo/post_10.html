@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>How to update Gentoo without getting kernel panic?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>How to update Gentoo without getting kernel panic?</h2>
+<span class="meta">by Leonardodafernandez | <span class="score">1</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>First of all, novice error. But i want to learn how to not brick my system.</p>
+
+<p>After a Linux-firmware (gave me a mount error) update to my gentoo install and got a Kernel panic (Unable to mount in root fs 0 , 0).</p>
+
+<p>I&#39;m going to reinstall gentoo again, but this time i want to know how to not make this mistake again. So, tips please?</p>
+</div><!-- SC_ON --></div>
+<h3>8 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">No-Camera-720 <span class="score">10</span></span>
+<div class="md"><div class="md"><p>The problems with the &quot;I&#39;ll just reinstall&quot; approach are that is almost never fixes the problem, and even if it does, you have no idea why and have learned nothing. As suggested here, chroot in and reconfigure your kernel, probably to have the correct filesystem driver compiled into the kernel, not as a module.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TheShredder9 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Depending on how you set it up, updating the kernel may not update the initramfs, or GRUB may not recreate a new config</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dddurd <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I use dist kernel with /etc/kernel/config.d. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">AiwendilH <span class="score">3</span></span>
+<div class="md"><div class="md"><p><a href="https://wiki.gentoo.org/wiki/Kernel/Gentoo_Kernel_Configuration_Guide">https://wiki.gentoo.org/wiki/Kernel/Gentoo_Kernel_Configuration_Guide</a></p>
+
+<p>especially </p>
+
+<p><a href="https://wiki.gentoo.org/wiki/Kernel/Gentoo_Kernel_Configuration_Guide#Enabling_support_for_typical_system_components">https://wiki.gentoo.org/wiki/Kernel/Gentoo_Kernel_Configuration_Guide#Enabling_support_for_typical_system_components</a> and the topics after that....kernel panic with mount error often comes from lacking sata and/or filesystem driver.</p>
+
+<p>An alternative is building the <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Kernel#Distribution_kernels">preconfigured gentoo kernel</a> at first and once you have a somewhat working system go back and do your own kernel configuration. This way you have at least a fallback kernel until your get the kernel config right.</p>
+
+<p>Edit:Oh..and there is almost never a need to &quot;reinstall&quot; gentoo...you usually can recover a system rather easily. In case of a wrong kernel config it&#39;s just booting the liveUSB again, chroot back in the gentoo system and redoing the kernel build step with corrected config this time.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Complex-Sale-7939 <span class="score">-10</span></span>
+<div class="md"><div class="md"><p>Are you throwing all errors into chatgpt? It is great at diagnostics.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Leonardodafernandez <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Not really, i followed the handbook for the installation and thats all. The problem? I don&#39;t know how to upgrade the system, so a &quot;emerge --ask --update --newuse @world&quot; updated my linux-firmware and after a reboot it just break everything. </p>
+
+<p>Edit: Can&#39;t remember if was @world or @system</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">omgmyusernameistaken <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Don&#39;t start from scratch. Chroot to your Gentoo and install gentoo-kernel-bin (read the handbook and choose the needed flags for grub/dracut/etc.) and the grub-mkconfig -o /boot/grub/grub.cfg </p>
+
+<p>It should find the gentoo-kernel-bin and then exit chroot, reboot, choose the new entry from Grub menu and you should have login prompt. </p>
+
+<p>Never start from scratch if you can chroot back!</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">LameBMX <span class="score">1</span></span>
+<div class="md"><div class="md"><p>always read everything portage spits out. and deal with issues before rebooting. learn how to check your new stuff is installed properly. if its kernel/ firmware I confirm efi (or boot) is properly mounted and I see a fresh kernel in there. </p>
+
+<p>I dont recall seeing an @system update in the manual. really not much reason to update system since its part of @world unless you are doing some specific troubleshooting on an installed system.</p>
+
+<p>along with the other advice about fix instead of reinstall. linux, unlike windows, isnt reboot hungry. you can even make stuff worse by rebooting without fixing an issue. not to say reboots arent necessary (imma try something one day im bored) and sometimes fix stuff during updates (but closing and opening whats having issues does the same thing even the display via rc-service display-manager restart)</p>
+</div></div></div>
+</body></html>

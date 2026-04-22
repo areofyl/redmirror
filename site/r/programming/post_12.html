@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Designing a portable and human-readable data format: trying to solve the visual displacement problem in tabular data and spreadsheets</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>Designing a portable and human-readable data format: trying to solve the visual displacement problem in tabular data and spreadsheets</h2>
+<span class="meta">by Vinserello | <span class="score">3</span> points</span>
+<p><a href="https://github.com/Datastripes/DataSheetStandard/blob/main/README.md">https://github.com/Datastripes/DataSheetStandard/blob/main/README.md</a></p>
+<h3>6 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">rdmit <span class="score">2</span></span>
+<div class="md"><div class="md"><p>What if some data is placed in such a way that it overwrites another data? Should parser check it?</p>
+
+<p>I don&#39;t see any benefits of this format over csv. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Vinserello <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yes, overlaps are handled according to the &quot;last man standing&quot; principle.</p>
+
+<p>I thought about a DSS because CSV files can&#39;t handle multiple sheets, and with sparse data (i.e., data that isn&#39;t truly tabular), they become a bunch of &quot;,,,,,&quot;, right?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Vinserello <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I borrowed part of the notation from A1 format and I&#39;m using this format in some of my projects. </p>
+
+<p>Below is an example of a <code>.dss</code> file representing a complex and sparse spreadsheet.<br/>
+It should handle multiple sheets, sparse data grid, metadata and formulas.</p>
+
+<pre><code>---
+project: Financial Forecast
+version: 2.1
+---
+
+[Quarterly Report]
+@ A1
+&quot;Department&quot;, &quot;Budget&quot;, &quot;Actual&quot;
+&quot;Marketing&quot;, 50000, 48500
+&quot;R&amp;D&quot;, 120000, 131000
+
+@ G1
+&quot;Status: Over Budget&quot;
+&quot;Risk Level: Low&quot;
+
+@ A10
+&quot;Notes:&quot;
+&quot;The R&amp;D department exceeded budget due to hardware acquisition.&quot;
+
+[Settings]
+@ B2
+&quot;Tax Rate&quot;, 0.22
+&quot;Currency&quot;, &quot;EUR&quot;
+</code></pre>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">GoldenPathTech <span class="score">1</span></span>
+<div class="md"><div class="md"><p>How do you handle overlaps of data? If I declared <code>@ B1</code> below <code>@ A1</code> in your example, with a 3x3 grid of cells with different data, would the data in <code>@ B1</code> overlap or append cells this section shares with <code>@ A1</code>?</p>
+
+<p>That said, I&#39;m not sure if I like either option, as it would be confusing for a user to determine what data is real or not. Plus, it would burden either the user or the software to resolve such a conflict. By all appearances, it wouldn&#39;t be immediately obvious to a user if the sheet contained junk data or not. What are your thoughts on this?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Vinserello <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thanks a lot and excellent observation. The idea is that the parser always considers the last statement as true, something like &quot;last man wins&quot;. This should be O(1), but I admit, it can be problematic for handwritten DSS files, a bit like what happens with CSV files when a delimiter is missing. I need to find a solution. </p>
+
+<p>Do you have any other feedback? I&#39;m also open to a response like &quot;it&#39;s useless&quot; :D</p>
+
+<p>Thx again</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">AlexKazumi <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Eh, it was funny that while reading the spec, I had an excel opened with sheets named [2026.1], [2026.2], etc.</p>
+
+<p>Also, your format cannot represent double quotes in strings.</p>
+
+<p>Also it does not specify encoding, so what happens with all the characters outside ASCII?</p>
+
+<p>It (maybe on purpose) is underspecified how to handle files with mixed Cr and crlf line endings, what happens with weird numbers (which, for example fall out of the precision or range of floats).</p>
+
+<p>Additional problem arises when people are not Americans, then the concept for number is &quot;1 234,67&quot; and your format stops being &quot;human readable&quot;, but let&#39;s say this is a philosophical question.</p>
+</div></div></div>
+</body></html>

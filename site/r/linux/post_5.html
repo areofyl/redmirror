@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Linux Tutorials for Windows Emigrants</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>Linux Tutorials for Windows Emigrants</h2>
+<span class="meta">by Minute-Bit6804 | <span class="score">59</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I am of the opinion that most, if not all linux tutorials targeting poeople moving from Windows will rarely work and only serve to slow down the movement from Windows. The instructors always by default go to the terminal tutorials and then maybe the file system in a quick overview. Still, this file system is not compared to the Windows system. Also, instructors think that most/all third party software is to be found in the package managers.</p>
+
+<p>As someone migrating from windows, I believe the most important thing is a one-to-one comparison of major folder structures as well as actual software installation. In windows, software installs by default in the C drive which I think is good to keep those installation files seperate and less prone to being tampered with. User files like project files of the installed software are then stored in other partitions. Therefore, when installing the Windows OS, you are thinking of how much space to allocate to the C drive based on your projected third-party software installation. This is never/rarely done in linux tutorials. There&#39;s no mention of where actual third-party software install and even no mention of how to install the linux distro so that you have enough space to do so. The same applies to the partitions for usage by the user outside the software installation partitions.</p>
+
+<p>After the third-party software installs, how do things like icons/shortcuts and launching the software get handled and how is this automated? Again, if installation is done through the package managers, this is fairly taken care for you but for really &quot;exotic&quot; third-party software, it&#39;s not that straight forward.</p>
+
+<p>As an example, I am an engineering student who uses software like MATLAB, Ansys tools, FPGA software like Vitis, Quartus on Windows but they also have Linux versions. I have also used some semiconductor design tools from Cadence and Synopsys which are usually linux exclusives. These software tools are not found in any package manager. You get the install files from the vendor website to install, just like in Windows. In my Windows laptop, I know to allocate a fairly large amount of storage to the C drive to install some of these eg AMD Vitis FPGA tool is a guaranteed &gt;60GB install size. After it installs in Windows, icons/shortcuts and environment variables are taken care of. This automation is not in Linux (at least not in distros like some RHEL versions which are recommended for these software tools) and I have seen no instructor attempt to do this, even with free and fairly small software tools like those for microcontroller programming. People that use these tools in Windows have already been exposed to automation through python or TCL so I believe the linux terminal will be very quick to learn and a tutorial focused on the terminal is usually counterproductive since of most importance is to install and start using the software. Even if the user is not in these technical fields, they&#39;ll want to get the software up and running as quick as possible, continue using the GUI as they have been used to in Windows then slowly but surely catch up to the terminal-based usage if it guarantees increased productivity for them. I asked whether the terminal is the only way to use Linux in one of the videos by &quot;Explaining Computers&quot; and I was told that that is a lie leading me to further think that the over-emphasis on the terminal as a general introduction to Linux is counterproductive.</p>
+
+<p>I&#39;d love to hear thoughts on my opinion here, especially if any engineers or other specialists have Linux and use some of the software tools I mentioned and how they go about installing and setting them up for use. Thank you.</p>
+</div><!-- SC_ON --></div>
+<h3>48 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Slight_Manufacturer6 <span class="score">86</span></span>
+<div class="md"><div class="md"><p>Most Windows users don’t know the directory structure of Windows, why would they care about the directory structure of Linux? A typical user just cares about their Desktop and home folder.</p>
+
+<p>You should always install from the repository when possible. 3rd party installs a a niche side case and each case is different so you can’t make one guide for that.</p>
+
+<p>For a noob, it’s best to keep everything on one partition. Worry about separate partition if you reach a more advanced level.</p>
+
+<p>You are sound like you are trying to design a beginner’s guide for advanced users. Beginners don’t care about most of this stuff and advanced users tend to have the experience and knowledge that they aren’t going to bother with a guide.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">digost <span class="score">15</span></span>
+<div class="md"><div class="md"><p>There is a reason the tutorials are like that. Everything is shown how to be done in CLI because there are tons of DEs/WMs as well as distributions, and some gui tools might not be available for each combination of them. CLI is everywhere. </p>
+
+<p>Everything is shown to be installed from repos because it&#39;s beginner friendly. Where a third-party software installer will install it and whether if they will even ask you about that sometimes is entirely up to the makers of that installer. Good practice and convention is to install system-wide software into /opt, and per-user somewhere in ~/.bin or somewhere in there, but not everybody follows that convention. </p>
+
+<p>Software installed from the repos of a distribution usually gets spread across the entire time system. </p>
+
+<p>And a lot of your friction comes from your old habits and comparing Linux with your Windows experience. Sooner you let go, the better. Some things are done way better in Linux, I&#39;d argue that Linux is more logical of the two and things get easier once you get that logic. For now just try to think that Linux is not better or worse, just different.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">teleprint-me <span class="score">4</span></span>
+<div class="md"><div class="md"><p>This is the best comment in the thread because it strikes the core issue when migrating.</p>
+
+<p>Everything in Windows is just in the C: drive and maybe a D: drive for backup, init, etc.</p>
+
+<p>The Linux File System Hierarchy is night and day in comparison. Drives are mounted in /mnt, user space is in /home, etc.</p>
+
+<p>Linux is modular while Windows is vertical infra while being a blackbox.</p>
+
+<p>There&#39;s more than one way to do things but its almost the same on most distros (void is an exception because it uses a functional sandbox approach) when using a terminal.</p>
+
+<p>There are GUI frontends, but theyre iffy and unstable most of the time (depends on the distro family). Some are more stable than others.</p>
+
+<p>Knowing the terminal helps you understand when the GUI breaks, but I could understand why a &quot;normie&quot; wouldn&#39;t like it. Theres a fear that theyll break the system, but theres this weird contempt/adversity/fear coupled with the terminal.</p>
+
+<p>You can break the system — I know I did many times. But I learned, adapted, and eventually got over it and now I just the terminal because its superior in almost every way. It took me years before Id finally officially learn the terminal, but not everyone is like this — which is fine IMO.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">True-Award-5901 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The problem is that normies want GUIs.</p>
+
+<p>Having to use the terminal because the GUI sucks is not a good selling point.
+And yes, I use the terminal a lot but you have to admit that it can be tedious to look up all the flags and what not until you know how a tool works. </p>
+
+<p>A good GUI can be used intuitively. Yes it is usually limited but in most cases it&#39;s totally sufficient and you always have the option to fall back to the terminal.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">teleprint-me <span class="score">1</span></span>
+<div class="md"><div class="md"><p>The interface is the core API which is how you talk to the system. Thats why agents took off in the CLI. It plugs directly into that interface with little friction.</p>
+
+<p>Understanding that the terminal is the primary interface for talking to a computer is difficult for most people to understand.</p>
+
+<p>I view it like reading a book or many small guides. Sometimes its tedious, but thats mostly because I dont know what Im doing yet and I view it as an obstacle to my goal.</p>
+
+<p>A lot of the friction is in fragmented interfaces which make it painful to communicate between those interfaces.</p>
+
+<p>But its just text and its just talking to a machine that thinks in terms of maths and logic. Nothing else really. It took me forever to realize that. Perhaps too long. Better late than never, I suppose.</p>
+
+<p>For me, the primary selling point of any Linux system is that the computer belongs to me. Everyones reason is different and personal to them. So, however you view it, the primary goal of FOSS was sharing and transparency, which is what drew me in in the first place.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">[deleted] <span class="score">12</span></span>
+<div class="md"><div class="md"><p>[deleted]</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Slight_Manufacturer6 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>C:/Users is comparable to /home</p>
+
+<p>But that is about the only one-to-one comparison. After that it is a completely different system without comparison.</p>
+
+<p>But for OP, there are many tutorials explaining the directory structure.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">MouseJiggler <span class="score">6</span></span>
+<div class="md"><div class="md"><p>User files are not stored under other partitions in Windows, unless you specifically set it up that way.  </p>
+
+<p>For software that has vendor-specific installers, and isn&#39;t packaged using standard distro tools, the best resource would be not generic guides, but the vendor&#39;s own documentation, as many such products are not packaged in the standard ways, and are often bundled with their own dependencies, that may not conform to the distro&#39;s specific file patterns. There is no universal answer to that question, just as there is (broadly) no standard answer for Linux as a whole, as different distros may use different conventions.   </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">thephotoman <span class="score">5</span></span>
+<div class="md"><div class="md"><h1>In re the filesystem</h1>
+
+<p>There is not a 1:1 mapping of folder structures from Windows, and that’s a ridiculous thing to demand. I’m not going to just drop such a spicy take without explaining it, though. </p>
+
+<p>Windows’s filesystem works like filing cabinets in a real office. You get to sort out how you want your data organized hierarchically. You want an organization system that allows you to grab the file you need, and you can impose it yourself. </p>
+
+<p>This is an idea that is unique to the broader CP/M family of operating systems, of which both classic Windows, OS/2, and modern Windows (which is a mix of OS/2 and VMS, and which is a completely different OS than Windows 9x) are a part. It was meant for a world of single-user microcomputers that did not have permanently attached storage, and where users inherently had complete physical access to the machine. As such, its users cared deeply about what physical device files were read from or saved to. Therefore, you get a C drive. </p>
+
+<p>Linux is different. It was meant for a world of multiple users, where users may be dialing in via remote dumb terminals. Those users may not have physical access to the computer. The computer might have multiple permanently attached storage devices, but because the user would never interact with those attached storage devices, it didn’t matter which of them the user read from or wrote to, so long as the OS ensured consistency. So instead of a C drive, you get a file system root that may map different directories to different physical devices. As an example, when I first installed Linux a long, long time ago in a galaxy far, far away, my computer had a 40GB hard drive and a 120GB hard drive. So I put /boot (where the kernel image and a few other files necessary to load the kernel) and / (most of the system files) on the small drive, and I mounted the entire big drive as /home (where my files went). This was something easily done in the setup tools that most distros still have. </p>
+
+<p>On the rare occasions where you’re using removable media and thus care about the geographical place your data gets read from or written, you will find the drive in question automounted at /mnt/$DEVICE or /mount/$DEVICE. </p>
+
+<h1>In re third party apps</h1>
+
+<p>Most guides tell you to find apps through your distro’s package manager or through FlatHub. These guides are usually <em>correct</em>. Yes, there are commercial software packages that you can’t get through these sources. </p>
+
+<p>However, most non-distro software will install itself somewhere else entirely, usually in /opt—another directory you can assign to a separate physical drive or a separate partition. The automation you want is only a thing on Windows because it’s solving Windows problems that just don’t exist on Linux. </p>
+
+<h1>In re the Terminal</h1>
+
+<p>Get used to the terminal. Unlike Windows, the terminal is a first class user interface on Linux. You mostly don’t <em>need</em> it, but you will almost always <em>have</em> it, and anything that can be done on Linux can be done from the terminal. This is not a defect, but a feature: display systems can have problems, Linux has multiple independent display systems all running as user processes (though most implement Wayland, X.org remains a thing on many distros, especially older ones and on distros using desktops that haven’t finished their Wayland migrations), and it may be necessary to repair them while they are not running. </p>
+
+<p>Indeed, when you ask for help on Linux, you’ll likely get instructions in the form of a shell script because it’s the single most consistent user experience available across all distros, regardless of age and customizations. I don’t know what desktop you’re using, but I know that you have a POSIX-compatible shell, probably bash.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">BranchLatter4294 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I think this is overthinking.</p>
+
+<p>In Windows, when I want to install software, I go to the software store. If it&#39;s not there, I go to the developer&#39;s website and download it there, then right click and install</p>
+
+<p>On Linux, when I want to install software, I go to the software store. If it&#39;s not there, I go to the developer&#39;s website and download it, then right click and open with software store to install it. </p>
+
+<p>Or I can use the command line package manager which works pretty much the same in Windows as in Linux. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Minute-Bit6804 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Which software tools do you typically use? I cannot for example install MATLAB from the Windows store but I canget the setup from the Mathworks website. When I install it, it defaults to the C drive which I think is good because it&#39;s a standard for all installations to occur there ensuring that you can use other partitions for projects and leave the C relatively untouched.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Dist__ <span class="score">3</span></span>
+<div class="md"><div class="md"><p>there&#39;s almost always &quot;specify place to install&quot; button on windows.</p>
+
+<p>it&#39;s linux that does not allow this</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">HeligKo <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Comparative tutorials almost always suck. Doesn&#39;t matter the subject matter. Windows to Linux is no different. They just need to focus on how to do things in Linux.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">killersteak <span class="score">3</span></span>
+<div class="md"><div class="md"><p>you can mount any system folder to any drive or partition. so already the comparison to the most basic windows flow falls apart. windows&#39; file structure is a rigid statue, linux is multiple flower pots in a garden all making one big tree.</p>
+
+<p>For third party apps that bundle all their required libraries, the most you need is a folder for the app that has your users permissions, and a way to launch it. If you want to launch through the app list, making a .desktop is needed to point back to the executable path and, if are being fancy, the icon.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">DizzyCardiologist213 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>recent emigrant. started on dos in the 1990s, and then went to windows and became &quot;dumb&quot; for more than 30 years, only occasionally visiting the terminal in 1995 to rename huge groups of zips and rars. </p>
+
+<p>Linux has been no issue for me. Of course, I am not &quot;proficient&quot; like a linux user would be with terminal and rsync and a whole bunch of other wonderful stuff. </p>
+
+<p>I&#39;m also a year from 50 and don&#39;t learn as fast as I used to, or have the same interest level. </p>
+
+<p>--------------------</p>
+
+<p>A second point here before I comment on anything else, linux won&#39;t be windows, but what people are addicted to is how they used shortcuts, right click, etc. They&#39;re not addicted to having been a windows power user because the reorganizing and changing of menus and options has been endless, and I get the sense it&#39;s on purpose to get you to start using AI or mic in windows to navigate to things you want to do. This isn&#39;t a positive thing. I&#39;m sure it&#39;s a matter of being able to add endless crap that you don&#39;t know to just navigate over and see and say &quot;WTF is that now?&quot;. it&#39;ll be hidden. </p>
+
+<p>So people not wanting to change is really about wanting a later install to happen that just keeps their windows experience identical, and that&#39;s a false option. it&#39;s not the future. </p>
+
+<p>-------------------------------------------------------------</p>
+
+<p>OK, back to learning linux. My view has having installed distros now 8 times, but all in the ubuntu family. Mint is the most stable for me. Son&#39;s PC is a latitude and he&#39;s never used anything but ubuntu base 24.04LTS or whatever it is. He&#39;s not biased by windows, has never had his own PC (only tablets) and at age 12, it took him less than two days to have every single thing set up on his PC the way he wants it. He was playing Fortnite, doing 3d print stuff and who knows what else in that time, and then he saw our last house PC with windows on and used it and without my prompting of windows hate, went on a tirade about how stupid windows is. </p>
+
+<p>For someone new, I&#39;d say make sure your PC is on a list of PCs that the hardware works well with so everything is kind of seamless, and then peripherals - check if you have old scanners or printers that never had good linux support, because you may use those, and at the same time, regain use of old specialty hardware that windows paperweighted because it didn&#39;t allow heinous power control. </p>
+
+<p>Wife is a know nothing windows user, and is now using ubuntu studio. She and my dad really only need something that looks like a browser and file explorer. So instead of telling them where those things were, I just put them on their desktop as icons.  </p>
+
+<p>-----------------------</p>
+
+<p>Last thought - I love the terminal. Every distro I&#39;ve tried from ubuntu, to kubuntu to mint, etc, they&#39;re all about the same to me because I&#39;m not married to a distro yet. mint cinnamon had very minor stability issues for me and kubuntu did, but it&#39;s so quick to switch distros that I didn&#39;t really care. I could&#39;ve lived with even those far more than i could tolerate win 11 any longer. </p>
+
+<p>here&#39;s the actual thought - terminal is a foreign language at first, but you treat it like it&#39;s important, and you learn a little at a time and save notes in a file on things you like to do. I went bonkers and bought six used PCs, two to the wife and son to add or replace older PCs and now one will go to my dad, who somehow gets by with a 2014 i3 and 4 gigs of ram, but will be losing support in the future. </p>
+
+<p><strong>* if you have to actually do anything in terminal, tutorials and reference sheets are great, and so is AI, even though I&#39;m not a casual user of AI in general. it&#39;s pretty good for terminal suggestions, and avoiding small things like a missing slash that can have big implications, just like the old days with dos\</strong>*</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">saoirsebran <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I dabbled with Linux on and off for several years in the late 00s &amp; early 10s and was forced to get my terminal chops there.</p>
+
+<p>Started homelabbing in the mid 10s with Debian. Obviously lots of terminal. </p>
+
+<p>Been daily driving on my desktops since 2020 and yeah, I love the terminal. With modern conveniences like yazi and zoxide it&#39;s faster than any GUI for me. </p>
+
+<p>But I gotta say... Nowadays with KDE &amp; Gnome being as mature as they are, I really don&#39;t see a need to use the terminal for most users. Basically everything you&#39;d do there has a GUI equivalent now, and if it doesn&#39;t out of the box there&#39;s a Flatpak for it. I&#39;m really happy with how spoiled the kids have gotten over the past 4-ish years. </p>
+
+<p>On a different topic, the biggest thing for me is I think we recommend distros to beginners that the training wheels don&#39;t come off of, so to speak. Biggest offender is Mint, which has no wayland support. Others are walled gardens like Zorin where, sure, you can tear the walls down, but it takes work.</p>
+
+<p>I think we should be recommending &quot;harder&quot; distros to beginners. No rolling release distros or anything like most Arch derivatives, but my #1 rec is Fedora KDE, which is as close to the cutting edge as you can get in a packaged release distro. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">DizzyCardiologist213 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You&#39;re on the money. i don&#39;t need to use the terminal, but I guess I&#39;m reliving my youth. The only issue I&#39;ve had is a brother 740D scanner that uses an old version of libsane. I use the terminal to adjust the libraries that are out there, and then that breaks the updater temporarily in mint. That&#39;s the only disappointment so far, and that&#39;s on brother and not linux. A similar age color laser printer works without issue. </p>
+
+<p>if I didn&#39;t like using the terminal, finding a supported duplex portable scanner used would&#39;ve been more sane. </p>
+
+<p>that&#39;s one of the things I polled in a woodworking forum, no less, and some of the folks have used linux for near a decade without ever using a terminal. I thought that sounded like a stretch, but everything in linux now is so much more polished than I expected it would be that coming from windows, when I see posts on here about how linux needs to do more to attract new users, it makes me want to pull my hair out. It&#39;s close to perfect as it is. Someone can make a dummy distro for newbies if they want. Ubuntu base and Mint are super dandy to me.  </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">hadrabap <span class="score">8</span></span>
+<div class="md"><div class="md"><p>The terminal issue is exclusive to Windows users and originates in jealousy. My colleagues that migrated from Windows to Mac became proficient in Linux terminal thanks to the Mac ecosystem that is not afraid of the terminal.</p>
+
+<p>Reconsider your approach. Terminal is not bad. It&#39;s really powerful. As an AMD/Xilinx user you should know that already.</p>
+
+<p>By the way, the Vivado/Vitis installer creates all the .desktop files correctly. Even on my Oracle Linux.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">acewing905 <span class="score">15</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>The terminal issue is exclusive to Windows users and originates in jealousy.</p>
+</blockquote>
+
+<p>...what?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">thephotoman <span class="score">4</span></span>
+<div class="md"><div class="md"><p>One thing I’ve personally noticed is that moving between Mac and Linux is relatively easy. Sure, there are GNU vs. BSD gotchas, but that’s a minor annoyance. </p>
+
+<p>But switching away from Windows is a lot harder. Microsoft has done a genuinely amazing job at making most computing tasks fairly intuitive and discoverable, which causes users to become bewildered when the OS doesn’t hold their hand. Indeed, there’s a lot about the Windows user experience that simply does not map to anything else. </p>
+
+<p>For example, take Office. This is a suite of software that makes it possible for people to do common computing tasks without needing to pick up programming skills. However, when I move away from Windows, I use word processors and spreadsheets a lot less. On Macs, I will use Notes for most of the tasks I’d use Word for on Windows, and on Linux, I’ll use a text editor. On both platforms, I’ll reach for Python over a spreadsheet. </p>
+
+<p>There are a lot of assumptions fundamentally baked into Windows that most users do not see until they attempt to leave Windows.  And then they make posts like OP’s when they run up against assumptions Windows makes but other OSes don’t. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Minute-Bit6804 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>In which folder does it install to? Do all other third-party tools also have their installation folders there? Am I being unreasonable by wanting one folder where I can install all the software tools then have another folder customly named in my E partition to store all my Vitis projects?</p>
+
+<p>Here&#39;s my current setup in Windows: C:\AMDDesignTools is the installation folder for the Vitis software and E:\Xilinx is where I store my project files. Seperate partions, C is largely left alone for the OS to manage for pagefiles and installation of other third-party software while I mostly interact with other partitions.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Enturbulated_One <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Any gargantuan third-party packages (not in base system, not in distro repositories) <strong>should</strong> install under /opt.  Of course, conventions aren&#39;t worth much when not followed.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">[deleted] <span class="score">1</span></span>
+<div class="md"><div class="md"><p>[removed]</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">hadrabap <span class="score">1</span></span>
+<div class="md"><div class="md"><p>By the way, the paths are specified in freedesktop.org (incl. systemd). The &quot;core&quot; structure is so called File System Hierarchy Standard. </p>
+
+<p>Yep, the specs are a bit scatchy, but with a running system is not so difficult to grasp.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">DoubleOwl7777 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>no doubt. clicking through the gui and editing some regedit things that do god knows what felt stupid in comparison.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Extra-Possible-1489 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I am a windows convert. 3-4 years ago I moved to Linux full time. I am semi-technical, I know my way around DOS and windows, however Linux feels like a completely different beast altogether. I have seen some software saying &quot;compile from source and run that way&quot;. Most windows users are so used to having a &quot;double click softwarenamehere.exe&quot; and it just runs and works. for the most part, however alot of people are finding they don&#39;t like the way microsoft are going and are looking into Linux. And most people when looking to dip their toes into Linux will be pushed towards a user friendly distro like Ubuntu/Mint/Zorin. I am currently running Kubuntu/Bazzite myself as they fit my needs (my desktop runs Kubuntu and my Laptop runs Bazzite). When people come from windows to Linux, to begin with, they want a system that just works, they don&#39;t want to have to faff around with file systems and recovery environments and terminals and bootloaders</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">lupin-san <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Looks like someone didn&#39;t read documentation first and assumed that Linux will behave the same way as Windows.</p>
+
+<p>Applications like the ones you mentioned don&#39;t exist in repositories and provide their own installer. Read the documentation specific to the OS you need before jumping to installing. The application&#39;s documentation will tell you the requirements and any pre and post install steps you need to do.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">vkevlar <span class="score">4</span></span>
+<div class="md"><div class="md"><p>The terminal is a better introduction, to me, just because it&#39;s better to learn what the GUI tools are actually doing, than to rely on shadowy background shenanigans. </p>
+
+<p>I usually segregate out my software into something like /usr/local/software, most third-party software goes into /opt by default, and so forth, but I&#39;ve always been a little control-freaky about my computers.  Prefixes and so on help a lot there, I&#39;ve seen a lot of packages just sort of dump everything into /usr/bin or /usr/local/bin.</p>
+
+<p>Linux from Scratch is still a great tutorial for anyone wanting to know &quot;why things work on a starship&quot;, as they say.  For a more userland experience, well... you have a lot of windows and OS X imitative distros.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Minute-Bit6804 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Your answer is what I hoped for actually. That organization is also what I&#39;d want and even if I am used to it in windows, even if it won&#39;t be exactly as is, I still think it&#39;s good to be that structured whatever the file system of Linux is. </p>
+
+<p>For you to install in /opt, must you have partitioned your drive in a particular manner to have more storage space or is my question still skewed due to my windows usage?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">telmo_trooper <span class="score">5</span></span>
+<div class="md"><div class="md"><p>You might want to skim through <a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s13.html">the page about /opt</a> on the Filesystem Hierarchy Standard, that directory is where you&#39;re meant to put the software that you get from outside your package manager.</p>
+
+<p>Regarding your question about where &quot;/opt&quot; resides in your hardware, that is for you to decide. By default it&#39;s gonna be in the same partition as your root (i.e. &quot;/&quot;), but you can mount a different partition or drive at &quot;/opt&quot; just as well.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">masterpi <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I think the core of your misunderstanding is how the root filesystem and mount points work in Linux in general.  Google those terms for better results, but a quick summary:</p>
+
+<p>By default, any folder that doesn&#39;t have something mounted over top of it will just be stored on the root (/) partition.  You can choose to make any folder and all subfolders there of stored on a different partition by mounting that partition to that folder.  General convention these days is for all system and installed files to be stored on the root partition.  In the past, there were more use-cases for creating separate partitions for /usr, /usr/share, /opt, /var, etc. but generally that isn&#39;t done much anymore, at least for personal use.  Having a separate mount point for /home is probably the most common use case for a separate partition, though even that is becoming rare.  IMO the reason why is that user permissions provide a fine enough boundary for most people for your use case and sharing core folders (the older use-case) between multiple OSes or machines is rare and not as well supported as it was in the past.  And managing the space allocation by partitions has always been a pain, so why do it if there&#39;s little benefit? OS installers have also gotten better at not clobbering /home on a distro switch or reinstall which used to be a mild concern.  /home is the one separated partition case that still sort of works when shared but even then there are still interactions between /home and the OS that can go awry if you don&#39;t know what you&#39;re doing and keep it in check.</p>
+
+<p>External drives by default get mounted to subfolders of /media which is another good place to put a &quot;user data&quot; partition (even for one of the main internal HD).  Because the OS has no expectations whatsoever of the substructure of /media subfolders, it works well for keeping things truly isolated.  Because of symlinks you can also make various things from those folders easily accessible from your home folder without having to resort to fully separating the /home folder to another partition.  This is also the common pattern for using non-linuxy filesystems for a partition for sharing with Windows, etc.</p>
+
+<p>P.S. Networked drives are generally mounted in the same way so you can imagine the shenanigans you can get up to with that.  A lot of those older use cases were actually specifically for doing that when space was expensive and hard drives were slow anyway so the network may not have been the limiting factor.  This is actually the entire reason /usr/share exists, for the OS to put installed files in that are not platform dependent so they could be shared from multiple networked machines with different processor types.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">vkevlar <span class="score">2</span></span>
+<div class="md"><div class="md"><p>/opt is a mount point, you can set it up however you want.  RHEL for example tends to install third-party packages in /opt.</p>
+
+<p>edit: usually you can set a prefix or equivalent environment variable when installing, or put it in the install script, to tell things where to go.  the &quot;from source&quot; installs I usually specify it to the configure script that ships with the package, but it&#39;s all configurable manually in makefiles if you&#39;re going that way, or CMake otherwise</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">SuAlfons <span class="score">1</span></span>
+<div class="md"><div class="md"><p>There&#39;s (Wikipedia) articles on the POSIX file system for those that care.</p>
+
+<p>And &quot;Actual software installation&quot; looks different on many distros. For the most part, it is trivial on most distros targeting the desktop user.</p>
+
+<p><strong>The main problem is, people do not know enough about Windows to &quot;get&quot; the difference in the first place.</strong></p>
+
+<p>Let alone know something about disks and that they can be divided into partitions.</p>
+
+<p>The terminal is often used in How-Tos because it is the single thing that can be taken for granted on different &quot;flavours&quot; of Linux from the same family of distros. It&#39;s also the shortest way to write down something that has an effect on the system.</p>
+
+<p>Ofc you can add a printer through the Gnome, Plasma, Xfce or Cinnamon settings app. While they all look a bit different, it works the same like on Windows. The problems begin if you need to install drivers for printers that need them manually installed (welcome to terminal..)</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">ReptilianLaserbeam <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I don&#39;t quite agree, as comparison between the two different structures is what leads to confusion on end users. There are plenty of guides, wikis and documentation related to linux, it&#39;s better if a regular user translates to a popular distro and follows the on-screen &quot;tutorials&quot;, or they follow up a wiki/documentation like the Debian/Arch/Gentoo or whatever they choose to pick </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">TheOgGhadTurner <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I just want to start by saying the people making tutorials for Linux don’t care what you come from. They aren’t geared towards specific users. They are geared towards toward Linux for users that want to use Linux. </p>
+
+<p>They assume a level of experience. The entry barrier is much smaller now than it was 10 years ago. However if you want to use Linux in ways that require tutorials. You’ll want some kind of basic understanding of how an operating system works. </p>
+
+<p>If you’re trying to run programs for windows on Linux without a port for Linux I’ve discovered you’ll have a bad time. </p>
+
+<p>I instead have a dual boot of windows for the three softwares I have that require it. The thing is is there’s a translation layer and it really hurts performance if you do manage to get it working. </p>
+
+<p>My grub bootloaders has a windows entry and there is a way to set up a script to reboot directly in to windows from your Linux desktop.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Minute-Bit6804 <span class="score">2</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>I just want to start by saying the people making tutorials for Linux don’t care what you come from. They aren’t geared towards specific users. They are geared towards toward Linux for users that want to use Linux.</p>
+</blockquote>
+
+<p>Precisely the reason why I think third-party software installation should increasingly be covered. I am not insulting by saying that all the do is useless. I have benefitted alot from such. However, a great addition would be to go into third-party software installation, Software not found in the linux supported repos. Software that you have to download its setup files from a vendor website and do the whole installation manually. Information on where to do so and therefore how partitioning of the storage should be done to achieve this I think will be more than helpful. </p>
+
+<p>My motivation for example to try linux is the claim that some of the engineering software I use runs faster on average than the new windows. I am not going to find these software tools in a repo but rather from the vendor website.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">TheOgGhadTurner <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Oh, I agree and the entire Linux community also agrees but getting third-party software that’s not designed for your specific operating system to operate with your operating system is harder than it sounds. I mean the wine has been around since I think they’re on version nine now and it’s been around since before I started to get into Linux. I would imagine it’s probably been around for about as long as windows and Linux users needing to run windows programs on Linux, but now all of your windows programs use online launchers and cloud connected stuff and it’s made it that much more difficult to be able to run a Windows program without a virtual machine and if you run it through a virtual machine, you’re still splitting your system resources between Linux and your Windows virtual machine it can be done but the trade-off is just it’s kind of not worth it especially for the bigger programs like Adobe illustrator Fusion 360 stuff like that stuff that’s corporate and proprietary and locked down believe me. I agree with you wholeheartedly if I could run all of my programs on Linux , I would not be using windows however because I can’t I have to have a dual boot windows but being able to have Linux as the default operating system makes it that much easier for me to be able to accept that. I have to use Windows for some of those things.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Minute-Bit6804 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>No use of Wine actually. Installing software that runs natively on the Linux is my issue. For example, when I tune into some webinars or even in some of my classes, some of the software tools are linux versions running on linux so they&#39;re running there natively without any hyppervisors. I mentioned software tools like Cadence Virtuoso used for designing semiconductor chips. These are designed only to be installed natively on linux. You&#39;d need a linux VM on windows to install. Installing such software in linux is what I&#39;m saying is general third-party software installation on linux that&#39;s rarely covered.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">TheOgGhadTurner <span class="score">1</span></span>
+<div class="md"><div class="md"><p>If you want a fun project tho. Set up ollama. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">South_Leek_5730 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Here&#39;s my opinion.</p>
+
+<p>Why the terminal?</p>
+
+<p>In windows you have one desktop manager and one distribution that is windows itself. You write a gui to do the config and apply the config changes. You can do this on Linux of course but you just opened a huge amount of things to take into consideration. It just makes sense to have it in files and it&#39;s not that difficult. Once you learn about your distribution you pretty much know where everything is or will be. There are exceptions of course but there are also exceptions on Windows as to where something puts it&#39;s stuff.</p>
+
+<p>Then there is the raw power of the terminal and verbose outputs. You want complete control then it comes with a price and that price is learning how to control it. Having said all this there are distributions that will hand hold you as much as possible to give a windows like experience but the terminal is always there if and when you need it.</p>
+
+<p>What&#39;s wrong with folder structures?</p>
+
+<p>I would say nothing. If not sure just have a massive root partition, job done. If you are a little bit sure then have a root and home partition for the user data (recommended). Once you know what you&#39;re doing then you can have fun and segment everything off or not, that&#39;s up to you. Most distros will recommend a partition setup anyway. Don&#39;t forget your pagefile or swap partition.</p>
+
+<p>Learning Windows vs Learning Linux.</p>
+
+<p>Windows is one size fits all. Linux is not. What Linux does have is basic rules and if you want to learn it under the hood and on the hood that&#39;s what you focus on first then you learn your distributions rules and basics. If you are going to jump into tutorials on installing complex software then you need to know these first rather than just blindly following instructions and hoping for the best. There are also many occasions where you aren&#39;t just installing your software as it depends on other software it useful to understand. e.g. If it&#39;s got a web interface then it&#39;s best you understand Nginx, Apache or whatever if it&#39;s using something else to host those pages. You may need to configure the other software as well.</p>
+
+<p>Final thoughts.</p>
+
+<p>A lot of the time people that have been using windows for decades or years or whatever don&#39;t remember how long it took them to know windows inside out. If you put someone who has never used a computer before in front of Windows and ask them to install and configure complex software they will look at you like a monkey given a typewriter for the first time being asked to write Shakespeare. Don&#39;t even get me start about when things go wrong and you are fighting with the registry or conflicts (they still happen). The less I say about the state of updates and that constant ongoing fight the better.</p>
+
+<p>That&#39;s my opinion anyway and I&#39;m sure people will disagree or agree.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">darkmemory <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I disagree. </p>
+
+<p>The terminal forces you to engage with the directory structure. It teaches where things live, it gives you tools to hint at &quot;proper&quot; usage. It&#39;s not a requirement, but in terms of learning linux, those classes tend to be more about introducing computing from what I&#39;ve seen. Linux in itself can be intuitive to users who already have experience, and the expectation regarding divergence from whichever system one comes from, is to seek documentation or tutorials specific to that situation.</p>
+
+<p>Linux doesn&#39;t need to be divided by letter drive, you can just have your directories on different drives as you want. It&#39;s meant to be customizable, and with that comes a level of overhead that means you have to think about what you need and do a bit of planning. If you find out you want something else, then change it. Resize your partitions, move things around. </p>
+
+<p>If you want to install something, use a repo. Distro first, otherwise something like flathub. These repos act as mechanisms that allow you to not have to specially compile your code to work, and offers some reassurance that your distro will correctly bundle packages it needs. If it&#39;s not in a repo, and it&#39;s something that a threshold number of people use, the site you find the code on should have instructions on how to install it, otherwise potentially someone else will have written a guide on how to do it. Even random git repos tend to have installation guides on them. </p>
+
+<p>You can choose to diverge from common usage, and take unbeaten trails, but asking to be catered to while you do it seems a bit over the top.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">shilohlukich <span class="score">1</span></span>
+<div class="md"><div class="md"><p>My personal opinion: It would be nice to have a GUI similar to control panel (yes, I know about YaST, but that&#39;s for a SUSE system only afaik), but a terminal is going to be very similar between all linux distros, which is why it&#39;s easier to learn the terminal instead of doing things through a GUI (and you&#39;ll eventually learn the GUI is literally just a frontend for commands run in a terminal). Also, with installing software that isn&#39;t available in a repository, there&#39;s a bunch of reasons as to why it&#39;s not something that can really be standardized. There&#39;s differences in your display environments, differences in where people want to install software, what flags they want to use, and more. That&#39;s why stuff like flatpak and snaps exist, it fulfills the standardization of installing software between linux systems. I would say, if you really wanted to learn and try to automate software installation, you could try and create a package for that software for your system. Fedora/RHEL it&#39;s pretty easy, same with an arch package. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">JumpyJuu <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I like your perspective on the subject.</p>
+
+<p>I feel like I&#39;ve included things like this in my own <a href="https://github.com/GitJit-max/learning-linux">linux tutorial</a>. But I&#39;d love to get some feedback on whether you feel the same way or if you would suggest any changes or additions?</p>
+
+<p>Which of the applications you use do you think might be of interest to other readers? I could add it as an example in the section where I introduce different ways to install applications.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Minute-Bit6804 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Hey, this is a really great reference. Feel very much appreciated. I&#39;ll check it out, those 200 pages should&#39;t take me long</p>
+
+<blockquote>
+<p>Which of the applications you use do you think might be of interest to other readers? I could add it as an example in the section where I introduce different ways to install applications.</p>
+</blockquote>
+
+<p>I think something that is freely availabe with no licenses should work. The one that comes to my head is STM32cubeIDE. Where you&#39;d recommend to install, any setting up of icons/shortcuts and also how to launch the software. Thank you</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">hotcornballer <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Start with <a href="https://nixos.org/manual/nixos/stable/">https://nixos.org/manual/nixos/stable/</a> it&#39;s super easy /s</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">felipec <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It&#39;s actually really simple: linux is not like Windows. You cannot expect a tutorial on how to make linux work like Windows because the whole tutorial will be: &quot;you can&#39;t&quot;. That&#39;s it.</p>
+
+<blockquote>
+<p>There&#39;s no mention of where actual third-party software install</p>
+</blockquote>
+
+<p>Because that question makes no sense.</p>
+
+<hr/>
+
+<p>I would gladly write an article in my blog explaining why most of what you wrote makes no sense in linux, but it wouldn&#39;t matter because most Windows emigrants do not want to read or learn anything.</p>
+
+<p>Linux requires you to learn how things work on linux. If you don&#39;t want to learn, then just use the package manager and don&#39;t install third-party software.</p>
+
+<p>And by the way, you can install MATLAB and all those tools you mentioned on Arch Linux properly through the package manager: <a href="https://aur.archlinux.org/packages/matlab">matlab</a>, <a href="https://aur.archlinux.org/packages/vitis">vitis</a>, <a href="https://aur.archlinux.org/packages/quartus-free">quartus-free</a>.</p>
+
+<p>At the end of the day it boils down to: do you want to learn how to do things properly or not?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">DoktorLuciferWong <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I exclusively used the terminal when switching to linux for the first time. When you want to do something, there&#39;s usually one way to do it via a command (or series of commands), but there might be more than one gui app for some task, and each one might change their gui over time.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">hobo_stew <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>In windows, software installs by default in the C drive which I think is good to keep those installation files seperate and less prone to being tampered with. User files like project files of the installed software are then stored in other partitions. Therefore, when installing the Windows OS, you are thinking of how much space to allocate to the C drive based on your projected third-party software installation.</p>
+</blockquote>
+
+<p>most people have everything on the C drive</p>
+</div></div></div>
+</body></html>

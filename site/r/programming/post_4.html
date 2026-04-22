@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Highlights from Git 2.54</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>Highlights from Git 2.54</h2>
+<span class="meta">by Skaarj | <span class="score">228</span> points</span>
+<p><a href="https://github.blog/open-source/git/highlights-from-git-2-54/">https://github.blog/open-source/git/highlights-from-git-2-54/</a></p>
+<h3>39 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">olejorgenb <span class="score">72</span></span>
+<div class="md"><div class="md"><p>Reword should really take a commit range. Hope they add this. Then I can retire my small adhoc tool.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">mcpower_ <span class="score">37</span></span>
+<div class="md"><div class="md"><p><a href="https://docs.jj-vcs.dev/latest/cli-reference/#jj-describe">jj&#39;s <code>describe</code> command</a> allows you to take a commit range (<a href="https://docs.jj-vcs.dev/latest/revsets/">and more!</a>), and opens an editor with all of the commit messages simultaneously.</p>
+
+<p>In fact, jj was the inspiration for the split and reword commands! From <a href="https://lwn.net/Articles/1057561/">https://lwn.net/Articles/1057561/</a> :</p>
+
+<blockquote>
+<p>One area of Git that tends to draw plenty of complaints is its user interface, [Patrick Steinhardt] said. […] Recently, Git has had competition in the form of the <a href="https://jj-vcs.dev">Jujutsu</a> version-control project that has made the Git project take a hard look at what it is doing. […]</p>
+
+<p>[However], Git is old: the project cannot simply completely revamp its UI and break users&#39; workflows. There are some things that Git can steal from Jujutsu, though. […]</p>
+
+<p>This includes two new commands, planned for Git 2.54, &quot;<code>git history split</code>&quot; and &quot;<code>git history reword</code>&quot;. Future releases will have more history-editing subcommands and learn more from Jujutsu.</p>
+</blockquote>
+
+<p>Patrick Steinhardt, the author of the new commands, wrote more about them in <a href="https://about.gitlab.com/blog/whats-new-in-git-2-54-0/#easier-editing-of-your-commit-history">GitLab&#39;s &quot;What&#39;s new in git 2.54.0?&quot; blog post</a>.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Hot-Employ-3399 <span class="score">57</span></span>
+<div class="md"><div class="md"><p>What would be really good if they threw away a word salad they call &quot;documentation&quot; and rewrote it from scratch </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Sairony <span class="score">38</span></span>
+<div class="md"><div class="md"><p>25 years ago when I started programming I went with PHP, already at that point they had a comment section on the documentation for every single function. I remember it was always incredible, because the holes &amp; details that were missed by whomever did the documentation got filled in there, that&#39;s where a lot of the good information with code snippets were. 25 years later today I&#39;m still reading all this subpar documentation which is poorly communicated &amp; wish there was these community added notes.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">blackwhattack <span class="score">10</span></span>
+<div class="md"><div class="md"><p>in an ideal world they&#39;d open PRs no?</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">lelanthran <span class="score">1</span></span>
+<div class="md"><div class="md"><p>No.</p>
+
+<p>PRs (to update the help pages) won&#39;t capture the full nuance and explanations in the comments.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">blackwhattack <span class="score">3</span></span>
+<div class="md"><div class="md"><p>well in an ideal world the PRs would capture the nuance... i realize you may be right in our world </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">mr-figs <span class="score">7</span></span>
+<div class="md"><div class="md"><p>The PHP and laravel docs are some of the best I&#39;ve seen.</p>
+
+<p>Well laid out, lots of examples and no rambling </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">you-get-an-upvote <span class="score">29</span></span>
+<div class="md"><div class="md"><p>Imo you shouldn’t write documentation from scratch for <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">all the same reasons you shouldn’t write code from scratch</a>.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Anthony356 <span class="score">45</span></span>
+<div class="md"><div class="md"><p>That sorta falls apart at the first hurdle. Reading documentation is <em>absolutely</em> easier than writing documentation. </p>
+
+<p>Imo the git docs&#39; biggest problem is a lack of &quot;why&quot;, and a tacit assumption that everyone is as familiar with git as the writer. The writer seemingly wrote it for themselves, not for someone trying to learn git. That&#39;s unfortunately a <em>very</em> common stumbling block whenever anyone teaches anything. You need to remember to meet your audience where <em>they</em> are, because otherwise it just becomes nonsense.</p>
+
+<p>I&#39;ll freely admit i&#39;m not familiar with git at all. I&#39;ve memorized the handful of commands necessary to contribute to the oss projects i need to. Every time i look at the git docs it feels like a waste of time. Here&#39;s an example (<a href="https://git-scm.com/docs/git-cherry-pick">git cherrypick</a>, chosen because i&#39;ve heard of it but have never used it and dont know what it&#39;s for):</p>
+
+<blockquote>
+<p>Given one or more existing commits, apply the change each one introduces, recording a new commit for each. This requires your working tree to be clean (no modifications from the HEAD commit).</p>
+</blockquote>
+
+<p>This is 100% meaningless to me. If you already have the commit, why would you need to &quot;apply&quot; the changes? Arent they already applied? Isnt that what a commit does? </p>
+
+<p>And what do they mean by &quot;apply&quot;? Modify the file? How do you modify a file that already has the change? How do you record a new commit when the files wont have any changes because the change was already made in the commit that you&#39;re trying to cherry pick in the first place?</p>
+
+<p>Those of you in the know probably think i&#39;m a big idiot. Which is fair, I am. But also, consider: 5 seconds of googling outside the docs points out that this is an operation that involves <em>multiple branches</em>. Why is that not mentioned first and foremost in the docs? Not every command involves multiple branches. It is an essential part of this command. Not everyone knows which commands do/dont involve multiple branches. Thus you should make that information clear. A better wording might be:</p>
+
+<p>&quot;Given one or more commits from one branch, &#39;transplant&#39; them to the working branch. Each given commit is recorded as a new commit in the working branch. The original commit(s) and the branch they came from remain unchanged.&quot;</p>
+
+<p>It&#39;s not perfect but it&#39;s a lot more clear what it does and a lot more intuitive why you&#39;d want to use it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">SanityInAnarchy <span class="score">10</span></span>
+<div class="md"><div class="md"><p>I&#39;d argue that if five seconds of googling gives you a better introduction, maybe this doc is serving its purpose as <em>reference material.</em> In fact, on the left sidebar, it&#39;s clearly under the &quot;reference&quot; section. So, if I already know what cherry-picking is, this is where I go to find options like <code>-e</code> or <code>-x</code> to modify the new commit message, for example.</p>
+
+<p>Along that same left sidebar is a clear link to <a href="https://git-scm.com/learn">this &quot;learn&quot; section</a>, which includes <a href="https://git-scm.com/cheat-sheet">this cheat sheet</a>, which has an <em>illustration</em> of what cherry-picking does, along with the description &quot;Copy one commit onto the current branch&quot;.</p>
+
+<p>The reference docs are genuinely useful, but they were the wrong part of the documentation for what you were trying to do. For someone &quot;not familiar with git at all&quot;, you really do want the &quot;learn&quot; part more often than the &quot;reference&quot; part.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">_bstaletic <span class="score">5</span></span>
+<div class="md"><div class="md"><p>It sounds like your problem with git&#39;s documentation is that it&#39;s a reference documentation, rather than a user manual. That&#39;s the same issue I had with cmake&#39;s documentation until I got past the learning curve (beyond just getting by).</p>
+
+<p>Re-read the documentation excerpt that you have quoted and you&#39;ll see that it is both precise and accurate, but assumes the reader is familiar with some terms.</p>
+
+<p><a href="/u/stormdelta">/u/stormdelta</a> already explained that &quot;multiple branches&quot; can be wrong. Another example is when you do <code>git checkout $COMMIT_HASH</code> and end up in a &quot;detached HEAD&quot; state, but we can take the wrongness way further (spoilers below).</p>
+
+<p>If you re-read your proposed wording, it&#39;s much easier to read, but no longer fits the reference documentation language.</p>
+
+<p>&nbsp;</p>
+
+<p>Back to cmake, today it also has a fairly good tutorial, accompanying the reference documentation. Another example is vim. Most of its <code>:help</code> is reference docs, but it also has <code>:help user-manual</code> and <code>:help new-user-manual</code>. Would git benefit from an official user manual? Possibly. I&#39;d say definitely, if &quot;<a href="https://shafiul.github.io/gitbook/index.html">The Git Book</a>&quot; didn&#39;t exist.</p>
+
+<p>[EDIT] There&#39;s also <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git User Manual</a>, which I was unaware of until 10 seconds ago.[/EDIT]</p>
+
+<p>&nbsp;</p>
+
+<p>Spoilers: <span class="md-spoiler-text">First a quick crash course on git internal data structures. It only knows 4 types: blobs (files), trees (directories), commits and tags. Notice that branches aren&#39;t mentioned at all. Branches are just, to the first approximation, pointers to commits. You <em>can</em> work with git without ever touching a single branch. You&#39;d be constantly working in the detached HEAD state and would be juggling commit hashes, but <code>git log --graph</code> and <code>git reflog</code> are your friends.</span></p>
+
+<p>We can go further (here be dragons): <span class="md-spoiler-text">Turns out that <code>git commit</code> is a high-level command. It does a few things:</span></p>
+
+<ul>
+<li><span class="md-spoiler-text">Recursively records blobs and trees (in <code>.git</code> directory) based on your staging area.</span></li>
+<li><span class="md-spoiler-text">Adds a new commit object as a child of the currently checked out commit.</span></li>
+<li><span class="md-spoiler-text">if not in a detached HEAD state, updates the current branch to point to the new commit.</span></li>
+<li><span class="md-spoiler-text">Updates HEAD to point to the new commit.</span></li>
+</ul>
+
+<p><span class="md-spoiler-text">Turns out that you can do all these things completely manually, using only POSIX tools (windows users, ask someone else for help):</span></p>
+
+<ul>
+<li><span class="md-spoiler-text">Instead of storing files, use <code>echo</code>/<code>cat &lt;&lt;EOF</code>, gzip and some pipes, to record file contents in your <code>.git/objects</code>.</span>
+
+<ul>
+<li><span class="md-spoiler-text">To then read the files, use <code>git cat-file</code>.</span></li>
+</ul></li>
+<li><span class="md-spoiler-text">Instead of storing directories, use <code>git mktree</code> directly.</span>
+
+<ul>
+<li><span class="md-spoiler-text">You could use POSIX tools to write to <code>.git/objects</code> here as well.</span></li>
+</ul></li>
+<li><span class="md-spoiler-text">Now that you have a tree, commit it with <code>git commit-tree</code>.</span>
+
+<ul>
+<li><span class="md-spoiler-text">Once again, possible with POSIX tools and <code>.git/index</code></span></li>
+</ul></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>My point is that reference documentation should not assume branches and files exist unless absolutely necessary. However, a good user manual is invaluable. No, I don&#39;t think any git user needs to know what is <code>git mktree</code>, but I do think that understandingn git&#39;s object model makes a ton of other things almost trivial to understand.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">chat-lu <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>trees (directories)</p>
+</blockquote>
+
+<p>Git famously does <em>not</em> have directories. Trees are full paths to where the blobs are. That’s why git will not commit an empty directory and you must use a <code>.gitkeep</code> file (or some other name). Directories are created as a side effect of putting the blobs at the path where they are supposed to go.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">stormdelta <span class="score">8</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>But also, consider: 5 seconds of googling outside the docs points out that this is an operation that involves multiple branches. Why is that not mentioned first and foremost in the docs? Not every command involves multiple branches</p>
+</blockquote>
+
+<p>I won&#39;t deny that git&#39;s documentation is bad, but in this case &quot;multiple branches&quot; should only be brought up as an example use case.</p>
+
+<p>A branch is just an automated label we stick on a pile of commits. You can cherry-pick a commit from anywhere, including from the current branch&#39;s own history, e.g. to partially undo a revert.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Anthony356 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Wait you mean like <code>git reset --soft &lt;commit&gt;</code> -&gt; <code>git cherry-pick &lt;stuff that&#39;s after the commit i reset to</code>? If so that&#39;s really cool.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">ForeverAlot <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Probably not with <code>--soft</code> because <code>cherry-pick</code> requires a clean working tree. But yes, you can rewind <code>HEAD</code> to a topologically earlier state, then <code>cherry-pick</code> a topologically later commit (and attempting to do so may or may not apply cleanly, according to usual conflict resolution). This is comparable to interactively rebasing onto an earlier commit, then dropping all commits but the desirable one.</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">ForeverAlot <span class="score">2</span></span>
+<div class="md"><div class="md"><p>A related fun trick is</p>
+
+<pre><code>git -C a/ format-patch -1 --stdout cafed00d | git -C b/ am
+</code></pre>
+
+<p>which transplants commit <code>cafed00d</code> from one repository to another without an intermediary file. Obviously that, too, can be used in a sinle repository, in which case it degenerates to an overengineered <code>cherry-pick</code>.</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">_bstaletic <span class="score">1</span></span>
+<div class="md"><div class="md"><p>That&#39;s a nice trick. I would have done that this way:</p>
+
+<pre><code>cd b
+git remote add a ../a
+git fetch a
+git cherry-pick cafebabe
+</code></pre>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">chat-lu <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I started using git shortly after it was created and back then we had a lot of people doing videos and blog articles and more about how git worked internally. Git users were familiar with blobs, trees, commits, deltas, etc. And once you were familiar with those, the rest made sense. These days, it’s much, much harder to learn git because its fundamentals are no longer taught as they used to. You can learn them, but you’ll have a harder time than I had 20 years ago.</p>
+
+<p>And unfortunately git is built around the assumption that you understand its fundamentals because if you don’t, then you will build a mental model that will be inaccurate and that will bite you in the ass later.</p>
+
+<p>The simpler definition that you wrote is technically false, but will work most of the time. Until it trips you up because of its assumptions.</p>
+
+<p>Something else we seem to have forgotten from back then is that Linus didn’t intend to build a version control system, he was kinda forced to. He meant to write a versioned filesystem because he said that he was a kernel guy and filesystem is what he knew, and others would come build a version control system on top of it. It didn’t happen at the time.</p>
+
+<p>But it did now. Jujutsu (jj) which has been mentionned elsewhere in this thread is my favorite. It’s both much simpler, and more powerful than git, while being fully compatible with any git forge.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">lanerdofchristian <span class="score">2</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>It&#39;s not perfect but it&#39;s a lot more clear what it does and a lot more intuitive why you&#39;d want to use it.</p>
+</blockquote>
+
+<p>IMO the existing docs are more clear. A commit is a set of changes, thus applying changes naturally follows (this becomes a new set of changes relative to HEAD).</p>
+
+<p>What&#39;s missing from your rewording is that the new commits are not necessarily the <em>same</em> sets of changes -- if the change already happened, it gets dropped from the new commit (this may require resolving conflicts). I would not call that &quot;transplanting&quot;.</p>
+
+<p>What I&#39;d say is really missing are:</p>
+
+<ol>
+<li>Better declarations of assumptions in the examples.</li>
+<li>A linked tutorial or extra paragraphs beneath the technical summary explicitly explaining one or two common uses to beginners.</li>
+</ol>
+
+<hr/>
+
+<blockquote>
+<p>But also, consider: 5 seconds of googling outside the docs points out that this is an operation that involves multiple branches.</p>
+</blockquote>
+
+<p>The next two lines of the documentation imply that it can be used in a multi-branch way:</p>
+
+<blockquote>
+<p>When it is not obvious how to apply a change, the following happens:</p>
+
+<ol>
+<li>The current branch and HEAD pointer stay at the last commit successfully made.</li>
+</ol>
+</blockquote>
+
+<p>The multiple references to <code>git merge</code>&#39;s behavior (in bullet 4 and the paragraph at the end of the description) may also be an indicator.</p>
+
+<blockquote>
+<p>Why is that not mentioned first and foremost in the docs?</p>
+</blockquote>
+
+<p>Because it&#39;s not completely accurate. <code>cherry-pick</code> isn&#39;t limited to just changes from <em>other</em> branches -- if a change in the same branch were to be partially reverted (say, because of merge conflicts fixed incorrectly), cherry-picking could be used to restore it. All it does is take sets of changes and make them happen again wherever you&#39;re working.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">you-get-an-upvote <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>The comment I was responding to was advocating throwing away all existing documentation and rewriting it all from scratch. Not just claiming that the documentation can be improved.</p>
+
+<p>The fact that you can point to documentation that is confusing to you doesn’t make throwing away all existing documentation any less ludicrous.</p>
+
+<p>If I’ve learned anything in my 9 years in industry, it’s that incremental improvements to a system are always a better option than a from-scratch rewrite. From-scratch rewrites inevitably take far longer than anyone expected, are never truly seen to the end, and frequently don’t even result in a clearly better product for the parts that are completed.</p>
+
+<p>I encourage you to take a guess at how many commits it has taken to get to the current state of git documentation, and then compare your guess to the actual number. It has taken a lot of work to get git documentation to the state where it is today, so “just throw it away and rewrite it all” is an insane suggestion.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Anthony356 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>The thing with writing is that incremental isnt always the right answer. I guess the best analogy is how optimizing algorithms fail due to local maximums?</p>
+
+<p>The current words on the page are a baseline that skew all further edits. Sometimes no matter how much you edit, your fundamental premise is bad. Clearing the slate makes way for a completely different angle that wouldn&#39;t have made sense from the old position.</p>
+
+<p>I&#39;m not saying i think they should literally throw all the documentation in the garage but they need to take that mentality because incrementalism has led them to a state where their own reference documentation doesn&#39;t mention the state in which a command is supposed to be used. You can also throw away small pieces and completely rewrite those over time based on a new standard.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">phillipcarter2 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>What are you talking about? Git&#39;s docs are amazing, they&#39;ve created an entire industry of &quot;better docs for git&quot; and employed countless people. Do you hate job creation? :)</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">habarnam <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Do you mean something like <a href="https://jvns.ca/blog/2026/01/08/a-data-model-for-git/">this</a>?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">case-o-nuts <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You could also contribute fixes to the docs.</p>
+
+<p><a href="https://jvns.ca/blog/2026/01/08/a-data-model-for-git/">https://jvns.ca/blog/2026/01/08/a-data-model-for-git/</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">phillipcarter2 <span class="score">6</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>git history</p>
+</blockquote>
+
+<p>jj cultural victory achieved</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Skaarj <span class="score">8</span></span>
+<div class="md"><div class="md"><p>How is the new hook feature not an obvious security failiure?</p>
+
+<p>Am I missing something obious? To me this reads like the most trivial way to create a malicious git repo ever.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">masklinn <span class="score">23</span></span>
+<div class="md"><div class="md"><p>It’s not materially any different than setting <code>core.hookPath</code> was before: either way you have to configure the repository, it can not be configured by a remote. </p>
+
+<p>The big risk is unwittingly unpacking a working copy from an archive, but I don’t see this as making that case any worse, because then what you want to do is configure <code>fs.monitor</code> so that anyone with p10k or similar triggers your payload as soon as they cd in.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Skaarj <span class="score">-9</span></span>
+<div class="md"><div class="md"><p>But it says </p>
+
+<blockquote>
+<p>. Since this is just configuration, it can live in ... or in a repository’s local config. </p>
+</blockquote>
+
+<p>So it is in a file created by cloning a repo?</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Sentreen <span class="score">17</span></span>
+<div class="md"><div class="md"><p>The local config is individual to each copy of the repository afaik.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Jestar342 <span class="score">-12</span></span>
+<div class="md"><div class="md"><p><del>Incorrect. It&#39;s part of the git config ecosystem that can be system (/etc/gitconfig), global (~/.gitconfig) or local (:/.gitconfig)</del></p>
+
+<p><del>local can be pushed like any other file.</del></p>
+
+<p>e: I&#39;m a wally.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">Akeshi <span class="score">11</span></span>
+<div class="md"><div class="md"><p>I wonder why you&#39;d write this three times when it&#39;s wrong.</p>
+
+<p>The paths searched for git config files are listed in the first section of <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration">https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">parkotron <span class="score">12</span></span>
+<div class="md"><div class="md"><p>The local repository’s config is local to that repository. It is not pushed to or pulled from the remote.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Jestar342 <span class="score">-17</span></span>
+<div class="md"><div class="md"><p><del>Incorrect. It&#39;s part of the git config ecosystem that can be system (/etc/gitconfig), global (~/.gitconfig) or local (:/.gitconfig)</del></p>
+
+<p><del>local can be pushed like any other file.</del></p>
+
+<p>e: I&#39;m a wally.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">masklinn <span class="score">3</span></span>
+<div class="md"><div class="md"><p>It is in a file created by the <code>clone</code> operation, it is not controlled by the remote being cloned.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Jestar342 <span class="score">-13</span></span>
+<div class="md"><div class="md"><p><del>Incorrect. It&#39;s part of the git config ecosystem that can be system (/etc/gitconfig), global (~/.gitconfig) or local (:/.gitconfig)</del></p>
+
+<p><del>local can be pushed like any other file.</del></p>
+
+<p>e: I&#39;m a wally.</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">masklinn <span class="score">11</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>Incorrect. It&#39;s part of the git config ecosystem that can be system (/etc/gitconfig), global (~/.gitconfig) or local </p>
+</blockquote>
+
+<p>You have a very strange definition of the word “incorrect”. </p>
+
+<p>Also you forgot <code>$XDG_CONFIG_HOME/git/config</code> but that’s a minor issue. </p>
+
+<blockquote>
+<p>local (:/.gitconfig)</p>
+</blockquote>
+
+<p>A repository’s local configuration is in <code>$GIT_DIR/config</code> (where <code>$GIT_DIR</code> is generally <code>.git</code>)</p>
+
+<blockquote>
+<p>local can be pushed like any other file.</p>
+</blockquote>
+
+<p><code>.git/config</code> can’t even be staged, git will straight up ignore you. </p>
+
+<p>If you are a massive idiot you can <code>include.path</code> a file from your repository in your config. But that’s got nothing to do with git’s defaults. And it still requires an explicit opt into sheer stupidity.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">datnetcoder <span class="score">-3</span></span>
+<div class="md"><div class="md"><p>lol at downvotes for asking a legitimate question. The StackOverflow angst had to go _somewhere_.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">radozok <span class="score">-8</span></span>
+<div class="md"><div class="md"><p>There is a jj managed config rfc for this reason </p>
+</div></div></div>
+</body></html>

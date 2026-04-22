@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>GRUB</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>GRUB</h2>
+<span class="meta">by Business-Cap-9530 | <span class="score">15</span> points</span>
+<img src="https://i.redd.it/xzicmxbzyewg1.jpeg" alt="">
+<div class="md"><!-- SC_OFF --><div class="md"><p>solo me sale uefi firmware settings tengo dual boot con Arch alguien sabe que hize mal?</p>
+</div><!-- SC_ON --></div>
+<h3>8 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">anh0516 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Did you run <code>grub-mkconfig</code>?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Business-Cap-9530 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Si bueno tengo un dual boot con Arch estoy intentando que arranque ambos pero ahora no me aparece gentoo al inciar y Arch creo que se rompió me pone letras en negras y al final end kernel panic no se que hacer</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">GrouchyBid3165 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Okay so maybe you didnt run grub-mkconfig or you installed everything outside of chroot which is very unlikely if you actually read the handbook manual (especially if you manually installed arch).</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">EveryonesFriend <span class="score">1</span></span>
+<div class="md"><div class="md"><p>This can happen if you don&#39;t run grub-mkconfig, but can also happen if you run grub-mkconfig but haven&#39;t installed installkernel</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Business-Cap-9530 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>No no si lo hize y en chroot algo se me a de aver pasado </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">EveryonesFriend <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Boot with a flash drive and take a look at your gentoo partition. There should be a vmlinuz file in /boot, if there&#39;s not you need to install your kernel. If it is there, then grub-mkconfig is not finding it automatically.</p>
+
+<p>If there is a kernel but no grub menu entry, you can try loading it from the grub console. I can&#39;t remember the exact steps but if you search around for grub console load linux kernel you can find some guides. If you are able to do that, you can try loading your arch partition that way, or write grub menuentries manually if they aren&#39;t properly autodetecting</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Puzzleheaded-Sale207 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i had like the same issue where vmlinuz was missing because my i had a custom kernel with different parameters and i fixed it with 2 custom entries again with arch linux and gentoo. same issues, like the same kernel panic, the same problems and i just fixed it.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">EveryonesFriend <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Yeah gentoo&#39;s grub script looks for a kernel with a specific name format like vmlinuz-&lt;kernel version&gt;-gentoo, if it is customized or just named &quot;vmlinuz&quot; the grub script in 10_linux may not find it, but you can add it manually to 40_custom</p>
+
+<p>Btw, I looked at your old post about it, and if you&#39;d like to have your gentoo and arch show above uefi on your grub menu, you can rename 40_custom to 15_custom and rerun grub-mkconfig. The numbering is just used to force the order; grub loads them in sorted order by filename :)</p>
+</div></div></div>
+</body></html>

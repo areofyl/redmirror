@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Should I mount ESP (boot) partition?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Should I mount ESP (boot) partition?</h2>
+<span class="meta">by InternalEffort1341 | <span class="score">3</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>I’m installing Gentoo via the “minimal installation” media (not the “live GUI”). I just created my partitions with  their respective filesystems:</p>
+
+<pre><code>/dev/nvme0n1p1 (EFI system) # “EFI system partition” (ESP) = the boot partition
+/dev/nvme0n1p2 (Linux swap)
+/dev/nvme0n1p3 (Linux root) 
+</code></pre>
+
+<p>Then I activated the swap partition with <strong>swapon</strong>. Now it’s time to create mount points for the root partition <strong>(/dev/nvme0n1p3)</strong> and the <strong>efi</strong> (boot) partition <strong>(/dev/nvme0n1p1)</strong>. </p>
+
+<p>The Gentoo Handbook gives commands for creating the root partition’s mount point and mounting the partition immediately afterward. </p>
+
+<p>After this, the handbook adds, “for EFI installs only, the ESP should be mounted under the root partition location”…  and gives the command only for creating the mount point for the ESP partition. Thus, the commands are given in exactly this order:</p>
+
+<pre><code>mkdir --parents /mnt/gentoo# create root mount point 
+mount /dev/nvme0n1p3 /mnt/gentoo#mount root partition 
+mkdir --parents /mnt/gentoo/efi# create ESP mount point inside root mount point 
+</code></pre>
+
+<p>Unlike the root partition, the handbook does not say to mount the ESP partition, but it does say “Continue mounting additional (custom) partitions as necessary using the mount command.”</p>
+
+<p><strong>QUESTION</strong>: Should I mount the ESP (boot) partition at this point? </p>
+
+<p>This is my second attempt at installing Gentoo following the handbook. The first time, I went ahead and mounted the ESP partition even though the command isn’t given explicitly because we’re told to keep “mounting additional (custom) partitions…” I did the following right after the three commands above: </p>
+
+<pre><code>mount /dev/nvme0n1p1 /mnt/gentoo/efi    # mount ESP (boot) partition
+</code></pre>
+
+<p>There was nothing else for me to mount. I kept going, following the handbook, until I reached the chroot stage, when I entered:</p>
+
+<pre><code>chroot /mnt/gentoo /bin/bash
+</code></pre>
+
+<p>and got the response:</p>
+
+<pre><code>bash: cd: root: No such file or directory 
+</code></pre>
+
+<p>...which is why I’m trying this again and asking for your advice. I’ve looked elsewhere in the handbook, searched elsewhere online, and haven’t found an answer. </p>
+
+<p>Thank you in advance.</p>
+</div><!-- SC_ON --></div>
+<h3>3 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">krumpfwylg <span class="score">4</span></span>
+<div class="md"><div class="md"><blockquote>
+<p><strong>QUESTION</strong>: Should I mount the ESP (boot) partition at this point?</p>
+</blockquote>
+
+<p>Mounting the /efi comes after the chroot - section 1.4 <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Base#Preparing_for_a_bootloader">https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Base#Preparing_for_a_bootloader</a> </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">InternalEffort1341 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Thank you for replying!</p>
+
+<p>I did see what you linked to and am confused as to why the handbook, in the previous section, says to create the EFI mount point inside /mnt/gentoo/ :</p>
+
+<p><em>&quot;For EFI installs only, the ESP should be mounted under the root partition location:&quot;</em></p>
+
+<pre><code>mkdir --parents /mnt/gentoo/efi
+</code></pre>
+
+<p>And then, in the &quot;Mounting the Root Partition&quot; section it says:</p>
+
+<p>&quot;<em>For UEFI systems, /dev/sda1 was formatted with the FAT32 filesystem and will be used as the EFI System Partition (ESP). Create a new /efi directory</em> <strong><em>(if not yet created)</em></strong><em>, and then mount ESP there:</em> &quot;</p>
+
+<pre><code>mount /dev/sda1 /efi
+</code></pre>
+
+<p><a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Disks#Mounting_the_root_partition">https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Disks#Mounting_the_root_partition</a></p>
+
+<p>It says &quot;<em>if not yet created.</em>&quot; Doesn&#39;t the <strong>/mnt/gentoo/efi</strong> directory created in the previous section count? This is what I don&#39;t understand. I thought I had mistakenly mounted EFI too soon, and before I had a chance to try to deal with the second directory confusion, things came to halt after I entered                        </p>
+
+<p><code>chroot /mnt/gentoo /bin/bash</code> and was stopped in my tracks. </p>
+
+<p>Did my mounting EFI in /mnt/gentoo/efi before the instructions to do so in /dev/</p>
+
+<pre><code>bash: cd: root: No such file or directory response:
+    bash: cd: root: No such file or directory 
+</code></pre>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">LameBMX <span class="score">1</span></span>
+<div class="md"><div class="md"><p>reality. it doesnt matter when you mount the efi or boot dirs. it just has to be before creating a kernel image/installing &amp; configuring the bootloader.</p>
+
+<p>And then, in the &quot;Mounting the Root Partition&quot; section it says:
+&quot;For UEFI systems, /dev/sda1 was formatted with the FAT32 filesystem and will be used as the EFI System Partition (ESP). Create a new /efi directory (if not yet created), and then mount ESP there: &quot;
+mount /dev/sda1 /efi</p>
+
+<p>thats a good time to mount it. and kind of conflicts with your post, and thats kinda how I recalled it. I got hung up if it should be caps or lowercase lol.</p>
+
+<p>just a duplicated instruction. but should highlight the importance it needs to be mounted. if you install stuff that goes into efi (or boot) and THEN mount the partition. the kernel images and bootloader will have been hidden and on the wrong filesystem, breaking the ability to boot. though easy enough to fix. </p>
+
+<p>lastly, what was the halt when you got to chroot? did you remember to mount all the loop devices so chroot has a computer to run?</p>
+</div></div></div>
+</body></html>

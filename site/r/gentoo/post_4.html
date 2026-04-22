@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Firefox compiling failed in the end T-T</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Firefox compiling failed in the end T-T</h2>
+<span class="meta">by RejonaldoGato | <span class="score">11</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p><a href="https://preview.redd.it/ab5el8idukwg1.png?width=980&amp;format=png&amp;auto=webp&amp;s=25e727349c75be3e3206e5aeae76d38ef59130f4">That is the end of build.log, the entire log is more than 46000 lines long</a></p>
+
+<p>This is the emerge --info &#39; =www-client/firefox-140.9.1::gentoo&#39; command output <a href="https://bpa.st/U6CA">https://bpa.st/U6CA</a> im running in a vm(oracle)</p>
+</div><!-- SC_ON --></div>
+<h3>31 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">LcLz0 <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Need a bit more of the lines above in the build log. It also looks like your encodings are a bit broken, are you seeking broken fonts and characters in other places as well?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>i dont know, i just have i3, terminal xterm and btop as graphical softwares installed and the fonts are ok, about fonts, i rebember installing corefonts, and metafonts, something like this, and xorgfonts.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ExcellentRuin8115 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>If he already installed fonts then maybe OP didn’t set utf-8 and that is making him unable to see ansi colors through escape codes.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">varsnef <span class="score">2</span></span>
+<div class="md"><div class="md"><p>It&#39;s fine. That is how they are when viewing the build log.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>how do i check that ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">varsnef <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Do you have enough memory in the vm? I would check the log for it being killed.</p>
+
+<pre><code>grep -E -i &#39;killed|terminated&#39; build.log
+</code></pre>
+
+<p>if that does not show anything then send the last part of the log to a pastebin</p>
+
+<pre><code>tail -c 500k build.log | curl -F &#39;_=&lt;-&#39; https://paste.gentoo.zip
+</code></pre>
+
+<p>it should give you a URL to share the log</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>sorry for the delay this is my grep -E -i &#39;killed|terminated&#39; build.log <a href="https://imgur.com/a/roL7Vig">https://imgur.com/a/roL7Vig</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">varsnef <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Ok, you ran out of RAM in the VM and the kernel stopped the compilation.</p>
+
+<p>You can give the VM more RAM or reduce the number of jobs the compilation uses.</p>
+
+<p>cp1plus (c++) can easily use 1-2G of RAM per job. 3 or more with debug.</p>
+
+<p>One option is to change the MAKEOPTS value only for firefox and reduce the number jobs that it will use during compilation.</p>
+
+<p>Create a new file /etc/portage/package.env with the contents:</p>
+
+<pre><code> www-client/firefox halfjobs.conf
+</code></pre>
+
+<p>And create a new directory /etc/portage/env</p>
+
+<p>And a new file /etc/portage/env/halfjobs.conf with the contents:</p>
+
+<pre><code>MAKEOPTS=&quot;${MAKEOPTS} -j$(($(nproc)/2))
+</code></pre>
+
+<p>This will use half of the processor &#39;cores&#39; that you gave the VM to compile firefox.</p>
+
+<p>Half might be a bit too much, it will be slower. use <code>MAKEOPTS=-j3</code> for only 3 cores or one or two lower than what you have.</p>
+
+<p>4G of RAM you might be able to use -j3.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>ty so much, i just have to say that, isn&#39;t more simple to just reduce manualy, like going to the env variable e changing to -j 3 ou 2 what about the load -l my is like -j * 0.8 , i was using 7 so it was 5.6, im planing changing the -j from 7 to 4 or 3, and now i have 6g of ram</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">varsnef <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Yes, that would be simpler. I don&#39;t know if you mean changing it in make.conf for everything? I think most of the system will compile just fine with a high makeopts or load-average.</p>
+
+<p>It&#39;s just an exception for certain &#39;heavy&#39; packages to use less. like; firefox llvm, rust, ghc, chromium and maybe webkit.</p>
+
+<p>I was just making a conservative guess at what value to use. </p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>oh, its a good solution because i will have to update it on the future right ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">varsnef <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I don&#39;t know what that means. Something is lost in translation.</p>
+
+<p>I hope that will work, close enough.</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">RejonaldoGato <span class="score">2</span></span>
+<div class="md"><div class="md"><p>im mean that i will have to compile a update of firefox in the future and the solution you gave me will be useful for this</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>what language you speak ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">varsnef <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I am American and I forget how to speak English like I was taught in school. I don&#39;t remember basic Spanish. :)</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>I&#39;m having a small problem compiling after already being in a session of Xorg with i3, even with the lower amount of jobs and the load also lower, my session crashes, I can only compile in the shell, before starting X server, im doing it now</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">varsnef <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Ouch.</p>
+
+<p>If you can find a good setting to compile and not use too much RAM then you can relax and let it happen when you sleep.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>im compiling it now using -j3 -l2.4, wish me luck</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">FranticBronchitis <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Yeah, the log is big, but we need more than that to go on. Can you upload it somewhere, or at least scroll up from the end until you find something that looks like an error, and paste from there?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Kangie <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Wgetpaste the build log please.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">RejonaldoGato <span class="score">1</span></span>
+<div class="md"><div class="md"><p>when i try to do that, is says that is too big, i tried to use 0x0.st but is not working, it says that  they are correcting AI bot spams or something.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Swimming-Judge4013 <span class="score">-3</span></span>
+<div class="md"><div class="md"><p>compilling firefox in gentoo ? USED bin version</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">RejonaldoGato <span class="score">3</span></span>
+<div class="md"><div class="md"><p>it is a good option, but i wanna know why the compile end up wrong</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Swimming-Judge4013 <span class="score">-10</span></span>
+<div class="md"><div class="md"><pre><code>It&#39;s difficult for a newbie to understand if the flags are incorrect or the required packages are missing.
+</code></pre>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">RejonaldoGato <span class="score">3</span></span>
+<div class="md"><div class="md"><p>yeah it is, compile things is difficult, i imagine what i is for slackware or crux users hahaha</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Swimming-Judge4013 <span class="score">-10</span></span>
+<div class="md"><div class="md"><pre><code>Gentoo is designed for specific tasks, but if you want to compile, overclock Windows 10 and run Visual Studio.
+</code></pre>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">RejonaldoGato <span class="score">8</span></span>
+<div class="md"><div class="md"><p>i cant use gentoo for basic use ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">Swimming-Judge4013 <span class="score">-3</span></span>
+<div class="md"><div class="md"><p>It&#39;s easier for you to learn Gentoo for the web, it&#39;s very convenient and fast</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">RejonaldoGato <span class="score">3</span></span>
+<div class="md"><div class="md"><p>like post web browser installation ?</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">Kangie <span class="score">4</span></span>
+<div class="md"><div class="md"><p>This is a bot.</p>
+</div></div></div>
+<div class="comment" style="margin-left:160px;">
+<span class="meta">Swimming-Judge4013 <span class="score">-4</span></span>
+<div class="md"><div class="md"><pre><code>There&#39;s no Gentoo. I learned the entire installation process myself in OpenRC and the nuances, but in the end, I&#39;m stuck with Windows.
+</code></pre>
+</div></div></div>
+</body></html>

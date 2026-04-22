@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Is there a binary to install KDE Plasma (i only want the desktop) on Gentoo Linux?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Is there a binary to install KDE Plasma (i only want the desktop) on Gentoo Linux?</h2>
+<span class="meta">by Fine-Expression1644 | <span class="score">7</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>(english not my first language lol lolollololol)</p>
+
+<p>Hello everyone, ive recently got hooked into KDE Plasma by how customizable it is (and its also kde neon&#39;s fault lol) and i want to have it on my gentoo system, though the problem is that KDE is known for having long ass compile times, and since my machines are weak asf, i dont want to compile a tooon, so i was looking for a way to find a binary and also learn how to get more, since i dont really use binaries outside of firefox.</p>
+
+<p>Thank you and have a nice day :3</p>
+</div><!-- SC_ON --></div>
+<h3>12 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">JortCR <span class="score">7</span></span>
+<div class="md"><div class="md"><p>You can use binpkgs, so you don&#39;t have to compile all the dependencies and the package</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Fine-Expression1644 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Is there an specific command for getting the binpkg or i just emerge it like a normal package? Sorry, i dont know much about binaries X_X</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">datboiNathan343 <span class="score">7</span></span>
+<div class="md"><div class="md"><p>there is a wiki page about it</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">vms-mob <span class="score">1</span></span>
+<div class="md"><div class="md"><p><a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Base#Optional:_Adding_a_binary_package_host">https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Base#Optional:_Adding_a_binary_package_host</a></p>
+
+<p>The relevant handbook entry</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>As root run </p>
+
+<p>getuto</p>
+
+<p>Once that’s done you can just append -g to any package you wish to install a binary of and Portage will try its best. </p>
+
+<p>For example </p>
+
+<p>doas emerge -gav icecat </p>
+
+<p>Note that you should run this as -gav and check if your use flags or general unavailability caused packages to be listed as ebuilds as these will be compiled from source.</p>
+
+<p>By default the binary host is for generic x86_64 however if you have a newer CPU read that section of the handbook for configuring your binhost to be optimized for v3 or even v4 for better performance (supposedly).</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Fine-Expression1644 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>thank you sm, ill try this when i have access to my pc</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Fine-Expression1644 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>also idk if i got this right but for example if i want to emerge --ask, do i need to do emerge --gask? or is it specifically for av emerging?</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">Bubbly_Extreme4986 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>No -g is short for —getbinpkg -a is short for —ask and -v is short for —verbose. So just do -gav</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">Fine-Expression1644 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>ooooh, now i get it, thank you</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">triffid_hunter <span class="score">7</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>KDE is known for having long ass compile times</p>
+</blockquote>
+
+<p>Everything except <code>qtwebengine</code> is pretty fast actually - but <code>qtwebengine</code> is one of those <em>large</em> packages and several KDE bits depend on it one way or another.</p>
+
+<blockquote>
+<p>i dont want to compile a ton, so i was looking for a way to find a binary</p>
+</blockquote>
+
+<p><a href="https://www.gentoo.org/news/2023/12/29/Gentoo-binary.html">https://www.gentoo.org/news/2023/12/29/Gentoo-binary.html</a> may interest you</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">bobcanseeyou <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It will probably be in gentoos official binary repos.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Fine-Expression1644 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Update: Thank you everyone! i got KDE running very quick in just only 30 minutes, thanks yall :3</p>
+</div></div></div>
+</body></html>

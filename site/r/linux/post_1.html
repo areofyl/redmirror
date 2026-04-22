@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Linux May Drop Old Network Drivers Now That AI-Driven Bug Reports Are Causing A Burden</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>Linux May Drop Old Network Drivers Now That AI-Driven Bug Reports Are Causing A Burden</h2>
+<span class="meta">by anh0516 | <span class="score">144</span> points</span>
+<p><a href="https://www.phoronix.com/news/Linux-Old-Network-AI">https://www.phoronix.com/news/Linux-Old-Network-AI</a></p>
+<h3>25 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">polycro <span class="score">22</span></span>
+<div class="md"><div class="md"><p>You haven&#39;t lived unless your first access point in 2001 was a 486 mobo tied to a silver ORiNOCO via an ISA to PCMIA adapter. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">thatwombat <span class="score">5</span></span>
+<div class="md"><div class="md"><p>I had a box of Symbol 802.11 cards from before WiFi was a standard. The access point was visible on my home WiFi, but you couldn’t connect to it. The manuals spoke of fixed location PC roaming among other things. Kind of a weird collection.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">beegtuna <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Work has been proceeding on the crudely conceived idea of an instrument that would not only provide inverse reactive current for use in unilateral phase detractors but would also be capable of automatically synchronizing Cardinal gram meters such an instrument comprised of Dodge gears and bearings Reliance electric motors. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Li0n-H3art <span class="score">42</span></span>
+<div class="md"><div class="md"><p>Well that kinda sucks </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">LuckyHedgehog <span class="score">14</span></span>
+<div class="md"><div class="md"><p>Not really. In all likelihood these were or would have been exploited in the real world, regardless of what tool was used to discover it. Better to discover and address it sooner than later </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">anh0516 <span class="score">27</span></span>
+<div class="md"><div class="md"><p>These are device drivers. There&#39;s only a chance of exploiting them on a system where the kernel modules in question are loaded, which is very few in this case.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Jman43195 <span class="score">30</span></span>
+<div class="md"><div class="md"><p>I&#39;m disappointed to see the 3c59x driver be dropped, as it includes some very common pci cards that still have AUI on them</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">BZ852 <span class="score">18</span></span>
+<div class="md"><div class="md"><p>I&#39;m guessing it someone stepped in to offer to maintain them, they wouldn&#39;t be dropped. Having known exploitable code in the kernel seems bad.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">zeno0771 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Indeed, that statement had already been made:</p>
+
+<blockquote>
+<p>It seems unlikely [these drivers] are still used. However, remove them one patch at a time so they can be brought back if somebody still has the hardware, runs modern kernels and wants to take up the roll of driver Maintainer.</p>
+</blockquote>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Bob4Not <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Is there any way to have a separate track legacy Kernel with the older support? Maybe we move forward with the V3?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">anh0516 <span class="score">8</span></span>
+<div class="md"><div class="md"><p>That&#39;s what LTS kernels are for.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Bob4Not <span class="score">2</span></span>
+<div class="md"><div class="md"><p>That makes sense </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">grathontolarsdatarod <span class="score">8</span></span>
+<div class="md"><div class="md"><p>I&#39;m sure many of the network controllers that are temporarily paired with non ME cpus are going to be on this list.  </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Kevin_Kofler <span class="score">-6</span></span>
+<div class="md"><div class="md"><p>Linux going for planned obsolescence is a really worrying trend. There has been more code removed recently, e.g., support for 486 CPUs, and more drivers. And all because of the darn AI slop! Most of the &quot;security bugs&quot; reported by AIs are not even real! AI slop bug reports should just be ignored instead of dropping working code and desupporting hardware that people still use.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">vaynefox <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Then why dont you volunteer to maintain it. They wouldnt remove it if there are people willing to maintain those old hardware....</p>
+
+<p>&quot;Talk is cheap, show me the code&quot;
+- Linus Torvalds</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Kevin_Kofler <span class="score">1</span></span>
+<div class="md"><div class="md"><p>These drivers need no maintenance at all. That hardware has not changed for decades. They just need to leave these drivers alone.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">vaynefox <span class="score">1</span></span>
+<div class="md"><div class="md"><p>They found vulnerabilities on those drivers and no one wants to patch them. If you just leave those vulnerable drivers in the kernel then you&#39;re just inviting someone to exploit it since both those bad actors and the kernel dev team are using the same tools to find vulnerabilities in the kernel....</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">The__Toast <span class="score">1</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>These are all ISA and PCMCIA Ethernet devices</p>
+</blockquote>
+
+<p>I would be really shocked if you&#39;ve seen either one of these in a piece of in-used consumer hardware in the last fifteen years, even in developing parts of the world. </p>
+
+<p>I&#39;m really not one of these people that thinks any tech that&#39;s more than a year old is ancient, but PCI had started to replace ISA by like 1995, which is more than thirty years ago.</p>
+
+<p>At some point it&#39;s simply not economical to support stuff, and basically impossible to actually test any code changes.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">_w62_ <span class="score">-11</span></span>
+<div class="md"><div class="md"><p>A good way to pay technical debt and move on. When you let go something old, you have more room for something new.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">i860 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>This mentality is everything wrong with today’s software engineering approaches.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">panamanRed58 <span class="score">-25</span></span>
+<div class="md"><div class="md"><p>This is due to the results of Claude&#39;s Mythos. It should be expected as we assay the results transformative of all software. A very good, detailed for us geeks, review of Mythos&#39;s bug bounty comes from Steve Gibson on the podcast, Security Now!. He devotes an entire show to their announcement and dives deep into what was found. As a retired engineer I am a little sad I won&#39;t be part of this but also glad i won&#39;t be part of this. Serious bugs in closed and open sources software were uncovered and may take years to correct. It could even save M$ !</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Damaniel2 <span class="score">21</span></span>
+<div class="md"><div class="md"><p>Mythos is highly overrated. Its rate of detecting security issues isn&#39;t significantly higher than existing models, and all of the &#39;keeping it out of the hands of the public&#39; is fearmongering to prop up IPO value.</p>
+
+<p>Remember - if a tech bro&#39;s, and especially an AI tech bro&#39;s, sociopathic lips are moving, they&#39;re lying.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">panamanRed58 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It found a Sev 1 bug in OpenBSD that was 27 yrs old and part of the install on 5 billion devices. So had someone else using a clever LLM found it and had ill intent, we&#39;d be fucked in a technical way. Please at least review the analysis, it will help you develop an informed opinion.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">bAZtARd <span class="score">1</span></span>
+<div class="md"><div class="md"><p>People are downvotimg you because they don&#39;t want to hear the truth. This is only gonna get worse and we are seeing the beginning of the end of open source. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">panamanRed58 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>lambs to the slaughter, I bid them adieu!</p>
+</div></div></div>
+</body></html>

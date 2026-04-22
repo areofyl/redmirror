@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Bloom filters: the niche trick behind a 16× faster API | Blog | incident.io</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>Bloom filters: the niche trick behind a 16× faster API | Blog | incident.io</h2>
+<span class="meta">by fagnerbrack | <span class="score">111</span> points</span>
+<p><a href="https://incident.io/blog/bloom-filters">https://incident.io/blog/bloom-filters</a></p>
+<h3>17 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Felkin <span class="score">161</span></span>
+<div class="md"><div class="md"><p>&quot;niche trick&quot; - literally one of the most important algorithms in databases, practically always taught in serious database classes in university and mentioned in every other important database paper.</p>
+
+<p>I&#39;ve sat in audience chairs listening to people from redshift, snowflake and others giving talks and this gets mentioned so often.</p>
+
+<p>It&#39;s not niche in either database research communities or the big database providers. Just the author is in some odd bubble.</p>
+
+<p>Cool read otherwise </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">mjec <span class="score">63</span></span>
+<div class="md"><div class="md"><p>Something I picked up from a colleague years ago: I have &quot;bloom filter&quot; as a slack alert word because either they&#39;re doing something very cool or making a terrible mistake</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Wolfy87 <span class="score">25</span></span>
+<div class="md"><div class="md"><p>I heard if you say &quot;bloom filter&quot; three times into a whiteboard, <a href="/u/mjec">/u/mjec</a> turns up to review your design document.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">DivineSentry <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Who’s that?</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">SaxAppeal <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I think in the case of this article it’s both tbh</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Bayakoo <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Not a common trick in web dev/sass dev though I’d imagine.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">gwillen <span class="score">10</span></span>
+<div class="md"><div class="md"><p>It&#39;s really well known in a specific subfield. I suspect that to the vast majority of programmers it&#39;s obscure. I could be wrong (I&#39;m certainly very familiar with Bloom filters myself.)</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Felkin <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Well by that logic gradient descent is also obscure, because it&#39;s part of a specific subfield ;)</p>
+
+<p>I think most software engineers have to interact with databases eventually and then this knowledge certainly should pop up as part of understanding how modern database query engines operate. At least in my view database theory is one of the more critical courses in CS curricula.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">gwillen <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Most programmers (especially for an expansive definition that includes anybody who writes code) didn&#39;t take a CS curriculum, though.</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">max123246 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I wish more programmers were taught good engineering practices. Even most colleges seem to leave you with so few tools in your toolbox</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">TQuake <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Sounds like it’s important in a niche…</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">max123246 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Niche in the sense that most people don&#39;t know it. Not niche in the fact that nearly all web workloads involve a database</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">max123246 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I&#39;m curious, do bloom filters beat out quotient filters in practice? I had thought quotient filters were the better choice performance wise</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Immotommi <span class="score">9</span></span>
+<div class="md"><div class="md"><p>I always like stories of people optimising performance, because I think it doesn&#39;t get done enough. But, as soon as I saw jsonb in database fields, I knew that the starting point was dumb. </p>
+
+<p>I don&#39;t love the &quot;don&#39;t over-engineer at the start&quot; sentiment because I think you end up with things like this. Like this is just obviously terrible. If you are deserialising json just to query, you haven&#39;t &quot;avoided over-engineering,&quot; you have just done no engineering </p>
+
+<p>End result pretty good, but I think the start point should have been better than this</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">SaxAppeal <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Yeah the deeper I read into the article the more I became convinced this was just really fucking stupid from the start. They could have slapped TimescaleDB on top of their Postgres instance, and timescale hypertables probably would have saved them enough time to skip the bloom filter custom indexing gymnastic altogether. They’re literally building custom managed indexes on top of their database, that’s like using a drill to try and hammer in a screw.</p>
+
+<p>But the whole problem was storing json blobs in Postgres for this use case in the first place. Like it was an interesting read, but I feel like the better solution would have been to take the time to get the hell off jsonb columns, not build a Rube Goldberg indexing machine around their fucked up data store.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">lurch303 <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Well written</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">kiteboarderni <span class="score">-7</span></span>
+<div class="md"><div class="md"><p>Ai slop </p>
+</div></div></div>
+</body></html>

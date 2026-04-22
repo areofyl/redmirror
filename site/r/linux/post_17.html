@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>KVM in Linux 7.1 adds &quot;very experimental support&quot; for pKVM protected guests</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>KVM in Linux 7.1 adds &quot;very experimental support&quot; for pKVM protected guests</h2>
+<span class="meta">by somerandomxander | <span class="score">58</span> points</span>
+<p><a href="https://www.phoronix.com/news/Linux-7.1-KVM">https://www.phoronix.com/news/Linux-7.1-KVM</a></p>
+<h3>8 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">BashfulMelon <span class="score">19</span></span>
+<div class="md"><div class="md"><blockquote>
+<p>pages are unmapped from the host as they are faulted into the guest and then shared back from the guest using pKVM hypercalls</p>
+</blockquote>
+
+<p>Oh that&#39;s crazy. Science has gone too far with all of this hypervisor security stuff.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">deja_geek <span class="score">7</span></span>
+<div class="md"><div class="md"><p>It hasn&#39;t gone far enough.  Complete isolation from the host is a the goal, and will be a huge upgrade to VPS/shared hosting security.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">BashfulMelon <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Okay, good point.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Arin_Horain <span class="score">1</span></span>
+<div class="md"><div class="md"><p>It only kinda is. Complete isolation is heavy on performance because of the need of a translation layer between the VM and actual hardware, that&#39;s why by default most virtualization software breaks isolation in specific cases (e.g. virtqueues in virtio-SCSI, the default storage driver in qemu). It&#39;s possible to configure stronger isolation but the business focus has been on performance and I doubt that they will suddenly do the opposite and go for complete isolation, especially with hardware prices. </p>
+
+<p>I do hope for a shift towards more isolation though.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">throwaway490215 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Except it doesn&#39;t? </p>
+
+<p>Either your VPS is trustworthy and doesn&#39;t look at your shit, or they&#39;re not and you are not able to detect it. </p>
+
+<p>If this helps protect memory between client instances that&#39;s great, but host isolation is a non-sense use-case. I can only assume that because its technically possible and someone is willing to spend engineering time to build it because they think it solves a problem, or they think they can get their clients to pay money to solve a non-problem. That doesn&#39;t mean its good. We waste time and money on dumb things all the time.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">deja_geek <span class="score">2</span></span>
+<div class="md"><div class="md"><p>It protects your VPS should the host get compromised. </p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">throwaway490215 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>The Venn diagram where the host is considered &quot;compromised&quot; and can meaningfully control VPS instances, yet its not able to compromise the client VPS are non existence on properly configured hosts.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RoomyRoots <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Same name as the KVM in Android solution, which itself is already kinda a confusing implementation.</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Running a Minecraft Server and more on a 1960s UNIVAC Computer</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/programming</a>
+<h2>Running a Minecraft Server and more on a 1960s UNIVAC Computer</h2>
+<span class="meta">by Dear-Economics-315 | <span class="score">40</span> points</span>
+<p><a href="https://farlow.dev/2026/04/17/running-a-minecraft-server-and-more-on-a-1960s-univac-computer">https://farlow.dev/2026/04/17/running-a-minecraft-server-and-more-on-a-1960s-univac-computer</a></p>
+<h3>3 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">1_800_UNICORN <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Very interesting writeup! Seems a little engagement-bait to choose to implement Minecraft login as the shining example of demoing networking but whatever - very interesting read!</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">antab <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Nice, but I must disagree about the compiler backend part violating the second rule.</p>
+
+<p>Writing a basic LLVM backend isn&#39;t that hard after you figure out how Tablegen works and know that there are multiple ways to do the same thing, like GlobalISel vs SelectionDAG vs FastISel for instruction selection and new vs old pass manager (it might get a bit confusing when reading through existing code however), but you don&#39;t have to implement everything and if you already have a working assembler and linker then you can skip some of the MC parts.</p>
+
+<p>But then again, an insane person probably won&#39;t know about their own insanity...</p>
+
+<p>Writing a GCC backend is however like being stuck in the Event Horizon clawing out your own eyes and asking to be liberated.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">antab <span class="score">2</span></span>
+<div class="md"><div class="md"><p>After reading some datasheets and code, and this might be my own insanity showing...</p>
+
+<p>But there is nothing that dictates that the C implementation for a given platform must actually match the actual hardware word size and bit complement. It could be defined as 16 and just ignore the 2 high bits or 32 bit and generate extra code for it.</p>
+
+<p>The instruction set isn&#39;t really C-friendly, but the same thing can be said about the 6502 and there is a out of tree LLVM backends for it. It might be worth it to look at some of the things they do, like defining imaginary registers for instructions that accept the zero page as operand.</p>
+
+<p>This might actually be a fun side project:)</p>
+</div></div></div>
+</body></html>

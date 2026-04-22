@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>A Chrome renderer that looked like a 150 MB process was secretly holding 136 GB of RAM+swap on my Ubuntu box. Anyone seen this?</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>A Chrome renderer that looked like a 150 MB process was secretly holding 136 GB of RAM+swap on my Ubuntu box. Anyone seen this?</h2>
+<span class="meta">by Similar_Rich_1563 | <span class="score">18</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>A weird pattern has been bothering me for a couple of weeks. Setup is Ubuntu 24.04, kernel 6.17, AMD RX 6700 XT (amdgpu), GNOME on Wayland, Chrome 147. 64 GB RAM + 128 GB swap.</p>
+
+<p>The trigger is very specific: I have to leave the machine on, logged in, with the display still up, nobody touching it. Walk away for a few hours, come back, find earlyoom has been SIGTERM-ing Chrome tabs all night because memory and swap both got eaten. If I manually suspend before leaving, it does not happen — I come back to a healthy machine. So whatever&#39;s leaking only runs while the session is awake and idle. That already feels like a hint (some tab&#39;s requestAnimationFrame? a background video that keeps drawing frames?) but I can&#39;t prove which tab without better tooling.</p>
+
+<p>Every 3–4 hours, Shmem in /proc/meminfo climbs from near-zero to ~25 GB at a steady ~600 MB/min, sits there for a couple hours, and then suddenly drops back to near-zero. Looks like this:</p>
+
+<p>2026-04-21 22:10  Shmem = 23,698 MB   ← growing for ~35 min</p>
+
+<p>2026-04-22 00:01  Shmem =     61 MB   ← collapse</p>
+
+<p>2026-04-22 00:48  Shmem = 23,805 MB   ← growing again</p>
+
+<p>2026-04-22 03:37  Shmem =     13 MB   ← collapse</p>
+
+<p>2026-04-22 05:18  Shmem = 24,368 MB   ← again</p>
+
+<p>Swap also fills up to 115 GB around the peaks because the kernel tries to offload what won&#39;t fit in RAM.</p>
+
+<p>The confusing part:</p>
+
+<p>I wrote a little script that snapshots top-30 processes every 2 min (PSS / RSS / Shmem / Swap from /proc/PID/smaps_rollup). Every time I look at a peak snapshot, no process shows anywhere near 25 GB. The biggest Shmem numbers are Chrome renderers at ~120 MB each, a handful of them. Adding up the whole top-30 only gets me to ~1.3 GB. Where&#39;s the other 24 GB?</p>
+
+<p>Then I caught an earlyoom kill. At 03:35:55:</p>
+
+<p>Shmem (system)   = 23,862 MB</p>
+
+<p>MemAvailable     =  2,607 MB</p>
+
+<p>SwapFree         = 13,173 MB  (→ 115 GB swap used)</p>
+
+<p>At 03:36:50 earlyoom sent SIGTERM to two Chrome renderers:</p>
+
+<p>SIGTERM chrome PID 2052745  VmRSS 158 MiB</p>
+
+<p>SIGTERM chrome PID 1345129  VmRSS 153 MiB</p>
+
+<p>At 03:37:56 (2 min after peak, right after the kills):</p>
+
+<p>Shmem (system)   =     13 MB    (-23,849 MB)</p>
+
+<p>MemAvailable     = 27,705 MB    (+25,098 MB)</p>
+
+<p>SwapFree         = 124,680 MB   (+111,507 MB!)</p>
+
+<p>So killing two Chrome renderers whose /proc/smaps_rollup claimed ~120 MB of Shmem apiece (~240 MB combined) actually released 25 GB of RAM and 111 GB of swap. That&#39;s ~136 GB of shared memory held by two processes that looked innocent.</p>
+
+<p>The other ~10 Chrome renderers stayed alive through the whole thing. Their Shmem numbers didn&#39;t change before or after. Actually, an hour earlier earlyoom had already killed 9 other Chrome renderers and system Shmem didn&#39;t budge — only those two PIDs mattered.</p>
+
+<p>My guess: Chrome (or mutter, or something in between) is handing GPU buffers to the compositor via memfd_create or dma_buf, and those buffers get held open by an fd after the backing file is unlinked. Once that happens:</p>
+
+<p>The pages count toward system-wide Shmem and can be swapped</p>
+
+<p>But they don&#39;t appear as a mapping in the owning process&#39;s smaps</p>
+
+<p>Only when the fd closes (= process dies) does the kernel reclaim them</p>
+
+<p>If anyone knows whether that&#39;s actually how it works, I&#39;d love to hear it. Because if so, there&#39;s no way for a normal user to tell &quot;which tab is leaking GPU memory&quot; — Chrome&#39;s own task manager doesn&#39;t show this either.</p>
+
+<p>Anyone else on Wayland + amdgpu + Chrome seeing this? It&#39;s suspicious that it&#39;s always exactly two renderers. I suspect specific tabs but I don&#39;t know how to identify which.</p>
+
+<p>I&#39;ve got the raw files (earlyoom journal for the kill window, full-day memsnap log, the timeline CSV, a 4-panel chart, the logger scripts if you want to reproduce on your own box). Happy to share any of it — just ask and I&#39;ll drop a gist link.</p>
+
+<p>Thanks in advance. This has been bugging me for weeks.</p>
+
+<p><a href="https://preview.redd.it/4dogbqot1nwg1.png?width=1643&amp;format=png&amp;auto=webp&amp;s=55d07fca7f857fa7677d3d4c6980eeffa79974c5">https://preview.redd.it/4dogbqot1nwg1.png?width=1643&amp;format=png&amp;auto=webp&amp;s=55d07fca7f857fa7677d3d4c6980eeffa79974c5</a></p>
+</div><!-- SC_ON --></div>
+<h3>9 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">-Ilovepokemon- <span class="score">24</span></span>
+<div class="md"><div class="md"><p>bros just bragging about how much ram he has</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Alonzo-Harris <span class="score">8</span></span>
+<div class="md"><div class="md"><p>64GB is a decent amount, but it isn’t crazy by today&#39;s standards. Not in the &quot;bragging&quot; territory just yet </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">yawara25 <span class="score">9</span></span>
+<div class="md"><div class="md"><p>Especially if it was purchased before the AI boom. I &quot;only&quot; paid $190 for my 64GB kit. Absolutely a no-brainer purchase at the time, especially for running VMs.</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">Max-P <span class="score">4</span></span>
+<div class="md"><div class="md"><p>It&#39;s still kinda tight at times even. Rust analyzer alone can use 4-8GB, plus your IDE, plus other LSPs, plus possible VMs and containers.</p>
+
+<p>At 64GB, compiling Android easily hits swap occasionally still, and that&#39;s only with -j12 while I should be using -j32.</p>
+
+<p>I easily idle at 16GB used these days. I wish I had upgraded to 128GB when DDR4 was dirt cheap instead of being cheap and getting 4 8GB sticks off eBay (it was originally a stopgap before upgrading the whole PC...). All 8 of my slots are used too now, so the upgrade requires at least 4 new sticks.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">anh0516 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>File a bug report? <a href="https://issues.chromium.org/issues">https://issues.chromium.org/issues</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Mr_Lumbergh <span class="score">10</span></span>
+<div class="md"><div class="md"><p>I don’t use chrome, it’s google spyware at this point.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">donnaber06 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>I have 64GB of RAM DDR5 and I am on Gnome 50 with mutter. I run chrome and leave it open all week long. I am on Arch btw.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">DerfK <span class="score">1</span></span>
+<div class="md"><div class="md"><p>If you watch the process tree  do these parent back to your main chrome browser? Could be some electron app with chrome embedded too.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">dashinyou69 <span class="score">-1</span></span>
+<div class="md"><div class="md"><p>just del it</p>
+</div></div></div>
+</body></html>

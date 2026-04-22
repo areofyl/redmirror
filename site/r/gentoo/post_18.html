@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Help</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Help</h2>
+<span class="meta">by Reasonable_Draft_746 | <span class="score">9</span> points</span>
+<img src="https://i.redd.it/9mc3aar42fwg1.jpeg" alt="">
+<div class="md"><!-- SC_OFF --><div class="md"><p>i recompiled the kernel, regenerate the initramfs and doesnt boot </p>
+
+<p>what am i doing wrong?</p>
+</div><!-- SC_ON --></div>
+<h3>17 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">anh0516 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Who knows? Set <code>loglevel=7</code> and remove <code>quiet</code> from your kernel parameters and maybe you&#39;ll find out.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>I did that and im still having the same message </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">anh0516 <span class="score">5</span></span>
+<div class="md"><div class="md"><p>That&#39;s annoying. I was hoping you&#39;d get some output from the kernel that would tell where it crashed.</p>
+
+<p>At least you know that the kernel isn&#39;t even getting to the point of initializing the console.</p>
+
+<p>Did you do a custom kernel configuration, or did you just emerge a dist-kernel? Don&#39;t tell me you don&#39;t have a fallback you can boot.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Oh this is a fresh installation im trying gentoo for the first time im just using the guide comand to install it</p>
+</div></div></div>
+<div class="comment" style="margin-left:80px;">
+<span class="meta">anh0516 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Uh huh. Did you use a dist-kernel or did you install a source code package and do <code>make</code>, <code>make install</code>?</p>
+</div></div></div>
+<div class="comment" style="margin-left:100px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Make make install</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">SheepherderBeef8956 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>There&#39;s a reason why the distribution kernels come before manually configuring it in the handbook. Just swallow your pride and install gentoo-kernel-bin and boot the system. run zcat /proc/config.gz &gt; config and use that as a base. Strip down stuff you don&#39;t need rather than trying to build a kernel from the ground up. There&#39;s A LOT of stuff you&#39;re going to want that you don&#39;t think of immediately, and in all honesty unless you&#39;re installing this on a computer where 5MB matters you don&#39;t need to compile a kernel manually.</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>thanks for the advice im going to try the zcat trick</p>
+</div></div></div>
+<div class="comment" style="margin-left:120px;">
+<span class="meta">anh0516 <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Ok, so you&#39;ve almost certainly got a bad kernel configuration for your hardware.</p>
+
+<p>What you should do is boot back into the installation media, and then chroot and install <code>gentoo-kernel-bin</code> as directed: <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Kernel#Installing_a_distribution_kernel">https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Kernel#Installing_a_distribution_kernel</a></p>
+
+<p>Once you&#39;ve got your system up and running the way you want it, <em>then</em> you can start messing with the kernel configuration. You should copy the kernel configuration file from gentoo-kernel-bin and use that as a starting point for configuring your own kernel, rather than relying on the implicit defaults.</p>
+
+<p>It takes a lot of work to go through every single menu option and configure a kernel that has only exactly what you need and nothing more. Expect to go through several recompilations.</p>
+</div></div></div>
+<div class="comment" style="margin-left:140px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Im doing that right now</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">NopeNotJayILeft <span class="score">3</span></span>
+<div class="md"><div class="md"><p>So a few suggestions:
+- Boot back into the liveusb, re-mount your root FS and chroot in with arch-chroot and you can resume your install/recover your machine.
+- Once in there, install <code>gentoo-kernel-bin</code> and <code>linux-firmware</code> to get you to a known-working spot.
+- Additionally, I recommend -- in the strongest terms -- using a full bootloader, like grub, which can help you troubleshoot broken kernels WHILE giving you a way to fallback to the previous kernel.</p>
+
+<p>Once you have a fully working install with a distribution kernel, you can then look at things and see what might be missing from your custom one. What&#39;s the difference between /proc/config.gz (when zcat&#39;d) when booted in that kernel vs the .config in the kernel dir you&#39;re using? Anything in <code>lsmod</code> you forgot to build as a module?</p>
+
+<p>Building a custom kernel is work a lot of folks find satisfying, but it&#39;s 100% OK to use a distribution kernel (gentoo-kernel or gentoo-kernel-bin) long term -- that&#39;s what I do, mainly because I don&#39;t wanna have to go 10 rounds with <code>make menuconfig</code> anytime I update hardware or the kernel changes significantly :D.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Ok let me try installing gentoo-kernel-bin but the wierd thing is im using grub and im having this issues and no way to repair it </p>
+
+<p>Im not using a custom kernel just the installkernel as in the guide</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">NopeNotJayILeft <span class="score">3</span></span>
+<div class="md"><div class="md"><p>So installkernel is about how to install a kernel, not about what kernel you have installed (e.g. gentoo-kernel-bin ebuild will call installkernel to install it&#39;s kernel).</p>
+
+<p>You may want to review use flags on installkernel; your previous kernel appears to potentially have been installed as an EFI stub.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Fenguepay <span class="score">1</span></span>
+<div class="md"><div class="md"><p>custom kernel?</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Reasonable_Draft_746 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>No i just install the kernel as it says in the handbook</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Winter_Pound5659 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>yesterday i experienced the same issue after disabling initramfs and  solution was chroot it and reconfigured the kernel </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">CNR_07 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Are intentionally booting using the EFI stub method?</p>
+</div></div></div>
+</body></html>

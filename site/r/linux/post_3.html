@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>NTFS-3G FUSE Driver Sees First New Release In Four Years</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>NTFS-3G FUSE Driver Sees First New Release In Four Years</h2>
+<span class="meta">by anh0516 | <span class="score">23</span> points</span>
+<p><a href="https://www.phoronix.com/news/NTFS-3G-Driver-2026">https://www.phoronix.com/news/NTFS-3G-Driver-2026</a></p>
+<h3>5 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Kevin_Kofler <span class="score">6</span></span>
+<div class="md"><div class="md"><p>Looks like Tuxera is foreseeing their userbase completely evaporating with the new in-kernel NTFS driver and trying to save what can be saved by updating both the NTFS-3G FUSE driver and the NTFS3 kernel driver. But I think it is too little too late.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">God_Hand_9764 <span class="score">3</span></span>
+<div class="md"><div class="md"><p>Why would you not update a thing in 4 years and then give a crap if people stop using it?  </p>
+
+<p>Seems kind of strange to me... but yeah I think that&#39;s a wrap for this driver. </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">JockstrapCummies <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Just Tuxera Things™</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Heavy_Boss_1467 <span class="score">5</span></span>
+<div class="md"><div class="md"><p><strong>Changes:</strong></p>
+
+<ul>
+<li>Fix bashism in configure script causing errors in non-bash shells.</li>
+<li><strong>(mkntfs)</strong> Enable microsecond-level volume creation time.</li>
+<li>Fix two instances of an invalid <code>errno</code> state when encountering <code>NULL</code> in strings.</li>
+<li>Fix a crash when a reparse tag could not be found in the index.</li>
+<li>Fix incorrect MFT free records value when bitmap is expanded.</li>
+<li>Fix &#39;extras&#39; manpages being installed when extras are disabled.</li>
+<li>Fix various instances of use-after-free conditions in the library and tools.</li>
+<li>Fix typo in NTFS hibernation message. Thanks to Anil Kumar for the report/fix.</li>
+<li>Escape commas in the fsname when <code>libfuse</code> 2.8 or higher is used.</li>
+<li><strong>(ntfsclone)</strong> Allow adjusting the sector size in the NTFS boot sector for the target device when restoring images.</li>
+<li>Remove <code>libdl</code> dependency when building without external plugins.</li>
+<li><strong>(ntfsinfo)</strong> Show information about the logfile state when dumping metadata.</li>
+<li><strong>(ntfsinfo)</strong> Fix displaying crowded directories or indexes.</li>
+<li><strong>(ntfsinfo)</strong> Fix displaying the security descriptor list in ntfsinfo.</li>
+<li>Fix heap buffer overflow when POSIX ACLs were enabled (<a href="https://github.com/tuxera/ntfs-3g/security/advisories/GHSA-4cwv-5285-63v9">CVE-2026-40706</a>). Thanks to Andrea Bocchetti for the report.</li>
+<li><strong>(ntfsusermap)</strong> Fix overflow when constructing backup filename.</li>
+<li>Fix two time-of-check-time-of-use conditions.</li>
+<li>Fix missing <code>malloc</code>/<code>sscanf</code> return value checks.</li>
+</ul>
+
+<p><a href="https://github.com/tuxera/ntfs-3g/releases/tag/2026.2.25">https://github.com/tuxera/ntfs-3g/releases/tag/2026.2.25</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Dwedit <span class="score">1</span></span>
+<div class="md"><div class="md"><p>When will it have the compression plugin built-in?  It&#39;s a pain that most distros don&#39;t automatically provide it.  Hats off to Fedora for automatically providing it.</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Makecommand - Tool to shortcut commands</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/linux</a>
+<h2>Makecommand - Tool to shortcut commands</h2>
+<span class="meta">by Aliraq1 | <span class="score">0</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>This package made for shortcut any command or file or FOLDERS and run it anywhere :</p>
+
+<p>cd &amp; cd mytool &amp; python3 code.py</p>
+
+<p>To : run mytool</p>
+
+<p>or </p>
+
+<p>sudo apt update &amp;&amp; sudo apt upgrade -y</p>
+
+<p>To :</p>
+
+<p>sudo run upgrade</p>
+
+<p>And a lot more !</p>
+
+<p>To install (For Debian-based only) :</p>
+
+<ol>
+<li>Add the repo :</li>
+</ol>
+
+<p>echo &quot;deb [trusted=yes] <a href="https://q0so.github.io/makecommand/">https://q0so.github.io/makecommand/</a> ./&quot; | sudo tee /etc/apt/sources.list.d/makecommand.list</p>
+
+<p>2.Update packages :</p>
+
+<p>sudo apt update</p>
+
+<ol>
+<li>Install makecommand package :</li>
+</ol>
+
+<p>sudo apt install makecommand</p>
+</div><!-- SC_ON --></div>
+<h3>7 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">PerkyPangolin <span class="score">5</span></span>
+<div class="md"><div class="md"><p>Erm, so <code>alias</code>?</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">SeriousPlankton2000 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>You might be amazed when you discover shell scripts.</p>
+
+<p>I put my shell scripts in ~/bin and write</p>
+
+<pre><code>#!/bin/sh
+cd ~/mytool &amp;&amp; exec python3 code.py
+</code></pre>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">AnsibleAnswers <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Vibe coded trash. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">LongInvestment6250 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>this looks pretty useful for automating those long command chains you run daily in ops work. been using aliases but this seems more flexible since you can bundle directory changes with the actual commands</p>
+
+<p>might give it a try on my test box first though - adding random repos always makes me little nervous even with the trusted flag</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">ClassroomHaunting333 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>You can check XC. It is a command vault manager with support for interactive variables. All commands are saved in plain .txt files. It is also a zsh-plugin in the official plugin list. You can check the repo <a href="https://github.com/Rakosn1cek/xc-manager">https://github.com/Rakosn1cek/xc-manager</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Aliraq1 <span class="score">0</span></span>
+<div class="md"><div class="md"><p>Try it and give me ur rate
+Btw its open source, so u can check the codes</p>
+
+<p>And dont forget to run:
+makecommand -examples</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">mmmboppe <span class="score">2</span></span>
+<div class="md"><div class="md"><p>what is &quot;codes&quot;?</p>
+</div></div></div>
+</body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Basic Knowledge of Gentoo</title>
+<style>body{font-family:monospace;max-width:800px;margin:20px auto;background:#111;color:#ccc;}a{color:#7af;}a:visited{color:#a7f;}.score{color:#f84;}.meta{color:#888;font-size:0.9em;}hr{border:none;border-top:1px solid #333;}.comment{border-left:2px solid #333;padding:4px 8px;margin:6px 0;}.md{line-height:1.5;}.md p{margin:4px 0;}.md pre{background:#1a1a1a;padding:8px;overflow-x:auto;}.md code{background:#1a1a1a;padding:1px 4px;}.md blockquote{border-left:3px solid #444;margin:4px 0;padding-left:8px;color:#999;}.md ul,.md ol{padding-left:20px;}.md li{margin:2px 0;}.md a{color:#7af;}.md h1,.md h2,.md h3{color:#eee;}.md table{border-collapse:collapse;}.md td,.md th{border:1px solid #444;padding:4px 8px;}img{max-width:100%%;height:auto;display:block;margin:8px 0;}input{font-family:monospace;background:#222;color:#ccc;border:1px solid #444;padding:6px 10px;font-size:1em;}button{font-family:monospace;background:#333;color:#ccc;border:1px solid #555;padding:6px 12px;cursor:pointer;font-size:1em;}.nav{margin:8px 0;}.nav a{margin-right:12px;}.thumb{max-height:80px;display:inline;vertical-align:middle;margin-right:8px;}</style>
+</head><body>
+<a href="index.html">&lt; back to r/gentoo</a>
+<h2>Basic Knowledge of Gentoo</h2>
+<span class="meta">by Wi9t_y7tu | <span class="score">6</span> points</span>
+<div class="md"><!-- SC_OFF --><div class="md"><p>What should I learn going into gentoo, I mostly use based distros. I&#39;ve used garuda, omarchy, cachy, arch (failed), artix (gave up), endeavourOS and kali for IT. I have seen terms like flags and emerge, I want to know what they actually mean and any otger gentoo stuff that is good to know.</p>
+</div><!-- SC_ON --></div>
+<h3>13 comments</h3>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">NecroAssssin <span class="score">11</span></span>
+<div class="md"><div class="md"><p>Honestly, just start the gentoo handbook. You can just read the main articles to install or follow the links as deep into the weeds as
+you want. </p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">granadesnhorseshoes <span class="score">8</span></span>
+<div class="md"><div class="md"><p>Sure the Gentoo Handbook is gonna be <em>where</em> you read about it, but its a huge ass tomb so lets assume you are more specifically asking which parts are more immediately useful to a beginner in a &quot;pregame research&quot; sort of way before you start blindly following the step by step guide.</p>
+
+<p>First and foremost: Make, and GCC. You don&#39;t gotta learn C/C++, or get a deep understanding of compiler theory. You just want a good solid concept of <em>using them as tools</em>. Almost all other concepts in Gentoo spring from these two tools. Flags, buildopts, etc. &quot;Make.conf&quot; is the literal lynchpin of Gentoo. Even if you want to use an LLVM based system, still start with GCC at this &quot;as a tool&quot; level because LLVM will mostly emulate or implement the same concepts and options.</p>
+
+<p>Second: Portage. It&#39;s more a broad concept than a specific tool. You will end up using different tools to do different things within the broader &quot;Portage&quot; system. &quot;emerge&quot; tends to be the main interface, but other tools like &quot;eselect&quot; or &quot;equery&quot; get plenty of use.</p>
+
+<p>Building your own kernel is the next best thing to read up on, but that&#39;s more optional because there are binary or automated options available.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">NicholasAakre <span class="score">7</span></span>
+<div class="md"><div class="md"><p>Learning Gentoo is just like learning any other distro. Just use it normally, and when you find something you don&#39;t know how to do, look it up.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">Kangie <span class="score">8</span></span>
+<div class="md"><div class="md"><p>It&#39;s all in the handbook. Just follow the steps there and not some youtube tutorial.</p>
+
+<p><a href="https://wiki.gentoo.org/wiki/Handbook:AMD64">https://wiki.gentoo.org/wiki/Handbook:AMD64</a></p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Wi9t_y7tu <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Will do, thanks for the link</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">RoomyRoots <span class="score">3</span></span>
+<div class="md"><div class="md"><p>How does one fails Arch? The wiki is very good.</p>
+
+<p>For Gentoo, just read the Handbook.</p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">adamkex <span class="score">4</span></span>
+<div class="md"><div class="md"><p>Tbh I think that the Gentoo handbook is significantly better written than the Arch equivalent, even if the Arch wiki has more information in general</p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">RoomyRoots <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Arch is much easier in general to install. Boot strap, install the base and the packages you need, setup a bootloader and restart, ready. It takes like 20 min.</p>
+</div></div></div>
+<div class="comment" style="margin-left:60px;">
+<span class="meta">adamkex <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Is it really? I&#39;ve never messed up installing Gentoo while I&#39;ve messed up Arch. The bootloader section is quite poor. </p>
+</div></div></div>
+<div class="comment" style="margin-left:20px;">
+<span class="meta">Wi9t_y7tu <span class="score">1</span></span>
+<div class="md"><div class="md"><p>With a skill issue </p>
+</div></div></div>
+<div class="comment" style="margin-left:40px;">
+<span class="meta">SheepherderBeef8956 <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Install Gentoo and it will probably become obvious why your arch install failed. The Gentoo handbook is a lot longer but that&#39;s because it explains all the steps in much more detail.</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">stewie3128 <span class="score">2</span></span>
+<div class="md"><div class="md"><p>Install using the handbook (and keep in mind that 40-60%++ of the handbook won&#39;t apply to your specific use case - it&#39;s written to cover as many bases as possible), then just start using it like any other distro. You&#39;ll learn what you need to  - we all did :)</p>
+</div></div></div>
+<div class="comment" style="margin-left:0px;">
+<span class="meta">efbeye <span class="score">1</span></span>
+<div class="md"><div class="md"><p>Just start building it and you&#39;ll figure out what you need to learn imo. Tbh I need to work on building it again. I liked it because when you&#39;re building it you actually have to read the docs or go through the entire process of putting the OS config together. It&#39;s great. </p>
+</div></div></div>
+</body></html>
