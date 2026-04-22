@@ -4,4 +4,4 @@ unixporn
 programming
 suckless
 archlinux
-asahi
+asahilinux

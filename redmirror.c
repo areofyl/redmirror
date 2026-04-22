@@ -745,19 +745,26 @@ static_export(const char *sub, const char *sort, const char *outdir)
 
 	write_subreddit_page(sub, posts, npost, outdir);
 
-	printf("fetching comments (%d threads)...\n", npost);
+	/* fetch comments in batches of 5 to avoid rate limiting */
+	printf("fetching comments (%d posts)...\n", npost);
 	pthread_t *threads = calloc(npost, sizeof(pthread_t));
 	CommentJob *jobs = calloc(npost, sizeof(CommentJob));
 
-	for (int i = 0; i < npost; i++) {
-		jobs[i].post = &posts[i];
-		jobs[i].post_idx = i;
-		jobs[i].sub = sub;
-		jobs[i].outdir = outdir;
-		pthread_create(&threads[i], NULL, fetch_comments_thread, &jobs[i]);
+	int batch = 5;
+	for (int start = 0; start < npost; start += batch) {
+		int end = start + batch;
+		if (end > npost) end = npost;
+		for (int i = start; i < end; i++) {
+			jobs[i].post = &posts[i];
+			jobs[i].post_idx = i;
+			jobs[i].sub = sub;
+			jobs[i].outdir = outdir;
+			pthread_create(&threads[i], NULL, fetch_comments_thread, &jobs[i]);
+		}
+		for (int i = start; i < end; i++)
+			pthread_join(threads[i], NULL);
+		if (end < npost) sleep(1);
 	}
-	for (int i = 0; i < npost; i++)
-		pthread_join(threads[i], NULL);
 
 	free(threads);
 	free(jobs);
@@ -1193,9 +1200,10 @@ write_pages_homepage(const char *outdir, const char **subs, int nsubs)
 	fprintf(f, "<title>redmirror</title>\n<style>%s</style>\n", CSS);
 	fprintf(f, "</head><body>\n");
 	fprintf(f, "<h1>redmirror</h1>\n");
-	fprintf(f, "<p>subreddits:</p>\n");
+	fprintf(f, "<p>mirrored subreddits (updated every 6h):</p>\n");
 	for (int i = 0; i < nsubs; i++)
-		fprintf(f, "<a href=\"r/%s/\">r/%s</a><br>\n", subs[i], subs[i]);
+		fprintf(f, "<div style=\"margin:6px 0;\"><a href=\"r/%s/index.html\">r/%s</a></div>\n", subs[i], subs[i]);
+	fprintf(f, "<hr><p class=\"meta\">add subs by editing subs.txt</p>\n");
 	fprintf(f, "</body></html>\n");
 	fclose(f);
 	printf("wrote %s\n", path);
@@ -1234,6 +1242,11 @@ pages_export(const char *outdir, const char **subs, int nsubs)
 	for (int i = 0; i < nsubs; i++) {
 		printf("\n=== r/%s ===\n", subs[i]);
 		pages_export_sub(subs[i], outdir);
+		/* delay between subs to avoid reddit rate limiting */
+		if (i < nsubs - 1) {
+			printf("waiting 3s...\n");
+			sleep(3);
+		}
 	}
 
 	printf("\ndone. site at %s/\n", outdir);

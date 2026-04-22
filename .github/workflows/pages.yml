@@ -29,6 +29,7 @@ jobs:
         run: make
 
       - name: Fetch subreddits
+        timeout-minutes: 15
         run: |
           SUBS=$(grep -v '^#' subs.txt | grep -v '^$' | tr '\n' ' ')
           ./redmirror -p site $SUBS
